@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package discord_protos.discord_users.v1.FrecencyUserSettings;
+
+message FrecencyUserSettings {
+  message Versions {
+    uint32 client_version = 1;
+    uint32 server_version = 2;
+    uint32 data_version = 3;
+  }
+
+  enum GIFType {
+    NONE = 0;
+    IMAGE = 1;
+    VIDEO = 2;
+  }
+
+  message FavoriteGIF {
+    GIFType format = 1;
+    string src = 2;
+    uint32 width = 3;
+    uint32 height = 4;
+    uint32 order = 5;
+  }
+
+  message FavoriteGIFs {
+    map<string, FavoriteGIF> gifs = 1;
+    bool hide_tooltip = 2;
+  }
+
+  message FavoriteStickers {
+    repeated fixed64 sticker_ids = 1;
+  }
+
+  message FrecencyItem {
+    uint32 total_uses = 1;
+    repeated uint64 recent_uses = 2;
+    int32 frecency = 3;
+    int32 score = 4;
+  }
+
+  message StickerFrecency {
+    map<fixed64, FrecencyItem> stickers = 1;
+  }
+
+  message FavoriteEmojis {
+    repeated string emojis = 1;
+  }
+
+  message EmojiFrecency {
+    map<string, FrecencyItem> emojis = 1;
+  }
+
+  message ApplicationCommandFrecency {
+    map<string, FrecencyItem> application_commands = 1;
+  }
+
+  optional Versions versions = 1;
+  optional FavoriteGIFs favorite_gifs = 2;
+  optional FavoriteStickers favorite_stickers = 3;
+  optional StickerFrecency sticker_frecency = 4;
+  optional FavoriteEmojis favorite_emojis = 5;
+  optional EmojiFrecency emoji_frecency = 6;
+  optional ApplicationCommandFrecency application_command_frecency = 7;
+}

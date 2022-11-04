@@ -1,0 +1,13 @@
+{
+  "name": "discord-protos",
+  "version": "1.0.0",
+  "description": "A parser for Discord's protobufs",
+  "main": "src/index.js",
+  "packageManager": "pnpm@7.14.2",
+  "author": "Dolfies",
+  "license": "MIT",
+  "scripts": {
+    "py": "protoc --python_out=./ ./out/*.proto",
+    "js": "protoc --js_out=./ ./out/*.proto"
+  }
+}
