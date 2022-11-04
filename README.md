@@ -1,7 +1,7 @@
 # Discord Protocol Buffers
 Reverse-engineering Discord's user settings protobufs.
 
-This repository provides protocol buffer files for Discord's user settings automatically generated and (soon™️) automatically updated. The protobufs are provided as .proto files in the out/ directory, one file per setting type.
+This repository provides protocol buffer files for Discord's user settings automatically generated and (soon™️) automatically updated. The protobufs are provided as .proto files in the out/ directory, one file per settings type.
 
 These protobufs are used by the Discord clients for user settings.
 
@@ -17,7 +17,7 @@ The following table shows which protobuf user settings correspond to which .prot
 | 3     | `TEST_SETTINGS`                   | -                           | Unknown.                                           |
 
 ## Usage
-**Note**:  
+### Note
 Automating user accounts is against the Discord ToS. This repository is a proof of concept and I cannot recommend using it. Do so at your own risk.
 
 ### Protobufs
