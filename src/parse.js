@@ -123,7 +123,7 @@ function parseProto(proto) {
 
 function extractProtos() {
     const results = {};
-    for (const proto of Dorpier.webpack.getModules("typeName")) {
+    for (const proto of getModules("typeName")) {
         if (!proto.typeName.includes("Settings")) {
             continue;
         }
