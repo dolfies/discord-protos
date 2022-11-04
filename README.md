@@ -20,6 +20,10 @@ The following table shows which protobuf user settings correspond to which .prot
 **Note**:  
 Automating user accounts is against the Discord ToS. This repository is a proof of concept and I cannot recommend using it. Do so at your own risk.
 
+### Protobufs
 The .proto files can be compiled down to Python or JavaScript files by running `npm run py` or `npm run js`. This requires protoc to be installed.
 
 Base64-encoded data for these protobufs are provided by the `GET /users/@me/settings-proto/{type}` endpoint. For preloaded user settings, base64-encoded data is provided in the `USER_SETTINGS_PROTO` key of the READY event received in the Discord Gateway.
+
+### Development
+Running script in src/parse.js will print out the protocol buffers found. You need to define a `getModules()` function for it to work. That is on you.
