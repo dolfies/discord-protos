@@ -188,6 +188,14 @@ function createProtoFile(proto) {
 }
 
 const protos = extractProtos();
-Object.values(protos).forEach((proto) => {
-    console.log(createProtoFile(proto));
-});
+for (const proto of Object.values(protos)) {
+    const data = createProtoFile(proto);
+    if (window.DiscordNative?.fileManager) {
+        await window.DiscordNative.fileManager.saveWithDialog(
+            data,
+            `${proto.name}.proto`,
+        );
+    } else {
+        console.log(data);
+    }
+}
