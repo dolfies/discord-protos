@@ -179,7 +179,7 @@ function createProtoFile(proto) {
         lines.splice(
             1,
             0,
-            `import "google/protobuf/wrappers.proto";\nimport "google/protobuf/timestamp.proto;"\n`,
+            `import "google/protobuf/wrappers.proto";\nimport "google/protobuf/timestamp.proto";\n`,
         );
     }
 

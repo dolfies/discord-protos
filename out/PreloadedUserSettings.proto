@@ -3,6 +3,8 @@ syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 
+package discord_protos.discord_users.v1.PreloadedUserSettings;
+
 message PreloadedUserSettings {
   message Versions {
     uint32 client_version = 1;
