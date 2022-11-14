@@ -33,6 +33,7 @@ message PreloadedUserSettings {
     uint32 hub_progress = 2;
     uint32 guild_onboarding_progress = 3;
     optional google.protobuf.Timestamp guild_recents_dismissed_at = 4;
+    bytes dismissed_guild_content = 5;
   }
 
   message AllGuildSettings {
