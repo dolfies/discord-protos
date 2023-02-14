@@ -7,7 +7,15 @@
   "author": "Dolfies",
   "license": "MIT",
   "scripts": {
-    "py": "protoc --python_out=./ ./out/*.proto",
-    "js": "protoc --js_out=./ ./out/*.proto"
+	"build": "pbjs -t static-module --keep-case -w commonjs -o src/proto.js out/*.proto && pbts -o src/proto.d.ts src/proto.js",
+	"load": "node src/load.js",
+	"test": "node src/test.js"
+  },
+  "devDependencies": {
+    "protobufjs-cli": "^1.1.1",
+    "puppeteer": "^19.7.0"
+  },
+  "dependencies": {
+    "protobufjs": "^7.2.2"
   }
 }
