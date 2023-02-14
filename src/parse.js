@@ -1,3 +1,14 @@
+if (!getModules) {
+    const filterMap = (arr, callback) => arr.filter(callback).map(callback)
+
+    function getModules() {
+        webpackChunkdiscord_app.push([["discord-protos"], {}, r => cache=Object.values(r.c)]);
+
+        return cache.filterMap(x=>Object.values(x.exports||{}).find(v=>v?.typeName))    
+    }
+}
+
+
 // Map the type ints to their names
 const REAL_TYPES = {
     1: "double",
