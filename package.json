@@ -1,8 +1,8 @@
 {
     "name": "discord-protos",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A parser for Discord's protobufs",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "packageManager": "pnpm@7.14.2",
     "contributors": [
