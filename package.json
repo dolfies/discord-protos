@@ -1,6 +1,6 @@
 {
     "name": "discord-protos",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A parser for Discord's protobufs",
     "main": "src/index.js",
     "types": "src/index.d.ts",
@@ -21,7 +21,7 @@
     "scripts": {
         "py": "protoc --python_out=./ ./out/*.proto",
         "js": "protoc --proto_path=./out/ --ts_out src/proto PreloadedUserSettings.proto FrecencyUserSettings.proto",
-		"build": "tsc",
+        "build": "tsc",
         "load": "yarn build && node dist/load.js",
         "test": "yarn build && node dist/test.js"
     },
