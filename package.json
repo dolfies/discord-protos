@@ -1,21 +1,32 @@
 {
-  "name": "discord-protos",
-  "version": "1.0.0",
-  "description": "A parser for Discord's protobufs",
-  "main": "src/index.js",
-  "packageManager": "pnpm@7.14.2",
-  "author": "Dolfies",
-  "license": "MIT",
-  "scripts": {
-	"build": "pbjs -t static-module --keep-case -w commonjs -o src/proto.js out/*.proto && pbts -o src/proto.d.ts src/proto.js",
-	"load": "node src/load.js",
-	"test": "node src/test.js"
-  },
-  "devDependencies": {
-    "protobufjs-cli": "^1.1.1",
-    "puppeteer": "^19.7.0"
-  },
-  "dependencies": {
-    "protobufjs": "^7.2.2"
-  }
+    "name": "discord-protos",
+    "version": "1.0.0",
+    "description": "A parser for Discord's protobufs",
+    "main": "src/index.js",
+    "packageManager": "pnpm@7.14.2",
+    "contributors": [
+        {
+            "name": "dolfies",
+            "email": "jeyalfie47@gmail.com",
+            "url": "https://github.com/dolfies"
+        },
+        {
+            "name": "Samuel Scheit",
+            "email": "github@samuelscheit.com",
+            "url": "https://samuelscheit.com"
+        }
+    ],
+    "license": "MIT",
+    "scripts": {
+        "build": "pbjs -t static-module --keep-case -w commonjs -o src/proto.js out/*.proto && pbts -o src/proto.d.ts src/proto.js",
+        "load": "node src/load.js",
+        "test": "node src/test.js"
+    },
+    "devDependencies": {
+        "protobufjs-cli": "^1.1.1",
+        "puppeteer": "^19.7.0"
+    },
+    "dependencies": {
+        "protobufjs": "^7.2.2"
+    }
 }
