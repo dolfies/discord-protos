@@ -198,10 +198,11 @@ function createProtoFile(proto) {
 }
 
 const protos = extractProtos();
-for (const proto of Object.values(protos)) {
-    const data = createProtoFile(proto);
+for (const [key, proto] of Object.entries(protos)) {
+	const data = createProtoFile(proto);
+	protos[key].data = data;
     if (window.DiscordNative?.fileManager) {
-        await window.DiscordNative.fileManager.saveWithDialog(
+        window.DiscordNative.fileManager.saveWithDialog(
             data,
             `${proto.name}.proto`,
         );
