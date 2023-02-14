@@ -1,0 +1,11 @@
+{
+	"include": ["./src/**/index.js"],
+	"exclude": ["./src/*.d.ts"],
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "allowJs": true,
+        "declaration": true,
+		"emitDeclarationOnly": true,
+    }
+}
