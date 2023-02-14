@@ -1,4 +1,5 @@
 import { MessageType } from "@protobuf-ts/runtime";
+import { PreloadedUserSettings } from "./proto/PreloadedUserSettings";
 
 function toBase64(this: MessageType<any>, data) {
     return Buffer.from(this.toBinary(data)).toString("base64");

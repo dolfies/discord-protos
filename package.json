@@ -3,7 +3,7 @@
     "version": "1.0.2",
     "description": "A parser for Discord's protobufs",
     "main": "src/index.js",
-    "types": "src/index.d.ts",
+    "types": "dist/index.d.ts",
     "packageManager": "pnpm@7.14.2",
     "contributors": [
         {
@@ -28,11 +28,10 @@
     "devDependencies": {
         "@protobuf-ts/plugin": "^2.8.2",
         "@protobuf-ts/protoc": "^2.8.2",
-        "protobufjs-cli": "^1.1.1",
         "puppeteer": "^19.7.0",
         "typescript": "^4.9.5"
     },
     "dependencies": {
-        "protobufjs": "^7.2.2"
+        "@protobuf-ts/runtime": "^2.8.2"
     }
 }
