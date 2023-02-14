@@ -26,25 +26,25 @@ pnpm add discord-protos
 ### Example
 ```js
 
-const DiscordProtos = require('discord-protos');
+const { PreloadedUserSettings } = require('discord-protos');
 
-const encoded = DiscordProtos.PreloadedUserSettings.toBase64({
+const encoded = PreloadedUserSettings.toBase64({
     status: {
         status: {
             value: "online",
         },
-        custom_status: {
-            text: "hello world",
+        customStatus: {
+            text: "Hello World",
+			emojiId: 0n,
+			emojiName: "",
+			expiresAtMs: 0n,
         },
     },
 });
 
-console.log("PreloadedUserSettings as base64", encoded);
+const decoded = PreloadedUserSettings.fromBase64(encoded);
 
-
-const decoded = DiscordProtos.PreloadedUserSettings.fromBase64(encoded);
-
-console.log("PreloadedUserSettings as json", encoded);
+console.log(encoded, decoded);
 ```
 
 

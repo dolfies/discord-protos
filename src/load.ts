@@ -1,7 +1,7 @@
-const puppeteer = require("puppeteer");
-const fs = require("fs");
-const { join } = require("path");
-const script = fs.readFileSync(join(__dirname, "parse.js"), "utf8");
+import puppeteer from "puppeteer";
+import { writeFileSync, readFileSync } from "fs";
+import { join } from "path";
+const script = readFileSync(join(__dirname, "parse.js"), "utf8");
 
 async function main() {
     const browser = await puppeteer.launch({
@@ -12,12 +12,9 @@ async function main() {
     await page.goto("https://discord.com/app", { waitUntil: "networkidle0" });
 
     const protos = await page.evaluate(`${script}; protos`);
-	
+
     for (const [name, proto] of Object.entries(protos)) {
-        fs.writeFileSync(
-            join(__dirname, "..", "out", name + ".proto"),
-            proto.data,
-        );
+        writeFileSync(join(__dirname, "..", "out", name + ".proto"), proto.data);
     }
 
     await browser.close();
