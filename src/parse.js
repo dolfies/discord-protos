@@ -1,3 +1,13 @@
+if (!getModules) {
+    var filterMap = (arr, callback) => arr.filter(callback).map(callback)
+
+    function getModules(str) {
+        webpackChunkdiscord_app.push([["discord-protos"], {}, r => cache=Object.values(r.c)]);
+
+        return filterMap(cache, x => Object.values(x.exports||{}).find(v=>v && v[str]))
+    }
+}
+
 // Map the type ints to their names
 const REAL_TYPES = {
     1: "double",
@@ -188,10 +198,11 @@ function createProtoFile(proto) {
 }
 
 const protos = extractProtos();
-for (const proto of Object.values(protos)) {
-    const data = createProtoFile(proto);
+for (const [key, proto] of Object.entries(protos)) {
+	const data = createProtoFile(proto);
+	protos[key].data = data;
     if (window.DiscordNative?.fileManager) {
-        await window.DiscordNative.fileManager.saveWithDialog(
+        window.DiscordNative.fileManager.saveWithDialog(
             data,
             `${proto.name}.proto`,
         );

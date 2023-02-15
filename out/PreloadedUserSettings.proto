@@ -17,6 +17,7 @@ message PreloadedUserSettings {
     MENTIONS = 1;
     UNREADS = 2;
     TODOS = 3;
+    FOR_YOU = 4;
   }
 
   message InboxSettings {
@@ -55,6 +56,10 @@ message PreloadedUserSettings {
     string asset_hash = 2;
   }
 
+  message SoundboardSettings {
+    float volume = 1;
+  }
+
   message VoiceAndVideoSettings {
     VideoFilterBackgroundBlur blur = 1;
     uint32 preset_option = 2;
@@ -63,6 +68,7 @@ message PreloadedUserSettings {
     optional google.protobuf.UInt32Value afk_timeout = 6;
     optional google.protobuf.BoolValue stream_notifications_enabled = 7;
     optional google.protobuf.BoolValue native_phone_integration_enabled = 8;
+    optional SoundboardSettings soundboard_settings = 9;
   }
 
   message TextAndImagesSettings {
@@ -156,9 +162,17 @@ message PreloadedUserSettings {
     LIGHT = 2;
   }
 
+  message ClientThemeSettings {
+    optional google.protobuf.UInt64Value primary_color = 1;
+    optional google.protobuf.UInt32Value background_gradient_preset_id = 2;
+    optional google.protobuf.FloatValue background_gradient_angle = 3;
+  }
+
   message AppearanceSettings {
     Theme theme = 1;
     bool developer_mode = 2;
+    optional ClientThemeSettings client_theme_settings = 3;
+    bool mobile_redesign_disabled = 4;
   }
 
   message GuildFolder {

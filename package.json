@@ -1,13 +1,37 @@
 {
-  "name": "discord-protos",
-  "version": "1.0.0",
-  "description": "A parser for Discord's protobufs",
-  "main": "src/index.js",
-  "packageManager": "pnpm@7.14.2",
-  "author": "Dolfies",
-  "license": "MIT",
-  "scripts": {
-    "py": "protoc --python_out=./ ./out/*.proto",
-    "js": "protoc --js_out=./ ./out/*.proto"
-  }
+    "name": "discord-protos",
+    "version": "1.0.4",
+    "description": "A parser for Discord's protobufs",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "packageManager": "pnpm@7.14.2",
+    "contributors": [
+        {
+            "name": "dolfies",
+            "email": "jeyalfie47@gmail.com",
+            "url": "https://github.com/dolfies"
+        },
+        {
+            "name": "Samuel Scheit",
+            "email": "github@samuelscheit.com",
+            "url": "https://samuelscheit.com"
+        }
+    ],
+    "license": "MIT",
+    "scripts": {
+        "py": "protoc --python_out=./ ./out/*.proto",
+        "js": "protoc --proto_path=./out/ --ts_out src/proto PreloadedUserSettings.proto FrecencyUserSettings.proto",
+        "build": "tsc",
+        "load": "yarn build && node dist/load.js",
+        "test": "yarn build && node dist/test.js"
+    },
+    "devDependencies": {
+        "@protobuf-ts/plugin": "^2.8.2",
+        "@protobuf-ts/protoc": "^2.8.2",
+        "puppeteer": "^19.7.0",
+        "typescript": "^4.9.5"
+    },
+    "dependencies": {
+        "@protobuf-ts/runtime": "^2.8.2"
+    }
 }
