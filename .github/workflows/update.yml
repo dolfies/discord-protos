@@ -1,4 +1,4 @@
-name: update definitions
+name: Update definitions
 
 on:
   workflow_dispatch:
