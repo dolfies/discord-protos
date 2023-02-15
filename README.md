@@ -1,7 +1,7 @@
 # Discord Protocol Buffers
 Reverse-engineering Discord's user settings protobufs.
 
-This repository provides protocol buffer files for Discord's user settings automatically generated and (soon™️) automatically updated. The protobufs are provided as .proto files in the out/ directory, one file per settings type.
+This repository provides protocol buffer files for Discord's user settings automatically generated and automatically updated. The protobufs are provided as .proto files in the out/ directory, one file per settings type.
 
 These protobufs are used by the Discord clients for user settings.
 
@@ -25,7 +25,6 @@ pnpm add discord-protos
 
 ### Example
 ```js
-
 const { PreloadedUserSettings } = require('discord-protos');
 
 const encoded = PreloadedUserSettings.toBase64({
@@ -35,9 +34,9 @@ const encoded = PreloadedUserSettings.toBase64({
         },
         customStatus: {
             text: "Hello World",
-	    emojiId: 0n,
-	    emojiName: "",
-	    expiresAtMs: 0n,
+        emojiId: 0n,
+        emojiName: "",
+        expiresAtMs: 0n,
         },
     },
 });
@@ -51,11 +50,11 @@ console.log(encoded, decoded);
 ## Mapping
 The following table shows which protobuf user settings correspond to which .proto file.
 
-| Type  | Value                             | File                        | Use                                                |
-|-------|-----------------------------------|-----------------------------|----------------------------------------------------|
-| 1     | `PRELOADED_USER_SETTINGS`         | PreloadedUserSettings.proto | General Discord user settings.                     |
-| 2     | `FRECENCY_AND_FAVORITES_SETTINGS` | FrecencyUserSettings.proto  | Frecency and favorites storage for various things. |
-| 3     | `TEST_SETTINGS`                   | -                           | Unknown.                                           |
+| Type | Value                             | File                        | Use                                                |
+| ---- | --------------------------------- | --------------------------- | -------------------------------------------------- |
+| 1    | `PRELOADED_USER_SETTINGS`         | PreloadedUserSettings.proto | General Discord user settings.                     |
+| 2    | `FRECENCY_AND_FAVORITES_SETTINGS` | FrecencyUserSettings.proto  | Frecency and favorites storage for various things. |
+| 3    | `TEST_SETTINGS`                   | -                           | Unknown.                                           |
 
 
 ### Protobufs
@@ -64,4 +63,4 @@ The .proto files can be compiled down to Python or JavaScript files by running `
 Base64-encoded data for these protobufs are provided by the `GET /users/@me/settings-proto/{type}` endpoint. For preloaded user settings, base64-encoded data is provided in the `USER_SETTINGS_PROTO` key of the READY event received in the Discord Gateway.
 
 ### Development
-Running script in src/parse.js will print out the protocol buffers found. You need to define a `getModules()` function for it to work. That is on you.
+Running `pnpm load` will extract and save the latest protobufs to the out/ directory.
