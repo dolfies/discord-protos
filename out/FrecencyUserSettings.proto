@@ -55,6 +55,10 @@ message FrecencyUserSettings {
     map<string, FrecencyItem> application_commands = 1;
   }
 
+  message FavoriteSoundboardSounds {
+    repeated fixed64 sound_ids = 1;
+  }
+
   optional Versions versions = 1;
   optional FavoriteGIFs favorite_gifs = 2;
   optional FavoriteStickers favorite_stickers = 3;
@@ -62,4 +66,5 @@ message FrecencyUserSettings {
   optional FavoriteEmojis favorite_emojis = 5;
   optional EmojiFrecency emoji_frecency = 6;
   optional ApplicationCommandFrecency application_command_frecency = 7;
+  optional FavoriteSoundboardSounds favorite_soundboard_sounds = 8;
 }
