@@ -14,7 +14,7 @@ async function main() {
     const protos = await page.evaluate(`${script}; protos`);
 
     for (const [name, proto] of Object.entries(protos)) {
-        writeFileSync(join(__dirname, "..", "out", name + ".proto"), proto.data);
+        writeFileSync(join(__dirname, "..", "discord_protos", name + ".proto"), proto.data);
     }
 
     await browser.close();

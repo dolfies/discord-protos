@@ -19,8 +19,8 @@
     ],
     "license": "MIT",
     "scripts": {
-        "py": "protoc --python_out=./ ./out/*.proto",
-        "js": "protoc --proto_path=./out/ --ts_out src/proto PreloadedUserSettings.proto FrecencyUserSettings.proto",
+        "py": "protoc --proto_path=./discord_protos/ --python_out=discord_protos PreloadedUserSettings.proto FrecencyUserSettings.proto",
+        "js": "protoc --proto_path=./discord_protos/ --ts_out src/proto PreloadedUserSettings.proto FrecencyUserSettings.proto",
         "build": "tsc",
         "load": "yarn build && node dist/load.js",
         "test": "yarn build && node dist/test.js"

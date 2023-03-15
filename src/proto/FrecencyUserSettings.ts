@@ -43,6 +43,10 @@ export interface FrecencyUserSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationCommandFrecency application_command_frecency = 7;
      */
     applicationCommandFrecency?: FrecencyUserSettings_ApplicationCommandFrecency;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FavoriteSoundboardSounds favorite_soundboard_sounds = 8;
+     */
+    favoriteSoundboardSounds?: FrecencyUserSettings_FavoriteSoundboardSounds;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.Versions
@@ -174,6 +178,15 @@ export interface FrecencyUserSettings_ApplicationCommandFrecency {
     };
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FavoriteSoundboardSounds
+ */
+export interface FrecencyUserSettings_FavoriteSoundboardSounds {
+    /**
+     * @generated from protobuf field: repeated fixed64 sound_ids = 1;
+     */
+    soundIds: bigint[];
+}
+/**
  * @generated from protobuf enum discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.GIFType
  */
 export enum FrecencyUserSettings_GIFType {
@@ -200,7 +213,8 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
             { no: 4, name: "sticker_frecency", kind: "message", T: () => FrecencyUserSettings_StickerFrecency },
             { no: 5, name: "favorite_emojis", kind: "message", T: () => FrecencyUserSettings_FavoriteEmojis },
             { no: 6, name: "emoji_frecency", kind: "message", T: () => FrecencyUserSettings_EmojiFrecency },
-            { no: 7, name: "application_command_frecency", kind: "message", T: () => FrecencyUserSettings_ApplicationCommandFrecency }
+            { no: 7, name: "application_command_frecency", kind: "message", T: () => FrecencyUserSettings_ApplicationCommandFrecency },
+            { no: 8, name: "favorite_soundboard_sounds", kind: "message", T: () => FrecencyUserSettings_FavoriteSoundboardSounds }
         ]);
     }
     create(value?: PartialMessage<FrecencyUserSettings>): FrecencyUserSettings {
@@ -236,6 +250,9 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
                 case /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationCommandFrecency application_command_frecency */ 7:
                     message.applicationCommandFrecency = FrecencyUserSettings_ApplicationCommandFrecency.internalBinaryRead(reader, reader.uint32(), options, message.applicationCommandFrecency);
                     break;
+                case /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FavoriteSoundboardSounds favorite_soundboard_sounds */ 8:
+                    message.favoriteSoundboardSounds = FrecencyUserSettings_FavoriteSoundboardSounds.internalBinaryRead(reader, reader.uint32(), options, message.favoriteSoundboardSounds);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -269,6 +286,9 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
         /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationCommandFrecency application_command_frecency = 7; */
         if (message.applicationCommandFrecency)
             FrecencyUserSettings_ApplicationCommandFrecency.internalBinaryWrite(message.applicationCommandFrecency, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FavoriteSoundboardSounds favorite_soundboard_sounds = 8; */
+        if (message.favoriteSoundboardSounds)
+            FrecencyUserSettings_FavoriteSoundboardSounds.internalBinaryWrite(message.favoriteSoundboardSounds, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -868,3 +888,58 @@ class FrecencyUserSettings_ApplicationCommandFrecency$Type extends MessageType<F
  * @generated MessageType for protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationCommandFrecency
  */
 export const FrecencyUserSettings_ApplicationCommandFrecency = new FrecencyUserSettings_ApplicationCommandFrecency$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class FrecencyUserSettings_FavoriteSoundboardSounds$Type extends MessageType<FrecencyUserSettings_FavoriteSoundboardSounds> {
+    constructor() {
+        super("discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FavoriteSoundboardSounds", [
+            { no: 1, name: "sound_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+        ]);
+    }
+    create(value?: PartialMessage<FrecencyUserSettings_FavoriteSoundboardSounds>): FrecencyUserSettings_FavoriteSoundboardSounds {
+        const message = { soundIds: [] };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<FrecencyUserSettings_FavoriteSoundboardSounds>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: FrecencyUserSettings_FavoriteSoundboardSounds): FrecencyUserSettings_FavoriteSoundboardSounds {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated fixed64 sound_ids */ 1:
+                    if (wireType === WireType.LengthDelimited)
+                        for (let e = reader.int32() + reader.pos; reader.pos < e;)
+                            message.soundIds.push(reader.fixed64().toBigInt());
+                    else
+                        message.soundIds.push(reader.fixed64().toBigInt());
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: FrecencyUserSettings_FavoriteSoundboardSounds, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated fixed64 sound_ids = 1; */
+        if (message.soundIds.length) {
+            writer.tag(1, WireType.LengthDelimited).fork();
+            for (let i = 0; i < message.soundIds.length; i++)
+                writer.fixed64(message.soundIds[i]);
+            writer.join();
+        }
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FavoriteSoundboardSounds
+ */
+export const FrecencyUserSettings_FavoriteSoundboardSounds = new FrecencyUserSettings_FavoriteSoundboardSounds$Type();

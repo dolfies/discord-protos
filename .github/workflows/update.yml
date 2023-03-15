@@ -1,4 +1,4 @@
-name: Update definitions
+name: Update protobuf definitions
 
 on:
   workflow_dispatch:
@@ -14,18 +14,26 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
 
-    - uses: actions/setup-node@v3
+    - name: Install requirements
+      uses: actions/setup-node@v3
       with:
         node-version: 18
+    - uses: arduino/setup-protoc@v1
     - run: npm install
-    - run: npm run load
+
+    - name: Load protobuf definitions
+      run: npm run load
     - run: npm run build
+    - run: npm run js
+    - run: npm run py
     - run: npm run test
 
-    - uses: stefanzweifel/git-auto-commit-action@v4
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Update protobuf definitions

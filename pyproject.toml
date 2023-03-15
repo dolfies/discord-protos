@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 125
+skip-string-normalization = true
+
+[tool.pyright]
+include = ["discord_protos"]
+exclude = [
+    "**/__pycache__",
+    "src",
+    "node_modules",
+]
+reportUnnecessaryTypeIgnoreComment = "warning"
+reportUnusedImport = "error"
+reportShadowedImports = false
+pythonVersion = "3.8"
+typeCheckingMode = "basic"
+useLibraryCodeForTypes = true
