@@ -5,3 +5,4 @@ yarn*
 package-lock.json
 .DS_STORE
 dist/
+*.egg-info
