@@ -1,7 +1,13 @@
 from enum import Enum as _Enum
+from typing import TYPE_CHECKING
 
-from .FrecencyUserSettings_pb2 import FrecencyUserSettings
-from .PreloadedUserSettings_pb2 import PreloadedUserSettings
+if TYPE_CHECKING:
+    from google.protobuf.message import Message as _Message
+
+    FrecencyUserSettings = PreloadedUserSettings = _Message
+else:
+    from .FrecencyUserSettings_pb2 import FrecencyUserSettings
+    from .PreloadedUserSettings_pb2 import PreloadedUserSettings
 
 
 class UserSettingsType(_Enum):
@@ -17,4 +23,4 @@ UserSettingsImpl = {
 }
 
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
