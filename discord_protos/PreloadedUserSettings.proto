@@ -209,6 +209,7 @@ message PreloadedUserSettings {
     bool muted = 1;
     float volume = 2;
     fixed64 modified_at = 3;
+    bool soundboard_muted = 4;
   }
 
   message AudioSettings {

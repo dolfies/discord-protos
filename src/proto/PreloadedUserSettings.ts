@@ -642,6 +642,10 @@ export interface PreloadedUserSettings_AudioContextSetting {
      * @generated from protobuf field: fixed64 modified_at = 3;
      */
     modifiedAt: bigint;
+    /**
+     * @generated from protobuf field: bool soundboard_muted = 4;
+     */
+    soundboardMuted: boolean;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.AudioSettings
@@ -2688,11 +2692,12 @@ class PreloadedUserSettings_AudioContextSetting$Type extends MessageType<Preload
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.AudioContextSetting", [
             { no: 1, name: "muted", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 2, name: "volume", kind: "scalar", T: 2 /*ScalarType.FLOAT*/ },
-            { no: 3, name: "modified_at", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 3, name: "modified_at", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 4, name: "soundboard_muted", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AudioContextSetting>): PreloadedUserSettings_AudioContextSetting {
-        const message = { muted: false, volume: 0, modifiedAt: 0n };
+        const message = { muted: false, volume: 0, modifiedAt: 0n, soundboardMuted: false };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_AudioContextSetting>(this, message, value);
@@ -2711,6 +2716,9 @@ class PreloadedUserSettings_AudioContextSetting$Type extends MessageType<Preload
                     break;
                 case /* fixed64 modified_at */ 3:
                     message.modifiedAt = reader.fixed64().toBigInt();
+                    break;
+                case /* bool soundboard_muted */ 4:
+                    message.soundboardMuted = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2733,6 +2741,9 @@ class PreloadedUserSettings_AudioContextSetting$Type extends MessageType<Preload
         /* fixed64 modified_at = 3; */
         if (message.modifiedAt !== 0n)
             writer.tag(3, WireType.Bit64).fixed64(message.modifiedAt);
+        /* bool soundboard_muted = 4; */
+        if (message.soundboardMuted !== false)
+            writer.tag(4, WireType.Varint).bool(message.soundboardMuted);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
