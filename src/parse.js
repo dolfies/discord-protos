@@ -4,7 +4,11 @@ if (!getModules) {
     function getModules(str) {
         webpackChunkdiscord_app.push([["discord-protos"], {}, r => cache=Object.values(r.c)]);
 
-        return filterMap(cache, x => Object.values(x.exports||{}).find(v=>v && v[str]))
+        return filterMap(cache, x => {
+			try {
+				return Object.values(x.exports||{}).find(v=>v && v[str])
+			} catch (e) {}
+		})
     }
 }
 
