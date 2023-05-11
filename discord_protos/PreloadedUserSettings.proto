@@ -45,6 +45,7 @@ message PreloadedUserSettings {
     bytes dismissed_contents = 1;
     optional google.protobuf.StringValue last_dismissed_outbound_promotion_start_date = 2;
     optional google.protobuf.Timestamp premium_tier_0_modal_dismissed_at = 3;
+    optional google.protobuf.Timestamp guild_onboarding_upsell_dismissed_at = 4;
   }
 
   message VideoFilterBackgroundBlur {
@@ -71,6 +72,13 @@ message PreloadedUserSettings {
     optional SoundboardSettings soundboard_settings = 9;
   }
 
+  enum DmSpamFilterV2 {
+    DEFAULT_UNSET = 0;
+    DISABLED = 1;
+    NON_FRIENDS = 2;
+    FRIENDS_AND_NON_FRIENDS = 3;
+  }
+
   message TextAndImagesSettings {
     optional google.protobuf.StringValue diversity_surrogate = 1;
     optional google.protobuf.BoolValue use_rich_chat_input = 2;
@@ -95,12 +103,16 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue expression_suggestions_enabled = 22;
     optional google.protobuf.BoolValue view_nsfw_commands = 23;
     optional google.protobuf.BoolValue use_legacy_chat_input = 24;
+    repeated string soundboard_picker_collapsed_sections = 25;
+    optional google.protobuf.UInt32Value dm_spam_filter = 26;
+    DmSpamFilterV2 dm_spam_filter_v2 = 27;
   }
 
   message NotificationSettings {
     optional google.protobuf.BoolValue show_in_app_notifications = 1;
     optional google.protobuf.BoolValue notify_friends_on_go_live = 2;
     fixed64 notification_center_acked_before_id = 3;
+    optional google.protobuf.BoolValue enable_burst_reaction_notifications = 4;
   }
 
   enum GuildActivityStatusRestrictionDefault {
@@ -126,6 +138,9 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue default_message_request_restricted = 17;
     optional google.protobuf.BoolValue drops_opted_out = 18;
     optional google.protobuf.BoolValue non_spam_retraining_opt_in = 19;
+    optional google.protobuf.BoolValue family_center_enabled = 20;
+    optional google.protobuf.BoolValue family_center_enabled_v2 = 21;
+    optional google.protobuf.BoolValue hide_legacy_username = 22;
   }
 
   message DebugSettings {
@@ -173,6 +188,7 @@ message PreloadedUserSettings {
     bool developer_mode = 2;
     optional ClientThemeSettings client_theme_settings = 3;
     bool mobile_redesign_disabled = 4;
+    optional google.protobuf.StringValue channel_list_layout = 6;
   }
 
   message GuildFolder {
@@ -221,6 +237,12 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue disable_home_auto_nav = 1;
   }
 
+  message BroadcastSettings {
+    optional google.protobuf.BoolValue allow_friends = 1;
+    repeated fixed64 allowed_guild_ids = 2;
+    repeated fixed64 allowed_user_ids = 3;
+  }
+
   optional Versions versions = 1;
   optional InboxSettings inbox = 2;
   optional AllGuildSettings guilds = 3;
@@ -238,4 +260,5 @@ message PreloadedUserSettings {
   optional Favorites favorites = 15;
   optional AudioSettings audio_context_settings = 16;
   optional CommunitiesSettings communities = 17;
+  optional BroadcastSettings broadcast = 18;
 }
