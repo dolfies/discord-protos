@@ -46,6 +46,7 @@ message PreloadedUserSettings {
     optional google.protobuf.StringValue last_dismissed_outbound_promotion_start_date = 2;
     optional google.protobuf.Timestamp premium_tier_0_modal_dismissed_at = 3;
     optional google.protobuf.Timestamp guild_onboarding_upsell_dismissed_at = 4;
+    optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at = 5;
   }
 
   message VideoFilterBackgroundBlur {

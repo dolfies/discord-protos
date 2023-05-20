@@ -193,6 +193,10 @@ export interface PreloadedUserSettings_UserContentSettings {
      * @generated from protobuf field: optional google.protobuf.Timestamp guild_onboarding_upsell_dismissed_at = 4;
      */
     guildOnboardingUpsellDismissedAt?: Timestamp;
+    /**
+     * @generated from protobuf field: optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at = 5;
+     */
+    safetyUserSentimentNoticeDismissedAt?: Timestamp;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.VideoFilterBackgroundBlur
@@ -1320,7 +1324,8 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
             { no: 1, name: "dismissed_contents", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
             { no: 2, name: "last_dismissed_outbound_promotion_start_date", kind: "message", T: () => StringValue },
             { no: 3, name: "premium_tier_0_modal_dismissed_at", kind: "message", T: () => Timestamp },
-            { no: 4, name: "guild_onboarding_upsell_dismissed_at", kind: "message", T: () => Timestamp }
+            { no: 4, name: "guild_onboarding_upsell_dismissed_at", kind: "message", T: () => Timestamp },
+            { no: 5, name: "safety_user_sentiment_notice_dismissed_at", kind: "message", T: () => Timestamp }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_UserContentSettings>): PreloadedUserSettings_UserContentSettings {
@@ -1347,6 +1352,9 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
                 case /* optional google.protobuf.Timestamp guild_onboarding_upsell_dismissed_at */ 4:
                     message.guildOnboardingUpsellDismissedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.guildOnboardingUpsellDismissedAt);
                     break;
+                case /* optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at */ 5:
+                    message.safetyUserSentimentNoticeDismissedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.safetyUserSentimentNoticeDismissedAt);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1371,6 +1379,9 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
         /* optional google.protobuf.Timestamp guild_onboarding_upsell_dismissed_at = 4; */
         if (message.guildOnboardingUpsellDismissedAt)
             Timestamp.internalBinaryWrite(message.guildOnboardingUpsellDismissedAt, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at = 5; */
+        if (message.safetyUserSentimentNoticeDismissedAt)
+            Timestamp.internalBinaryWrite(message.safetyUserSentimentNoticeDismissedAt, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
