@@ -107,6 +107,7 @@ message PreloadedUserSettings {
     repeated string soundboard_picker_collapsed_sections = 25;
     optional google.protobuf.UInt32Value dm_spam_filter = 26;
     DmSpamFilterV2 dm_spam_filter_v2 = 27;
+    optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28;
   }
 
   message NotificationSettings {

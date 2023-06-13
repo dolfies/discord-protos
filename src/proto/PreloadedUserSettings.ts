@@ -374,6 +374,10 @@ export interface PreloadedUserSettings_TextAndImagesSettings {
      * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2 dm_spam_filter_v2 = 27;
      */
     dmSpamFilterV2: PreloadedUserSettings_DmSpamFilterV2;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28;
+     */
+    includeStickersInAutocomplete?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.NotificationSettings
@@ -1665,7 +1669,8 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
             { no: 24, name: "use_legacy_chat_input", kind: "message", T: () => BoolValue },
             { no: 25, name: "soundboard_picker_collapsed_sections", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
             { no: 26, name: "dm_spam_filter", kind: "message", T: () => UInt32Value },
-            { no: 27, name: "dm_spam_filter_v2", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2", PreloadedUserSettings_DmSpamFilterV2] }
+            { no: 27, name: "dm_spam_filter_v2", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2", PreloadedUserSettings_DmSpamFilterV2] },
+            { no: 28, name: "include_stickers_in_autocomplete", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_TextAndImagesSettings>): PreloadedUserSettings_TextAndImagesSettings {
@@ -1758,6 +1763,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
                 case /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2 dm_spam_filter_v2 */ 27:
                     message.dmSpamFilterV2 = reader.int32();
                     break;
+                case /* optional google.protobuf.BoolValue include_stickers_in_autocomplete */ 28:
+                    message.includeStickersInAutocomplete = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.includeStickersInAutocomplete);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1848,6 +1856,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
         /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2 dm_spam_filter_v2 = 27; */
         if (message.dmSpamFilterV2 !== 0)
             writer.tag(27, WireType.Varint).int32(message.dmSpamFilterV2);
+        /* optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28; */
+        if (message.includeStickersInAutocomplete)
+            BoolValue.internalBinaryWrite(message.includeStickersInAutocomplete, writer.tag(28, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
