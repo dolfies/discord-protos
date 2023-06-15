@@ -136,6 +136,19 @@ export interface PreloadedUserSettings_ChannelSettings {
     collapsedInInbox: boolean;
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound
+ */
+export interface PreloadedUserSettings_CustomCallSound {
+    /**
+     * @generated from protobuf field: fixed64 sound_id = 1;
+     */
+    soundId: bigint;
+    /**
+     * @generated from protobuf field: fixed64 guild_id = 2;
+     */
+    guildId: bigint;
+}
+/**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.GuildSettings
  */
 export interface PreloadedUserSettings_GuildSettings {
@@ -161,6 +174,10 @@ export interface PreloadedUserSettings_GuildSettings {
      * @generated from protobuf field: bytes dismissed_guild_content = 5;
      */
     dismissedGuildContent: Uint8Array;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound join_sound = 6;
+     */
+    joinSound?: PreloadedUserSettings_CustomCallSound;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.AllGuildSettings
@@ -737,6 +754,10 @@ export interface PreloadedUserSettings_BroadcastSettings {
      * @generated from protobuf field: repeated fixed64 allowed_user_ids = 3;
      */
     allowedUserIds: bigint[];
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue auto_broadcast = 4;
+     */
+    autoBroadcast?: BoolValue;
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.InboxTab
@@ -1160,6 +1181,60 @@ class PreloadedUserSettings_ChannelSettings$Type extends MessageType<PreloadedUs
  */
 export const PreloadedUserSettings_ChannelSettings = new PreloadedUserSettings_ChannelSettings$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_CustomCallSound$Type extends MessageType<PreloadedUserSettings_CustomCallSound> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound", [
+            { no: 1, name: "sound_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 2, name: "guild_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_CustomCallSound>): PreloadedUserSettings_CustomCallSound {
+        const message = { soundId: 0n, guildId: 0n };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_CustomCallSound>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_CustomCallSound): PreloadedUserSettings_CustomCallSound {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* fixed64 sound_id */ 1:
+                    message.soundId = reader.fixed64().toBigInt();
+                    break;
+                case /* fixed64 guild_id */ 2:
+                    message.guildId = reader.fixed64().toBigInt();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_CustomCallSound, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* fixed64 sound_id = 1; */
+        if (message.soundId !== 0n)
+            writer.tag(1, WireType.Bit64).fixed64(message.soundId);
+        /* fixed64 guild_id = 2; */
+        if (message.guildId !== 0n)
+            writer.tag(2, WireType.Bit64).fixed64(message.guildId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound
+ */
+export const PreloadedUserSettings_CustomCallSound = new PreloadedUserSettings_CustomCallSound$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUserSettings_GuildSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.GuildSettings", [
@@ -1167,7 +1242,8 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
             { no: 2, name: "hub_progress", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
             { no: 3, name: "guild_onboarding_progress", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
             { no: 4, name: "guild_recents_dismissed_at", kind: "message", T: () => Timestamp },
-            { no: 5, name: "dismissed_guild_content", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
+            { no: 5, name: "dismissed_guild_content", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
+            { no: 6, name: "join_sound", kind: "message", T: () => PreloadedUserSettings_CustomCallSound }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_GuildSettings>): PreloadedUserSettings_GuildSettings {
@@ -1196,6 +1272,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
                     break;
                 case /* bytes dismissed_guild_content */ 5:
                     message.dismissedGuildContent = reader.bytes();
+                    break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound join_sound */ 6:
+                    message.joinSound = PreloadedUserSettings_CustomCallSound.internalBinaryRead(reader, reader.uint32(), options, message.joinSound);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1244,6 +1323,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
         /* bytes dismissed_guild_content = 5; */
         if (message.dismissedGuildContent.length)
             writer.tag(5, WireType.LengthDelimited).bytes(message.dismissedGuildContent);
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound join_sound = 6; */
+        if (message.joinSound)
+            PreloadedUserSettings_CustomCallSound.internalBinaryWrite(message.joinSound, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -3071,7 +3153,8 @@ class PreloadedUserSettings_BroadcastSettings$Type extends MessageType<Preloaded
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.BroadcastSettings", [
             { no: 1, name: "allow_friends", kind: "message", T: () => BoolValue },
             { no: 2, name: "allowed_guild_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 3, name: "allowed_user_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 3, name: "allowed_user_ids", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 4, name: "auto_broadcast", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_BroadcastSettings>): PreloadedUserSettings_BroadcastSettings {
@@ -3103,6 +3186,9 @@ class PreloadedUserSettings_BroadcastSettings$Type extends MessageType<Preloaded
                     else
                         message.allowedUserIds.push(reader.fixed64().toBigInt());
                     break;
+                case /* optional google.protobuf.BoolValue auto_broadcast */ 4:
+                    message.autoBroadcast = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.autoBroadcast);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -3132,6 +3218,9 @@ class PreloadedUserSettings_BroadcastSettings$Type extends MessageType<Preloaded
                 writer.fixed64(message.allowedUserIds[i]);
             writer.join();
         }
+        /* optional google.protobuf.BoolValue auto_broadcast = 4; */
+        if (message.autoBroadcast)
+            BoolValue.internalBinaryWrite(message.autoBroadcast, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

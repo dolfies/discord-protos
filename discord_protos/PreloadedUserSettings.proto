@@ -29,12 +29,18 @@ message PreloadedUserSettings {
     bool collapsed_in_inbox = 1;
   }
 
+  message CustomCallSound {
+    fixed64 sound_id = 1;
+    fixed64 guild_id = 2;
+  }
+
   message GuildSettings {
     map<fixed64, ChannelSettings> channels = 1;
     uint32 hub_progress = 2;
     uint32 guild_onboarding_progress = 3;
     optional google.protobuf.Timestamp guild_recents_dismissed_at = 4;
     bytes dismissed_guild_content = 5;
+    optional CustomCallSound join_sound = 6;
   }
 
   message AllGuildSettings {
@@ -243,6 +249,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue allow_friends = 1;
     repeated fixed64 allowed_guild_ids = 2;
     repeated fixed64 allowed_user_ids = 3;
+    optional google.protobuf.BoolValue auto_broadcast = 4;
   }
 
   optional Versions versions = 1;
