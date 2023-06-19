@@ -25,13 +25,25 @@ message PreloadedUserSettings {
     bool viewed_tutorial = 2;
   }
 
+  message ChannelIconEmoji {
+    optional google.protobuf.UInt64Value id = 1;
+    optional google.protobuf.StringValue name = 2;
+    optional google.protobuf.StringValue color = 3;
+  }
+
   message ChannelSettings {
     bool collapsed_in_inbox = 1;
+    optional ChannelIconEmoji icon_emoji = 2;
   }
 
   message CustomCallSound {
     fixed64 sound_id = 1;
     fixed64 guild_id = 2;
+  }
+
+  message ChannelListSettings {
+    optional google.protobuf.StringValue layout = 1;
+    optional google.protobuf.StringValue message_previews = 2;
   }
 
   message GuildSettings {
@@ -41,6 +53,7 @@ message PreloadedUserSettings {
     optional google.protobuf.Timestamp guild_recents_dismissed_at = 4;
     bytes dismissed_guild_content = 5;
     optional CustomCallSound join_sound = 6;
+    optional ChannelListSettings mobile_redesign_channel_list_settings = 7;
   }
 
   message AllGuildSettings {
@@ -197,6 +210,7 @@ message PreloadedUserSettings {
     optional ClientThemeSettings client_theme_settings = 3;
     bool mobile_redesign_disabled = 4;
     optional google.protobuf.StringValue channel_list_layout = 6;
+    optional google.protobuf.StringValue message_previews = 7;
   }
 
   message GuildFolder {

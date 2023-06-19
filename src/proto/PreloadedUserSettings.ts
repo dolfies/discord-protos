@@ -13,12 +13,12 @@ import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 import { Int64Value } from "./google/protobuf/wrappers";
 import { FloatValue } from "./google/protobuf/wrappers";
-import { UInt64Value } from "./google/protobuf/wrappers";
 import { Int32Value } from "./google/protobuf/wrappers";
 import { UInt32Value } from "./google/protobuf/wrappers";
 import { BoolValue } from "./google/protobuf/wrappers";
-import { StringValue } from "./google/protobuf/wrappers";
 import { Timestamp } from "./google/protobuf/timestamp";
+import { StringValue } from "./google/protobuf/wrappers";
+import { UInt64Value } from "./google/protobuf/wrappers";
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings
  */
@@ -127,6 +127,23 @@ export interface PreloadedUserSettings_InboxSettings {
     viewedTutorial: boolean;
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji
+ */
+export interface PreloadedUserSettings_ChannelIconEmoji {
+    /**
+     * @generated from protobuf field: optional google.protobuf.UInt64Value id = 1;
+     */
+    id?: UInt64Value;
+    /**
+     * @generated from protobuf field: optional google.protobuf.StringValue name = 2;
+     */
+    name?: StringValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.StringValue color = 3;
+     */
+    color?: StringValue;
+}
+/**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelSettings
  */
 export interface PreloadedUserSettings_ChannelSettings {
@@ -134,6 +151,10 @@ export interface PreloadedUserSettings_ChannelSettings {
      * @generated from protobuf field: bool collapsed_in_inbox = 1;
      */
     collapsedInInbox: boolean;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji icon_emoji = 2;
+     */
+    iconEmoji?: PreloadedUserSettings_ChannelIconEmoji;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound
@@ -147,6 +168,19 @@ export interface PreloadedUserSettings_CustomCallSound {
      * @generated from protobuf field: fixed64 guild_id = 2;
      */
     guildId: bigint;
+}
+/**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings
+ */
+export interface PreloadedUserSettings_ChannelListSettings {
+    /**
+     * @generated from protobuf field: optional google.protobuf.StringValue layout = 1;
+     */
+    layout?: StringValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.StringValue message_previews = 2;
+     */
+    messagePreviews?: StringValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.GuildSettings
@@ -178,6 +212,10 @@ export interface PreloadedUserSettings_GuildSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound join_sound = 6;
      */
     joinSound?: PreloadedUserSettings_CustomCallSound;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings mobile_redesign_channel_list_settings = 7;
+     */
+    mobileRedesignChannelListSettings?: PreloadedUserSettings_ChannelListSettings;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.AllGuildSettings
@@ -620,6 +658,10 @@ export interface PreloadedUserSettings_AppearanceSettings {
      * @generated from protobuf field: optional google.protobuf.StringValue channel_list_layout = 6;
      */
     channelListLayout?: StringValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.StringValue message_previews = 7;
+     */
+    messagePreviews?: StringValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.GuildFolder
@@ -1134,10 +1176,72 @@ class PreloadedUserSettings_InboxSettings$Type extends MessageType<PreloadedUser
  */
 export const PreloadedUserSettings_InboxSettings = new PreloadedUserSettings_InboxSettings$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_ChannelIconEmoji$Type extends MessageType<PreloadedUserSettings_ChannelIconEmoji> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji", [
+            { no: 1, name: "id", kind: "message", T: () => UInt64Value },
+            { no: 2, name: "name", kind: "message", T: () => StringValue },
+            { no: 3, name: "color", kind: "message", T: () => StringValue }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_ChannelIconEmoji>): PreloadedUserSettings_ChannelIconEmoji {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_ChannelIconEmoji>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_ChannelIconEmoji): PreloadedUserSettings_ChannelIconEmoji {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional google.protobuf.UInt64Value id */ 1:
+                    message.id = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.id);
+                    break;
+                case /* optional google.protobuf.StringValue name */ 2:
+                    message.name = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.name);
+                    break;
+                case /* optional google.protobuf.StringValue color */ 3:
+                    message.color = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.color);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_ChannelIconEmoji, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional google.protobuf.UInt64Value id = 1; */
+        if (message.id)
+            UInt64Value.internalBinaryWrite(message.id, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.StringValue name = 2; */
+        if (message.name)
+            StringValue.internalBinaryWrite(message.name, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.StringValue color = 3; */
+        if (message.color)
+            StringValue.internalBinaryWrite(message.color, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji
+ */
+export const PreloadedUserSettings_ChannelIconEmoji = new PreloadedUserSettings_ChannelIconEmoji$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class PreloadedUserSettings_ChannelSettings$Type extends MessageType<PreloadedUserSettings_ChannelSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelSettings", [
-            { no: 1, name: "collapsed_in_inbox", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+            { no: 1, name: "collapsed_in_inbox", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 2, name: "icon_emoji", kind: "message", T: () => PreloadedUserSettings_ChannelIconEmoji }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_ChannelSettings>): PreloadedUserSettings_ChannelSettings {
@@ -1155,6 +1259,9 @@ class PreloadedUserSettings_ChannelSettings$Type extends MessageType<PreloadedUs
                 case /* bool collapsed_in_inbox */ 1:
                     message.collapsedInInbox = reader.bool();
                     break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji icon_emoji */ 2:
+                    message.iconEmoji = PreloadedUserSettings_ChannelIconEmoji.internalBinaryRead(reader, reader.uint32(), options, message.iconEmoji);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1170,6 +1277,9 @@ class PreloadedUserSettings_ChannelSettings$Type extends MessageType<PreloadedUs
         /* bool collapsed_in_inbox = 1; */
         if (message.collapsedInInbox !== false)
             writer.tag(1, WireType.Varint).bool(message.collapsedInInbox);
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji icon_emoji = 2; */
+        if (message.iconEmoji)
+            PreloadedUserSettings_ChannelIconEmoji.internalBinaryWrite(message.iconEmoji, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1235,6 +1345,60 @@ class PreloadedUserSettings_CustomCallSound$Type extends MessageType<PreloadedUs
  */
 export const PreloadedUserSettings_CustomCallSound = new PreloadedUserSettings_CustomCallSound$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_ChannelListSettings$Type extends MessageType<PreloadedUserSettings_ChannelListSettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings", [
+            { no: 1, name: "layout", kind: "message", T: () => StringValue },
+            { no: 2, name: "message_previews", kind: "message", T: () => StringValue }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_ChannelListSettings>): PreloadedUserSettings_ChannelListSettings {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_ChannelListSettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_ChannelListSettings): PreloadedUserSettings_ChannelListSettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional google.protobuf.StringValue layout */ 1:
+                    message.layout = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.layout);
+                    break;
+                case /* optional google.protobuf.StringValue message_previews */ 2:
+                    message.messagePreviews = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.messagePreviews);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_ChannelListSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional google.protobuf.StringValue layout = 1; */
+        if (message.layout)
+            StringValue.internalBinaryWrite(message.layout, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.StringValue message_previews = 2; */
+        if (message.messagePreviews)
+            StringValue.internalBinaryWrite(message.messagePreviews, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings
+ */
+export const PreloadedUserSettings_ChannelListSettings = new PreloadedUserSettings_ChannelListSettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUserSettings_GuildSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.GuildSettings", [
@@ -1243,7 +1407,8 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
             { no: 3, name: "guild_onboarding_progress", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
             { no: 4, name: "guild_recents_dismissed_at", kind: "message", T: () => Timestamp },
             { no: 5, name: "dismissed_guild_content", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
-            { no: 6, name: "join_sound", kind: "message", T: () => PreloadedUserSettings_CustomCallSound }
+            { no: 6, name: "join_sound", kind: "message", T: () => PreloadedUserSettings_CustomCallSound },
+            { no: 7, name: "mobile_redesign_channel_list_settings", kind: "message", T: () => PreloadedUserSettings_ChannelListSettings }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_GuildSettings>): PreloadedUserSettings_GuildSettings {
@@ -1275,6 +1440,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
                     break;
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound join_sound */ 6:
                     message.joinSound = PreloadedUserSettings_CustomCallSound.internalBinaryRead(reader, reader.uint32(), options, message.joinSound);
+                    break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings mobile_redesign_channel_list_settings */ 7:
+                    message.mobileRedesignChannelListSettings = PreloadedUserSettings_ChannelListSettings.internalBinaryRead(reader, reader.uint32(), options, message.mobileRedesignChannelListSettings);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1326,6 +1494,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound join_sound = 6; */
         if (message.joinSound)
             PreloadedUserSettings_CustomCallSound.internalBinaryWrite(message.joinSound, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings mobile_redesign_channel_list_settings = 7; */
+        if (message.mobileRedesignChannelListSettings)
+            PreloadedUserSettings_ChannelListSettings.internalBinaryWrite(message.mobileRedesignChannelListSettings, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2591,7 +2762,8 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
             { no: 2, name: "developer_mode", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 3, name: "client_theme_settings", kind: "message", T: () => PreloadedUserSettings_ClientThemeSettings },
             { no: 4, name: "mobile_redesign_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 6, name: "channel_list_layout", kind: "message", T: () => StringValue }
+            { no: 6, name: "channel_list_layout", kind: "message", T: () => StringValue },
+            { no: 7, name: "message_previews", kind: "message", T: () => StringValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AppearanceSettings>): PreloadedUserSettings_AppearanceSettings {
@@ -2621,6 +2793,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
                 case /* optional google.protobuf.StringValue channel_list_layout */ 6:
                     message.channelListLayout = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.channelListLayout);
                     break;
+                case /* optional google.protobuf.StringValue message_previews */ 7:
+                    message.messagePreviews = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.messagePreviews);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2648,6 +2823,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         /* optional google.protobuf.StringValue channel_list_layout = 6; */
         if (message.channelListLayout)
             StringValue.internalBinaryWrite(message.channelListLayout, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.StringValue message_previews = 7; */
+        if (message.messagePreviews)
+            StringValue.internalBinaryWrite(message.messagePreviews, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
