@@ -28,7 +28,7 @@ message PreloadedUserSettings {
   message ChannelIconEmoji {
     optional google.protobuf.UInt64Value id = 1;
     optional google.protobuf.StringValue name = 2;
-    optional google.protobuf.StringValue color = 3;
+    optional google.protobuf.UInt64Value color = 3;
   }
 
   message ChannelSettings {

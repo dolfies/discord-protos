@@ -139,9 +139,9 @@ export interface PreloadedUserSettings_ChannelIconEmoji {
      */
     name?: StringValue;
     /**
-     * @generated from protobuf field: optional google.protobuf.StringValue color = 3;
+     * @generated from protobuf field: optional google.protobuf.UInt64Value color = 3;
      */
-    color?: StringValue;
+    color?: UInt64Value;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelSettings
@@ -1181,7 +1181,7 @@ class PreloadedUserSettings_ChannelIconEmoji$Type extends MessageType<PreloadedU
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji", [
             { no: 1, name: "id", kind: "message", T: () => UInt64Value },
             { no: 2, name: "name", kind: "message", T: () => StringValue },
-            { no: 3, name: "color", kind: "message", T: () => StringValue }
+            { no: 3, name: "color", kind: "message", T: () => UInt64Value }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_ChannelIconEmoji>): PreloadedUserSettings_ChannelIconEmoji {
@@ -1202,8 +1202,8 @@ class PreloadedUserSettings_ChannelIconEmoji$Type extends MessageType<PreloadedU
                 case /* optional google.protobuf.StringValue name */ 2:
                     message.name = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.name);
                     break;
-                case /* optional google.protobuf.StringValue color */ 3:
-                    message.color = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.color);
+                case /* optional google.protobuf.UInt64Value color */ 3:
+                    message.color = UInt64Value.internalBinaryRead(reader, reader.uint32(), options, message.color);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1223,9 +1223,9 @@ class PreloadedUserSettings_ChannelIconEmoji$Type extends MessageType<PreloadedU
         /* optional google.protobuf.StringValue name = 2; */
         if (message.name)
             StringValue.internalBinaryWrite(message.name, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* optional google.protobuf.StringValue color = 3; */
+        /* optional google.protobuf.UInt64Value color = 3; */
         if (message.color)
-            StringValue.internalBinaryWrite(message.color, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+            UInt64Value.internalBinaryWrite(message.color, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
