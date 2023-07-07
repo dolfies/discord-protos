@@ -7,7 +7,12 @@ These protobufs are used by the Discord clients for user settings.
 
 Provided for educational purposes only.
 
+### Credits
+
+- [arHSM](https://github.com/arHSM) for originally reverse-engineering the technology behind Discord's protobuf implementation.
+
 ## Usage
+
 ### Note
 Automating user accounts is against the Discord ToS. This repository is a proof of concept and I cannot recommend using it. Do so at your own risk.
 
