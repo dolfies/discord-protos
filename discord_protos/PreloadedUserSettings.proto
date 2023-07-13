@@ -54,6 +54,8 @@ message PreloadedUserSettings {
     bytes dismissed_guild_content = 5;
     optional CustomCallSound join_sound = 6;
     optional ChannelListSettings mobile_redesign_channel_list_settings = 7;
+    bool disable_raid_alert_push = 8;
+    bool disable_raid_alert_nag = 9;
   }
 
   message AllGuildSettings {

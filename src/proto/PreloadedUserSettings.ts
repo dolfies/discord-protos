@@ -216,6 +216,14 @@ export interface PreloadedUserSettings_GuildSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings mobile_redesign_channel_list_settings = 7;
      */
     mobileRedesignChannelListSettings?: PreloadedUserSettings_ChannelListSettings;
+    /**
+     * @generated from protobuf field: bool disable_raid_alert_push = 8;
+     */
+    disableRaidAlertPush: boolean;
+    /**
+     * @generated from protobuf field: bool disable_raid_alert_nag = 9;
+     */
+    disableRaidAlertNag: boolean;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.AllGuildSettings
@@ -1408,11 +1416,13 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
             { no: 4, name: "guild_recents_dismissed_at", kind: "message", T: () => Timestamp },
             { no: 5, name: "dismissed_guild_content", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
             { no: 6, name: "join_sound", kind: "message", T: () => PreloadedUserSettings_CustomCallSound },
-            { no: 7, name: "mobile_redesign_channel_list_settings", kind: "message", T: () => PreloadedUserSettings_ChannelListSettings }
+            { no: 7, name: "mobile_redesign_channel_list_settings", kind: "message", T: () => PreloadedUserSettings_ChannelListSettings },
+            { no: 8, name: "disable_raid_alert_push", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 9, name: "disable_raid_alert_nag", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_GuildSettings>): PreloadedUserSettings_GuildSettings {
-        const message = { channels: {}, hubProgress: 0, guildOnboardingProgress: 0, dismissedGuildContent: new Uint8Array(0) };
+        const message = { channels: {}, hubProgress: 0, guildOnboardingProgress: 0, dismissedGuildContent: new Uint8Array(0), disableRaidAlertPush: false, disableRaidAlertNag: false };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_GuildSettings>(this, message, value);
@@ -1443,6 +1453,12 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
                     break;
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings mobile_redesign_channel_list_settings */ 7:
                     message.mobileRedesignChannelListSettings = PreloadedUserSettings_ChannelListSettings.internalBinaryRead(reader, reader.uint32(), options, message.mobileRedesignChannelListSettings);
+                    break;
+                case /* bool disable_raid_alert_push */ 8:
+                    message.disableRaidAlertPush = reader.bool();
+                    break;
+                case /* bool disable_raid_alert_nag */ 9:
+                    message.disableRaidAlertNag = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1497,6 +1513,12 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelListSettings mobile_redesign_channel_list_settings = 7; */
         if (message.mobileRedesignChannelListSettings)
             PreloadedUserSettings_ChannelListSettings.internalBinaryWrite(message.mobileRedesignChannelListSettings, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
+        /* bool disable_raid_alert_push = 8; */
+        if (message.disableRaidAlertPush !== false)
+            writer.tag(8, WireType.Varint).bool(message.disableRaidAlertPush);
+        /* bool disable_raid_alert_nag = 9; */
+        if (message.disableRaidAlertNag !== false)
+            writer.tag(9, WireType.Varint).bool(message.disableRaidAlertNag);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
