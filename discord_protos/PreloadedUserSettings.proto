@@ -101,6 +101,17 @@ message PreloadedUserSettings {
     FRIENDS_AND_NON_FRIENDS = 3;
   }
 
+  enum ExplicitContentRedaction {
+    UNSET_EXPLICIT_CONTENT_REDACTION = 0;
+    SHOW = 1;
+    BLUR = 2;
+    BLOCK = 3;
+  }
+
+  message ExplicitContentSettings {
+    ExplicitContentRedaction explicit_content_guilds = 1;
+  }
+
   message TextAndImagesSettings {
     optional google.protobuf.StringValue diversity_surrogate = 1;
     optional google.protobuf.BoolValue use_rich_chat_input = 2;
@@ -129,6 +140,7 @@ message PreloadedUserSettings {
     optional google.protobuf.UInt32Value dm_spam_filter = 26;
     DmSpamFilterV2 dm_spam_filter_v2 = 27;
     optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28;
+    optional ExplicitContentSettings explicit_content_settings = 29;
   }
 
   message NotificationSettings {

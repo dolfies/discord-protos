@@ -330,6 +330,15 @@ export interface PreloadedUserSettings_VoiceAndVideoSettings {
     soundboardSettings?: PreloadedUserSettings_SoundboardSettings;
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings
+ */
+export interface PreloadedUserSettings_ExplicitContentSettings {
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_guilds = 1;
+     */
+    explicitContentGuilds: PreloadedUserSettings_ExplicitContentRedaction;
+}
+/**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.TextAndImagesSettings
  */
 export interface PreloadedUserSettings_TextAndImagesSettings {
@@ -441,6 +450,10 @@ export interface PreloadedUserSettings_TextAndImagesSettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28;
      */
     includeStickersInAutocomplete?: BoolValue;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings explicit_content_settings = 29;
+     */
+    explicitContentSettings?: PreloadedUserSettings_ExplicitContentSettings;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.NotificationSettings
@@ -854,6 +867,27 @@ export enum PreloadedUserSettings_DmSpamFilterV2 {
      * @generated from protobuf enum value: FRIENDS_AND_NON_FRIENDS = 3;
      */
     FRIENDS_AND_NON_FRIENDS = 3
+}
+/**
+ * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction
+ */
+export enum PreloadedUserSettings_ExplicitContentRedaction {
+    /**
+     * @generated from protobuf enum value: UNSET_EXPLICIT_CONTENT_REDACTION = 0;
+     */
+    UNSET_EXPLICIT_CONTENT_REDACTION = 0,
+    /**
+     * @generated from protobuf enum value: SHOW = 1;
+     */
+    SHOW = 1,
+    /**
+     * @generated from protobuf enum value: BLUR = 2;
+     */
+    BLUR = 2,
+    /**
+     * @generated from protobuf enum value: BLOCK = 3;
+     */
+    BLOCK = 3
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.GuildActivityStatusRestrictionDefault
@@ -1916,6 +1950,53 @@ class PreloadedUserSettings_VoiceAndVideoSettings$Type extends MessageType<Prelo
  */
 export const PreloadedUserSettings_VoiceAndVideoSettings = new PreloadedUserSettings_VoiceAndVideoSettings$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_ExplicitContentSettings$Type extends MessageType<PreloadedUserSettings_ExplicitContentSettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings", [
+            { no: 1, name: "explicit_content_guilds", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction", PreloadedUserSettings_ExplicitContentRedaction] }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_ExplicitContentSettings>): PreloadedUserSettings_ExplicitContentSettings {
+        const message = { explicitContentGuilds: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_ExplicitContentSettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_ExplicitContentSettings): PreloadedUserSettings_ExplicitContentSettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_guilds */ 1:
+                    message.explicitContentGuilds = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_ExplicitContentSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_guilds = 1; */
+        if (message.explicitContentGuilds !== 0)
+            writer.tag(1, WireType.Varint).int32(message.explicitContentGuilds);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings
+ */
+export const PreloadedUserSettings_ExplicitContentSettings = new PreloadedUserSettings_ExplicitContentSettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<PreloadedUserSettings_TextAndImagesSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.TextAndImagesSettings", [
@@ -1945,7 +2026,8 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
             { no: 25, name: "soundboard_picker_collapsed_sections", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
             { no: 26, name: "dm_spam_filter", kind: "message", T: () => UInt32Value },
             { no: 27, name: "dm_spam_filter_v2", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2", PreloadedUserSettings_DmSpamFilterV2] },
-            { no: 28, name: "include_stickers_in_autocomplete", kind: "message", T: () => BoolValue }
+            { no: 28, name: "include_stickers_in_autocomplete", kind: "message", T: () => BoolValue },
+            { no: 29, name: "explicit_content_settings", kind: "message", T: () => PreloadedUserSettings_ExplicitContentSettings }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_TextAndImagesSettings>): PreloadedUserSettings_TextAndImagesSettings {
@@ -2041,6 +2123,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
                 case /* optional google.protobuf.BoolValue include_stickers_in_autocomplete */ 28:
                     message.includeStickersInAutocomplete = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.includeStickersInAutocomplete);
                     break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings explicit_content_settings */ 29:
+                    message.explicitContentSettings = PreloadedUserSettings_ExplicitContentSettings.internalBinaryRead(reader, reader.uint32(), options, message.explicitContentSettings);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2134,6 +2219,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
         /* optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28; */
         if (message.includeStickersInAutocomplete)
             BoolValue.internalBinaryWrite(message.includeStickersInAutocomplete, writer.tag(28, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings explicit_content_settings = 29; */
+        if (message.explicitContentSettings)
+            PreloadedUserSettings_ExplicitContentSettings.internalBinaryWrite(message.explicitContentSettings, writer.tag(29, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
