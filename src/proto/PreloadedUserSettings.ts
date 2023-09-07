@@ -337,6 +337,14 @@ export interface PreloadedUserSettings_ExplicitContentSettings {
      * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_guilds = 1;
      */
     explicitContentGuilds: PreloadedUserSettings_ExplicitContentRedaction;
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_friend_dm = 2;
+     */
+    explicitContentFriendDm: PreloadedUserSettings_ExplicitContentRedaction;
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_non_friend_dm = 3;
+     */
+    explicitContentNonFriendDm: PreloadedUserSettings_ExplicitContentRedaction;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.TextAndImagesSettings
@@ -1953,11 +1961,13 @@ export const PreloadedUserSettings_VoiceAndVideoSettings = new PreloadedUserSett
 class PreloadedUserSettings_ExplicitContentSettings$Type extends MessageType<PreloadedUserSettings_ExplicitContentSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings", [
-            { no: 1, name: "explicit_content_guilds", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction", PreloadedUserSettings_ExplicitContentRedaction] }
+            { no: 1, name: "explicit_content_guilds", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction", PreloadedUserSettings_ExplicitContentRedaction] },
+            { no: 2, name: "explicit_content_friend_dm", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction", PreloadedUserSettings_ExplicitContentRedaction] },
+            { no: 3, name: "explicit_content_non_friend_dm", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction", PreloadedUserSettings_ExplicitContentRedaction] }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_ExplicitContentSettings>): PreloadedUserSettings_ExplicitContentSettings {
-        const message = { explicitContentGuilds: 0 };
+        const message = { explicitContentGuilds: 0, explicitContentFriendDm: 0, explicitContentNonFriendDm: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_ExplicitContentSettings>(this, message, value);
@@ -1970,6 +1980,12 @@ class PreloadedUserSettings_ExplicitContentSettings$Type extends MessageType<Pre
             switch (fieldNo) {
                 case /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_guilds */ 1:
                     message.explicitContentGuilds = reader.int32();
+                    break;
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_friend_dm */ 2:
+                    message.explicitContentFriendDm = reader.int32();
+                    break;
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_non_friend_dm */ 3:
+                    message.explicitContentNonFriendDm = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1986,6 +2002,12 @@ class PreloadedUserSettings_ExplicitContentSettings$Type extends MessageType<Pre
         /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_guilds = 1; */
         if (message.explicitContentGuilds !== 0)
             writer.tag(1, WireType.Varint).int32(message.explicitContentGuilds);
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_friend_dm = 2; */
+        if (message.explicitContentFriendDm !== 0)
+            writer.tag(2, WireType.Varint).int32(message.explicitContentFriendDm);
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_non_friend_dm = 3; */
+        if (message.explicitContentNonFriendDm !== 0)
+            writer.tag(3, WireType.Varint).int32(message.explicitContentNonFriendDm);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

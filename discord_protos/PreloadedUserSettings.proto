@@ -110,6 +110,8 @@ message PreloadedUserSettings {
 
   message ExplicitContentSettings {
     ExplicitContentRedaction explicit_content_guilds = 1;
+    ExplicitContentRedaction explicit_content_friend_dm = 2;
+    ExplicitContentRedaction explicit_content_non_friend_dm = 3;
   }
 
   message TextAndImagesSettings {
