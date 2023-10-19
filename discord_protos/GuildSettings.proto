@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+package discord_protos.discord_users.v1.GuildSettings;
+
+message GuildSettings {
+  message ChannelIconEmoji {
+    optional google.protobuf.UInt64Value id = 1;
+    optional google.protobuf.StringValue name = 2;
+    optional google.protobuf.UInt64Value color = 3;
+  }
+
+  message ChannelSettings {
+    bool collapsed_in_inbox = 1;
+    optional ChannelIconEmoji icon_emoji = 2;
+  }
+
+  message CustomCallSound {
+    fixed64 sound_id = 1;
+    fixed64 guild_id = 2;
+  }
+
+  message ChannelListSettings {
+    optional google.protobuf.StringValue layout = 1;
+    optional google.protobuf.StringValue message_previews = 2;
+  }
+
+  map<fixed64, ChannelSettings> channels = 1;
+  uint32 hub_progress = 2;
+  uint32 guild_onboarding_progress = 3;
+  optional google.protobuf.Timestamp guild_recents_dismissed_at = 4;
+  bytes dismissed_guild_content = 5;
+  optional CustomCallSound join_sound = 6;
+  optional ChannelListSettings mobile_redesign_channel_list_settings = 7;
+  bool disable_raid_alert_push = 8;
+  bool disable_raid_alert_nag = 9;
+}
