@@ -95,6 +95,10 @@ export interface PreloadedUserSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.BroadcastSettings broadcast = 18;
      */
     broadcast?: PreloadedUserSettings_BroadcastSettings;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ClipsSettings clips = 19;
+     */
+    clips?: PreloadedUserSettings_ClipsSettings;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.Versions
@@ -831,6 +835,15 @@ export interface PreloadedUserSettings_BroadcastSettings {
     autoBroadcast?: BoolValue;
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ClipsSettings
+ */
+export interface PreloadedUserSettings_ClipsSettings {
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue allow_voice_recording = 1;
+     */
+    allowVoiceRecording?: BoolValue;
+}
+/**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.InboxTab
  */
 export enum PreloadedUserSettings_InboxTab {
@@ -965,7 +978,8 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
             { no: 15, name: "favorites", kind: "message", T: () => PreloadedUserSettings_Favorites },
             { no: 16, name: "audio_context_settings", kind: "message", T: () => PreloadedUserSettings_AudioSettings },
             { no: 17, name: "communities", kind: "message", T: () => PreloadedUserSettings_CommunitiesSettings },
-            { no: 18, name: "broadcast", kind: "message", T: () => PreloadedUserSettings_BroadcastSettings }
+            { no: 18, name: "broadcast", kind: "message", T: () => PreloadedUserSettings_BroadcastSettings },
+            { no: 19, name: "clips", kind: "message", T: () => PreloadedUserSettings_ClipsSettings }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings>): PreloadedUserSettings {
@@ -1034,6 +1048,9 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.BroadcastSettings broadcast */ 18:
                     message.broadcast = PreloadedUserSettings_BroadcastSettings.internalBinaryRead(reader, reader.uint32(), options, message.broadcast);
                     break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ClipsSettings clips */ 19:
+                    message.clips = PreloadedUserSettings_ClipsSettings.internalBinaryRead(reader, reader.uint32(), options, message.clips);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1100,6 +1117,9 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.BroadcastSettings broadcast = 18; */
         if (message.broadcast)
             PreloadedUserSettings_BroadcastSettings.internalBinaryWrite(message.broadcast, writer.tag(18, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ClipsSettings clips = 19; */
+        if (message.clips)
+            PreloadedUserSettings_ClipsSettings.internalBinaryWrite(message.clips, writer.tag(19, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -3541,3 +3561,50 @@ class PreloadedUserSettings_BroadcastSettings$Type extends MessageType<Preloaded
  * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.BroadcastSettings
  */
 export const PreloadedUserSettings_BroadcastSettings = new PreloadedUserSettings_BroadcastSettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_ClipsSettings$Type extends MessageType<PreloadedUserSettings_ClipsSettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ClipsSettings", [
+            { no: 1, name: "allow_voice_recording", kind: "message", T: () => BoolValue }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_ClipsSettings>): PreloadedUserSettings_ClipsSettings {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_ClipsSettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_ClipsSettings): PreloadedUserSettings_ClipsSettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional google.protobuf.BoolValue allow_voice_recording */ 1:
+                    message.allowVoiceRecording = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.allowVoiceRecording);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_ClipsSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional google.protobuf.BoolValue allow_voice_recording = 1; */
+        if (message.allowVoiceRecording)
+            BoolValue.internalBinaryWrite(message.allowVoiceRecording, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ClipsSettings
+ */
+export const PreloadedUserSettings_ClipsSettings = new PreloadedUserSettings_ClipsSettings$Type();

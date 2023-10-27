@@ -282,6 +282,10 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue auto_broadcast = 4;
   }
 
+  message ClipsSettings {
+    optional google.protobuf.BoolValue allow_voice_recording = 1;
+  }
+
   optional Versions versions = 1;
   optional InboxSettings inbox = 2;
   optional AllGuildSettings guilds = 3;
@@ -300,4 +304,5 @@ message PreloadedUserSettings {
   optional AudioSettings audio_context_settings = 16;
   optional CommunitiesSettings communities = 17;
   optional BroadcastSettings broadcast = 18;
+  optional ClipsSettings clips = 19;
 }
