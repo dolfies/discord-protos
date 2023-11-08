@@ -51,6 +51,14 @@ export interface FrecencyUserSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationFrecency application_frecency = 9;
      */
     applicationFrecency?: FrecencyUserSettings_ApplicationFrecency;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.HeardSoundFrecency heard_sound_frecency = 10;
+     */
+    heardSoundFrecency?: FrecencyUserSettings_HeardSoundFrecency;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.PlayedSoundFrecency played_sound_frecency = 11;
+     */
+    playedSoundFrecency?: FrecencyUserSettings_PlayedSoundFrecency;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.Versions
@@ -202,6 +210,28 @@ export interface FrecencyUserSettings_ApplicationFrecency {
     };
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.HeardSoundFrecency
+ */
+export interface FrecencyUserSettings_HeardSoundFrecency {
+    /**
+     * @generated from protobuf field: map<string, discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FrecencyItem> heard_sounds = 1;
+     */
+    heardSounds: {
+        [key: string]: FrecencyUserSettings_FrecencyItem;
+    };
+}
+/**
+ * @generated from protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.PlayedSoundFrecency
+ */
+export interface FrecencyUserSettings_PlayedSoundFrecency {
+    /**
+     * @generated from protobuf field: map<string, discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FrecencyItem> played_sounds = 1;
+     */
+    playedSounds: {
+        [key: string]: FrecencyUserSettings_FrecencyItem;
+    };
+}
+/**
  * @generated from protobuf enum discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.GIFType
  */
 export enum FrecencyUserSettings_GIFType {
@@ -230,7 +260,9 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
             { no: 6, name: "emoji_frecency", kind: "message", T: () => FrecencyUserSettings_EmojiFrecency },
             { no: 7, name: "application_command_frecency", kind: "message", T: () => FrecencyUserSettings_ApplicationCommandFrecency },
             { no: 8, name: "favorite_soundboard_sounds", kind: "message", T: () => FrecencyUserSettings_FavoriteSoundboardSounds },
-            { no: 9, name: "application_frecency", kind: "message", T: () => FrecencyUserSettings_ApplicationFrecency }
+            { no: 9, name: "application_frecency", kind: "message", T: () => FrecencyUserSettings_ApplicationFrecency },
+            { no: 10, name: "heard_sound_frecency", kind: "message", T: () => FrecencyUserSettings_HeardSoundFrecency },
+            { no: 11, name: "played_sound_frecency", kind: "message", T: () => FrecencyUserSettings_PlayedSoundFrecency }
         ]);
     }
     create(value?: PartialMessage<FrecencyUserSettings>): FrecencyUserSettings {
@@ -272,6 +304,12 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
                 case /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationFrecency application_frecency */ 9:
                     message.applicationFrecency = FrecencyUserSettings_ApplicationFrecency.internalBinaryRead(reader, reader.uint32(), options, message.applicationFrecency);
                     break;
+                case /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.HeardSoundFrecency heard_sound_frecency */ 10:
+                    message.heardSoundFrecency = FrecencyUserSettings_HeardSoundFrecency.internalBinaryRead(reader, reader.uint32(), options, message.heardSoundFrecency);
+                    break;
+                case /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.PlayedSoundFrecency played_sound_frecency */ 11:
+                    message.playedSoundFrecency = FrecencyUserSettings_PlayedSoundFrecency.internalBinaryRead(reader, reader.uint32(), options, message.playedSoundFrecency);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -311,6 +349,12 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
         /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationFrecency application_frecency = 9; */
         if (message.applicationFrecency)
             FrecencyUserSettings_ApplicationFrecency.internalBinaryWrite(message.applicationFrecency, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.HeardSoundFrecency heard_sound_frecency = 10; */
+        if (message.heardSoundFrecency)
+            FrecencyUserSettings_HeardSoundFrecency.internalBinaryWrite(message.heardSoundFrecency, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.PlayedSoundFrecency played_sound_frecency = 11; */
+        if (message.playedSoundFrecency)
+            FrecencyUserSettings_PlayedSoundFrecency.internalBinaryWrite(message.playedSoundFrecency, writer.tag(11, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1032,3 +1076,137 @@ class FrecencyUserSettings_ApplicationFrecency$Type extends MessageType<Frecency
  * @generated MessageType for protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.ApplicationFrecency
  */
 export const FrecencyUserSettings_ApplicationFrecency = new FrecencyUserSettings_ApplicationFrecency$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class FrecencyUserSettings_HeardSoundFrecency$Type extends MessageType<FrecencyUserSettings_HeardSoundFrecency> {
+    constructor() {
+        super("discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.HeardSoundFrecency", [
+            { no: 1, name: "heard_sounds", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "message", T: () => FrecencyUserSettings_FrecencyItem } }
+        ]);
+    }
+    create(value?: PartialMessage<FrecencyUserSettings_HeardSoundFrecency>): FrecencyUserSettings_HeardSoundFrecency {
+        const message = { heardSounds: {} };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<FrecencyUserSettings_HeardSoundFrecency>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: FrecencyUserSettings_HeardSoundFrecency): FrecencyUserSettings_HeardSoundFrecency {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* map<string, discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FrecencyItem> heard_sounds */ 1:
+                    this.binaryReadMap1(message.heardSounds, reader, options);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    private binaryReadMap1(map: FrecencyUserSettings_HeardSoundFrecency["heardSounds"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof FrecencyUserSettings_HeardSoundFrecency["heardSounds"] | undefined, val: FrecencyUserSettings_HeardSoundFrecency["heardSounds"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.string();
+                    break;
+                case 2:
+                    val = FrecencyUserSettings_FrecencyItem.internalBinaryRead(reader, reader.uint32(), options);
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for field discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.HeardSoundFrecency.heard_sounds");
+            }
+        }
+        map[key ?? ""] = val ?? FrecencyUserSettings_FrecencyItem.create();
+    }
+    internalBinaryWrite(message: FrecencyUserSettings_HeardSoundFrecency, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* map<string, discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FrecencyItem> heard_sounds = 1; */
+        for (let k of Object.keys(message.heardSounds)) {
+            writer.tag(1, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k);
+            writer.tag(2, WireType.LengthDelimited).fork();
+            FrecencyUserSettings_FrecencyItem.internalBinaryWrite(message.heardSounds[k], writer, options);
+            writer.join().join();
+        }
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.HeardSoundFrecency
+ */
+export const FrecencyUserSettings_HeardSoundFrecency = new FrecencyUserSettings_HeardSoundFrecency$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class FrecencyUserSettings_PlayedSoundFrecency$Type extends MessageType<FrecencyUserSettings_PlayedSoundFrecency> {
+    constructor() {
+        super("discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.PlayedSoundFrecency", [
+            { no: 1, name: "played_sounds", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "message", T: () => FrecencyUserSettings_FrecencyItem } }
+        ]);
+    }
+    create(value?: PartialMessage<FrecencyUserSettings_PlayedSoundFrecency>): FrecencyUserSettings_PlayedSoundFrecency {
+        const message = { playedSounds: {} };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<FrecencyUserSettings_PlayedSoundFrecency>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: FrecencyUserSettings_PlayedSoundFrecency): FrecencyUserSettings_PlayedSoundFrecency {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* map<string, discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FrecencyItem> played_sounds */ 1:
+                    this.binaryReadMap1(message.playedSounds, reader, options);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    private binaryReadMap1(map: FrecencyUserSettings_PlayedSoundFrecency["playedSounds"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof FrecencyUserSettings_PlayedSoundFrecency["playedSounds"] | undefined, val: FrecencyUserSettings_PlayedSoundFrecency["playedSounds"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.string();
+                    break;
+                case 2:
+                    val = FrecencyUserSettings_FrecencyItem.internalBinaryRead(reader, reader.uint32(), options);
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for field discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.PlayedSoundFrecency.played_sounds");
+            }
+        }
+        map[key ?? ""] = val ?? FrecencyUserSettings_FrecencyItem.create();
+    }
+    internalBinaryWrite(message: FrecencyUserSettings_PlayedSoundFrecency, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* map<string, discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.FrecencyItem> played_sounds = 1; */
+        for (let k of Object.keys(message.playedSounds)) {
+            writer.tag(1, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k);
+            writer.tag(2, WireType.LengthDelimited).fork();
+            FrecencyUserSettings_FrecencyItem.internalBinaryWrite(message.playedSounds[k], writer, options);
+            writer.join().join();
+        }
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.PlayedSoundFrecency
+ */
+export const FrecencyUserSettings_PlayedSoundFrecency = new FrecencyUserSettings_PlayedSoundFrecency$Type();

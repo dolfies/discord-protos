@@ -63,6 +63,14 @@ message FrecencyUserSettings {
     map<string, FrecencyItem> applications = 1;
   }
 
+  message HeardSoundFrecency {
+    map<string, FrecencyItem> heard_sounds = 1;
+  }
+
+  message PlayedSoundFrecency {
+    map<string, FrecencyItem> played_sounds = 1;
+  }
+
   optional Versions versions = 1;
   optional FavoriteGIFs favorite_gifs = 2;
   optional FavoriteStickers favorite_stickers = 3;
@@ -72,4 +80,6 @@ message FrecencyUserSettings {
   optional ApplicationCommandFrecency application_command_frecency = 7;
   optional FavoriteSoundboardSounds favorite_soundboard_sounds = 8;
   optional ApplicationFrecency application_frecency = 9;
+  optional HeardSoundFrecency heard_sound_frecency = 10;
+  optional PlayedSoundFrecency played_sound_frecency = 11;
 }
