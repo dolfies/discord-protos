@@ -30,9 +30,10 @@ jobs:
       run: npm run load
 
     - name: Build protobuf definitions
-      run: npm run build \
-           npm run js \
-           npm run py \
+      run: |
+        npm run build
+        npm run js
+        npm run py
 
     - name: Test protobuf definitions
       run: npm run test

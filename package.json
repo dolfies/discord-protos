@@ -4,7 +4,6 @@
     "description": "A parser for Discord's protobufs",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "packageManager": "pnpm@7.14.2",
     "contributors": [
         {
             "name": "dolfies",
@@ -22,8 +21,8 @@
         "py": "protoc --proto_path=./discord_protos/ --python_out=discord_protos PreloadedUserSettings.proto FrecencyUserSettings.proto",
         "js": "protoc --proto_path=./discord_protos/ --ts_out src/proto PreloadedUserSettings.proto FrecencyUserSettings.proto",
         "build": "tsc",
-        "load": "pnpm build && node dist/load.js",
-        "test": "pnpm build && node dist/test.js"
+        "load": "npm run build && node dist/load.js",
+        "test": "npm run build && node dist/test.js"
     },
     "devDependencies": {
         "@protobuf-ts/plugin": "^2.8.2",
