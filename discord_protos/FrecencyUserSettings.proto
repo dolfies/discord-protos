@@ -71,6 +71,10 @@ message FrecencyUserSettings {
     map<string, FrecencyItem> played_sounds = 1;
   }
 
+  message GuildAndChannelFrecency {
+    map<fixed64, FrecencyItem> guild_and_channels = 1;
+  }
+
   optional Versions versions = 1;
   optional FavoriteGIFs favorite_gifs = 2;
   optional FavoriteStickers favorite_stickers = 3;
@@ -82,4 +86,5 @@ message FrecencyUserSettings {
   optional ApplicationFrecency application_frecency = 9;
   optional HeardSoundFrecency heard_sound_frecency = 10;
   optional PlayedSoundFrecency played_sound_frecency = 11;
+  optional GuildAndChannelFrecency guild_and_channel_frecency = 12;
 }

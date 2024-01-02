@@ -18,6 +18,7 @@ message PreloadedUserSettings {
     UNREADS = 2;
     TODOS = 3;
     FOR_YOU = 4;
+    GAME_INVITES = 5;
   }
 
   message InboxSettings {
@@ -215,9 +216,7 @@ message PreloadedUserSettings {
   }
 
   message ClientThemeSettings {
-    optional google.protobuf.UInt64Value primary_color = 1;
     optional google.protobuf.UInt32Value background_gradient_preset_id = 2;
-    optional google.protobuf.FloatValue background_gradient_angle = 3;
   }
 
   message AppearanceSettings {
