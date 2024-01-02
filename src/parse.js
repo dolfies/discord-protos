@@ -1,14 +1,20 @@
 if (!getModules) {
-    var filterMap = (arr, callback) => arr.filter(callback).map(callback)
+    let wpCache;
+    window.webpackChunkdiscord_app.push([["discord-protos"], {}, (r) => (wpCache = r.c)]);
 
-    function getModules(str) {
-        webpackChunkdiscord_app.push([["discord-protos"], {}, r => cache=Object.values(r.c)]);
+    function getModules(prop) {
+        const results = [];
+        for (let m of Object.values(wpCache)) {
+            try {
+                if (!m.exports || m.exports === window) continue;
+                if (m.exports[prop]) results.push(m.exports);
 
-        return filterMap(cache, x => {
-			try {
-				return Object.values(x.exports||{}).find(v=>v && v[str])
-			} catch (e) {}
-		})
+                for (let ex in m.exports) {
+                    if (m.exports[ex][prop]) results.push(m.exports[ex]);
+                }
+            } catch {}
+        }
+        return results;
     }
 }
 
@@ -63,10 +69,7 @@ function parseType(field) {
     for (let t of [field.T, field.K, field.V]) {
         t = t?.T || t;
 
-        if (
-            typeof t === "function" &&
-            (!t().typeName || t().typeName.startsWith("discord_protos"))
-        ) {
+        if (typeof t === "function" && (!t().typeName || t().typeName.startsWith("discord_protos"))) {
             t = t();
             if (Array.isArray(t)) {
                 structs.push(parseEnum(t));
@@ -129,16 +132,14 @@ function parseProto(proto) {
         name: parseName(proto.typeName),
         kind: "message",
         fields: fields,
-        structs: structs.filter((v) =>
-            seen.has(v.name) ? false : seen.add(v.name),
-        ),
+        structs: structs.filter((v) => (seen.has(v.name) ? false : seen.add(v.name))),
     };
 }
 
 function extractProtos() {
     const results = {};
     for (const proto of getModules("typeName")) {
-        if (!proto.typeName.includes("Settings")) {
+        if (!proto.typeName.includes("UserSettings")) {
             continue;
         }
         const name = parseName(proto.typeName);
@@ -149,17 +150,11 @@ function extractProtos() {
 }
 
 function createProtoField(field) {
-    return `${
-        field.optional ? "optional " : field.repeated ? "repeated " : ""
-    }${field.type} ${field.name} = ${field.number};`;
+    return `${field.optional ? "optional " : field.repeated ? "repeated " : ""}${field.type} ${field.name} = ${field.number};`;
 }
 
 function createProtoFile(proto) {
-    const lines = [
-        `syntax = "proto3";\n`,
-        `package discord_protos.discord_users.v1.${proto.name};\n`,
-        `message ${proto.name} {`,
-    ];
+    const lines = [`syntax = "proto3";\n`, `package discord_protos.discord_users.v1.${proto.name};\n`, `message ${proto.name} {`];
 
     proto.structs.forEach((struct) => {
         lines.push(`  ${struct.kind} ${struct.name} {`);
@@ -167,9 +162,7 @@ function createProtoFile(proto) {
         switch (struct.kind) {
             case "enum":
                 struct.values.forEach((value) => {
-                    lines.push(
-                        `    ${value.name.toUpperCase()} = ${value.value};`,
-                    );
+                    lines.push(`    ${value.name.toUpperCase()} = ${value.value};`);
                 });
                 break;
             case "message":
@@ -190,11 +183,7 @@ function createProtoFile(proto) {
 
     // Check if we're using the funny Google well-knowns and insert an import statement (I love Discord)
     if (lines.some((line) => line.includes("google.protobuf"))) {
-        lines.splice(
-            1,
-            0,
-            `import "google/protobuf/wrappers.proto";\nimport "google/protobuf/timestamp.proto";\n`,
-        );
+        lines.splice(1, 0, `import "google/protobuf/wrappers.proto";\nimport "google/protobuf/timestamp.proto";\n`);
     }
 
     lines.push("}\n");
@@ -203,13 +192,10 @@ function createProtoFile(proto) {
 
 const protos = extractProtos();
 for (const [key, proto] of Object.entries(protos)) {
-	const data = createProtoFile(proto);
-	protos[key].data = data;
+    const data = createProtoFile(proto);
+    protos[key].data = data;
     if (window.DiscordNative?.fileManager) {
-        window.DiscordNative.fileManager.saveWithDialog(
-            data,
-            `${proto.name}.proto`,
-        );
+        window.DiscordNative.fileManager.saveWithDialog(data, `${proto.name}.proto`);
     } else {
         console.log(data);
     }
