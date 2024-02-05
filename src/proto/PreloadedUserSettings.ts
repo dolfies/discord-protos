@@ -485,6 +485,10 @@ export interface PreloadedUserSettings_NotificationSettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue enable_burst_reaction_notifications = 4;
      */
     enableBurstReactionNotifications?: BoolValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue quiet_mode = 5;
+     */
+    quietMode?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.PrivacySettings
@@ -570,6 +574,10 @@ export interface PreloadedUserSettings_PrivacySettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue hide_legacy_username = 22;
      */
     hideLegacyUsername?: BoolValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23;
+     */
+    inappropriateConversationWarnings?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DebugSettings
@@ -634,6 +642,10 @@ export interface PreloadedUserSettings_StatusSettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue show_current_game = 3;
      */
     showCurrentGame?: BoolValue;
+    /**
+     * @generated from protobuf field: fixed64 status_expires_at_ms = 4;
+     */
+    statusExpiresAtMs: bigint;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.LocalizationSettings
@@ -685,6 +697,10 @@ export interface PreloadedUserSettings_AppearanceSettings {
      * @generated from protobuf field: optional google.protobuf.StringValue message_previews = 7;
      */
     messagePreviews?: StringValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue search_result_exact_count_enabled = 8;
+     */
+    searchResultExactCountEnabled?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.GuildFolder
@@ -2287,7 +2303,8 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
             { no: 1, name: "show_in_app_notifications", kind: "message", T: () => BoolValue },
             { no: 2, name: "notify_friends_on_go_live", kind: "message", T: () => BoolValue },
             { no: 3, name: "notification_center_acked_before_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
-            { no: 4, name: "enable_burst_reaction_notifications", kind: "message", T: () => BoolValue }
+            { no: 4, name: "enable_burst_reaction_notifications", kind: "message", T: () => BoolValue },
+            { no: 5, name: "quiet_mode", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_NotificationSettings>): PreloadedUserSettings_NotificationSettings {
@@ -2314,6 +2331,9 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
                 case /* optional google.protobuf.BoolValue enable_burst_reaction_notifications */ 4:
                     message.enableBurstReactionNotifications = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.enableBurstReactionNotifications);
                     break;
+                case /* optional google.protobuf.BoolValue quiet_mode */ 5:
+                    message.quietMode = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.quietMode);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2338,6 +2358,9 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
         /* optional google.protobuf.BoolValue enable_burst_reaction_notifications = 4; */
         if (message.enableBurstReactionNotifications)
             BoolValue.internalBinaryWrite(message.enableBurstReactionNotifications, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue quiet_mode = 5; */
+        if (message.quietMode)
+            BoolValue.internalBinaryWrite(message.quietMode, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2371,7 +2394,8 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
             { no: 19, name: "non_spam_retraining_opt_in", kind: "message", T: () => BoolValue },
             { no: 20, name: "family_center_enabled", kind: "message", T: () => BoolValue },
             { no: 21, name: "family_center_enabled_v2", kind: "message", T: () => BoolValue },
-            { no: 22, name: "hide_legacy_username", kind: "message", T: () => BoolValue }
+            { no: 22, name: "hide_legacy_username", kind: "message", T: () => BoolValue },
+            { no: 23, name: "inappropriate_conversation_warnings", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_PrivacySettings>): PreloadedUserSettings_PrivacySettings {
@@ -2468,6 +2492,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
                 case /* optional google.protobuf.BoolValue hide_legacy_username */ 22:
                     message.hideLegacyUsername = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.hideLegacyUsername);
                     break;
+                case /* optional google.protobuf.BoolValue inappropriate_conversation_warnings */ 23:
+                    message.inappropriateConversationWarnings = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.inappropriateConversationWarnings);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2556,6 +2583,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
         /* optional google.protobuf.BoolValue hide_legacy_username = 22; */
         if (message.hideLegacyUsername)
             BoolValue.internalBinaryWrite(message.hideLegacyUsername, writer.tag(22, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23; */
+        if (message.inappropriateConversationWarnings)
+            BoolValue.internalBinaryWrite(message.inappropriateConversationWarnings, writer.tag(23, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2749,11 +2779,13 @@ class PreloadedUserSettings_StatusSettings$Type extends MessageType<PreloadedUse
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.StatusSettings", [
             { no: 1, name: "status", kind: "message", T: () => StringValue },
             { no: 2, name: "custom_status", kind: "message", T: () => PreloadedUserSettings_CustomStatus },
-            { no: 3, name: "show_current_game", kind: "message", T: () => BoolValue }
+            { no: 3, name: "show_current_game", kind: "message", T: () => BoolValue },
+            { no: 4, name: "status_expires_at_ms", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_StatusSettings>): PreloadedUserSettings_StatusSettings {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.statusExpiresAtMs = 0n;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_StatusSettings>(this, message, value);
         return message;
@@ -2771,6 +2803,9 @@ class PreloadedUserSettings_StatusSettings$Type extends MessageType<PreloadedUse
                     break;
                 case /* optional google.protobuf.BoolValue show_current_game */ 3:
                     message.showCurrentGame = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.showCurrentGame);
+                    break;
+                case /* fixed64 status_expires_at_ms */ 4:
+                    message.statusExpiresAtMs = reader.fixed64().toBigInt();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2793,6 +2828,9 @@ class PreloadedUserSettings_StatusSettings$Type extends MessageType<PreloadedUse
         /* optional google.protobuf.BoolValue show_current_game = 3; */
         if (message.showCurrentGame)
             BoolValue.internalBinaryWrite(message.showCurrentGame, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* fixed64 status_expires_at_ms = 4; */
+        if (message.statusExpiresAtMs !== 0n)
+            writer.tag(4, WireType.Bit64).fixed64(message.statusExpiresAtMs);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2911,7 +2949,8 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
             { no: 3, name: "client_theme_settings", kind: "message", T: () => PreloadedUserSettings_ClientThemeSettings },
             { no: 4, name: "mobile_redesign_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 6, name: "channel_list_layout", kind: "message", T: () => StringValue },
-            { no: 7, name: "message_previews", kind: "message", T: () => StringValue }
+            { no: 7, name: "message_previews", kind: "message", T: () => StringValue },
+            { no: 8, name: "search_result_exact_count_enabled", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AppearanceSettings>): PreloadedUserSettings_AppearanceSettings {
@@ -2946,6 +2985,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
                 case /* optional google.protobuf.StringValue message_previews */ 7:
                     message.messagePreviews = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.messagePreviews);
                     break;
+                case /* optional google.protobuf.BoolValue search_result_exact_count_enabled */ 8:
+                    message.searchResultExactCountEnabled = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.searchResultExactCountEnabled);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2976,6 +3018,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         /* optional google.protobuf.StringValue message_previews = 7; */
         if (message.messagePreviews)
             StringValue.internalBinaryWrite(message.messagePreviews, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue search_result_exact_count_enabled = 8; */
+        if (message.searchResultExactCountEnabled)
+            BoolValue.internalBinaryWrite(message.searchResultExactCountEnabled, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
