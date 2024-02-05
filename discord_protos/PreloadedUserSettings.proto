@@ -151,6 +151,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue notify_friends_on_go_live = 2;
     fixed64 notification_center_acked_before_id = 3;
     optional google.protobuf.BoolValue enable_burst_reaction_notifications = 4;
+    optional google.protobuf.BoolValue quiet_mode = 5;
   }
 
   enum GuildActivityStatusRestrictionDefault {
@@ -179,6 +180,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue family_center_enabled = 20;
     optional google.protobuf.BoolValue family_center_enabled_v2 = 21;
     optional google.protobuf.BoolValue hide_legacy_username = 22;
+    optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23;
   }
 
   message DebugSettings {
@@ -202,6 +204,7 @@ message PreloadedUserSettings {
     optional google.protobuf.StringValue status = 1;
     optional CustomStatus custom_status = 2;
     optional google.protobuf.BoolValue show_current_game = 3;
+    fixed64 status_expires_at_ms = 4;
   }
 
   message LocalizationSettings {
@@ -226,6 +229,7 @@ message PreloadedUserSettings {
     bool mobile_redesign_disabled = 4;
     optional google.protobuf.StringValue channel_list_layout = 6;
     optional google.protobuf.StringValue message_previews = 7;
+    optional google.protobuf.BoolValue search_result_exact_count_enabled = 8;
   }
 
   message GuildFolder {

@@ -11,6 +11,7 @@ const encoded = PreloadedUserSettings.toBase64({
             emojiName: "",
             expiresAtMs: 0n,
         },
+        statusExpiresAtMs: 0n,
     },
 });
 
