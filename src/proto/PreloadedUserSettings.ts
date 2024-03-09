@@ -489,6 +489,10 @@ export interface PreloadedUserSettings_NotificationSettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue quiet_mode = 5;
      */
     quietMode?: BoolValue;
+    /**
+     * @generated from protobuf field: fixed64 focus_mode_expires_at_ms = 6;
+     */
+    focusModeExpiresAtMs: bigint;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.PrivacySettings
@@ -2304,12 +2308,14 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
             { no: 2, name: "notify_friends_on_go_live", kind: "message", T: () => BoolValue },
             { no: 3, name: "notification_center_acked_before_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 4, name: "enable_burst_reaction_notifications", kind: "message", T: () => BoolValue },
-            { no: 5, name: "quiet_mode", kind: "message", T: () => BoolValue }
+            { no: 5, name: "quiet_mode", kind: "message", T: () => BoolValue },
+            { no: 6, name: "focus_mode_expires_at_ms", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_NotificationSettings>): PreloadedUserSettings_NotificationSettings {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.notificationCenterAckedBeforeId = 0n;
+        message.focusModeExpiresAtMs = 0n;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_NotificationSettings>(this, message, value);
         return message;
@@ -2333,6 +2339,9 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
                     break;
                 case /* optional google.protobuf.BoolValue quiet_mode */ 5:
                     message.quietMode = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.quietMode);
+                    break;
+                case /* fixed64 focus_mode_expires_at_ms */ 6:
+                    message.focusModeExpiresAtMs = reader.fixed64().toBigInt();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2361,6 +2370,9 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
         /* optional google.protobuf.BoolValue quiet_mode = 5; */
         if (message.quietMode)
             BoolValue.internalBinaryWrite(message.quietMode, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* fixed64 focus_mode_expires_at_ms = 6; */
+        if (message.focusModeExpiresAtMs !== 0n)
+            writer.tag(6, WireType.Bit64).fixed64(message.focusModeExpiresAtMs);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

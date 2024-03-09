@@ -152,6 +152,7 @@ message PreloadedUserSettings {
     fixed64 notification_center_acked_before_id = 3;
     optional google.protobuf.BoolValue enable_burst_reaction_notifications = 4;
     optional google.protobuf.BoolValue quiet_mode = 5;
+    fixed64 focus_mode_expires_at_ms = 6;
   }
 
   enum GuildActivityStatusRestrictionDefault {
