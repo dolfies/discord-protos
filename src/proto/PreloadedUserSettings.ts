@@ -582,6 +582,10 @@ export interface PreloadedUserSettings_PrivacySettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23;
      */
     inappropriateConversationWarnings?: BoolValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue recent_games_enabled = 24;
+     */
+    recentGamesEnabled?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DebugSettings
@@ -2407,7 +2411,8 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
             { no: 20, name: "family_center_enabled", kind: "message", T: () => BoolValue },
             { no: 21, name: "family_center_enabled_v2", kind: "message", T: () => BoolValue },
             { no: 22, name: "hide_legacy_username", kind: "message", T: () => BoolValue },
-            { no: 23, name: "inappropriate_conversation_warnings", kind: "message", T: () => BoolValue }
+            { no: 23, name: "inappropriate_conversation_warnings", kind: "message", T: () => BoolValue },
+            { no: 24, name: "recent_games_enabled", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_PrivacySettings>): PreloadedUserSettings_PrivacySettings {
@@ -2507,6 +2512,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
                 case /* optional google.protobuf.BoolValue inappropriate_conversation_warnings */ 23:
                     message.inappropriateConversationWarnings = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.inappropriateConversationWarnings);
                     break;
+                case /* optional google.protobuf.BoolValue recent_games_enabled */ 24:
+                    message.recentGamesEnabled = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.recentGamesEnabled);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2598,6 +2606,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
         /* optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23; */
         if (message.inappropriateConversationWarnings)
             BoolValue.internalBinaryWrite(message.inappropriateConversationWarnings, writer.tag(23, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue recent_games_enabled = 24; */
+        if (message.recentGamesEnabled)
+            BoolValue.internalBinaryWrite(message.recentGamesEnabled, writer.tag(24, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

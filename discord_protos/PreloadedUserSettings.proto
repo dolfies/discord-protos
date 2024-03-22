@@ -182,6 +182,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue family_center_enabled_v2 = 21;
     optional google.protobuf.BoolValue hide_legacy_username = 22;
     optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23;
+    optional google.protobuf.BoolValue recent_games_enabled = 24;
   }
 
   message DebugSettings {
