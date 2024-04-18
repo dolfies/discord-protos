@@ -32,9 +32,14 @@ message PreloadedUserSettings {
     optional google.protobuf.UInt64Value color = 3;
   }
 
+  message CustomNotificationSoundConfig {
+    optional google.protobuf.StringValue notification_sound_pack_id = 1;
+  }
+
   message ChannelSettings {
     bool collapsed_in_inbox = 1;
     optional ChannelIconEmoji icon_emoji = 2;
+    optional CustomNotificationSoundConfig custom_notification_sound_config = 3;
   }
 
   message CustomCallSound {
@@ -57,6 +62,7 @@ message PreloadedUserSettings {
     optional ChannelListSettings mobile_redesign_channel_list_settings = 7;
     bool disable_raid_alert_push = 8;
     bool disable_raid_alert_nag = 9;
+    optional CustomNotificationSoundConfig custom_notification_sound_config = 10;
   }
 
   message AllGuildSettings {

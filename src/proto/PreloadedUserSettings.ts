@@ -146,6 +146,15 @@ export interface PreloadedUserSettings_ChannelIconEmoji {
     color?: UInt64Value;
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig
+ */
+export interface PreloadedUserSettings_CustomNotificationSoundConfig {
+    /**
+     * @generated from protobuf field: optional google.protobuf.StringValue notification_sound_pack_id = 1;
+     */
+    notificationSoundPackId?: StringValue;
+}
+/**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelSettings
  */
 export interface PreloadedUserSettings_ChannelSettings {
@@ -157,6 +166,10 @@ export interface PreloadedUserSettings_ChannelSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji icon_emoji = 2;
      */
     iconEmoji?: PreloadedUserSettings_ChannelIconEmoji;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config = 3;
+     */
+    customNotificationSoundConfig?: PreloadedUserSettings_CustomNotificationSoundConfig;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomCallSound
@@ -226,6 +239,10 @@ export interface PreloadedUserSettings_GuildSettings {
      * @generated from protobuf field: bool disable_raid_alert_nag = 9;
      */
     disableRaidAlertNag: boolean;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config = 10;
+     */
+    customNotificationSoundConfig?: PreloadedUserSettings_CustomNotificationSoundConfig;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.AllGuildSettings
@@ -1326,11 +1343,58 @@ class PreloadedUserSettings_ChannelIconEmoji$Type extends MessageType<PreloadedU
  */
 export const PreloadedUserSettings_ChannelIconEmoji = new PreloadedUserSettings_ChannelIconEmoji$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_CustomNotificationSoundConfig$Type extends MessageType<PreloadedUserSettings_CustomNotificationSoundConfig> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig", [
+            { no: 1, name: "notification_sound_pack_id", kind: "message", T: () => StringValue }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_CustomNotificationSoundConfig>): PreloadedUserSettings_CustomNotificationSoundConfig {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_CustomNotificationSoundConfig>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_CustomNotificationSoundConfig): PreloadedUserSettings_CustomNotificationSoundConfig {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional google.protobuf.StringValue notification_sound_pack_id */ 1:
+                    message.notificationSoundPackId = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.notificationSoundPackId);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_CustomNotificationSoundConfig, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional google.protobuf.StringValue notification_sound_pack_id = 1; */
+        if (message.notificationSoundPackId)
+            StringValue.internalBinaryWrite(message.notificationSoundPackId, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig
+ */
+export const PreloadedUserSettings_CustomNotificationSoundConfig = new PreloadedUserSettings_CustomNotificationSoundConfig$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class PreloadedUserSettings_ChannelSettings$Type extends MessageType<PreloadedUserSettings_ChannelSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelSettings", [
             { no: 1, name: "collapsed_in_inbox", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 2, name: "icon_emoji", kind: "message", T: () => PreloadedUserSettings_ChannelIconEmoji }
+            { no: 2, name: "icon_emoji", kind: "message", T: () => PreloadedUserSettings_ChannelIconEmoji },
+            { no: 3, name: "custom_notification_sound_config", kind: "message", T: () => PreloadedUserSettings_CustomNotificationSoundConfig }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_ChannelSettings>): PreloadedUserSettings_ChannelSettings {
@@ -1351,6 +1415,9 @@ class PreloadedUserSettings_ChannelSettings$Type extends MessageType<PreloadedUs
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji icon_emoji */ 2:
                     message.iconEmoji = PreloadedUserSettings_ChannelIconEmoji.internalBinaryRead(reader, reader.uint32(), options, message.iconEmoji);
                     break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config */ 3:
+                    message.customNotificationSoundConfig = PreloadedUserSettings_CustomNotificationSoundConfig.internalBinaryRead(reader, reader.uint32(), options, message.customNotificationSoundConfig);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1369,6 +1436,9 @@ class PreloadedUserSettings_ChannelSettings$Type extends MessageType<PreloadedUs
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ChannelIconEmoji icon_emoji = 2; */
         if (message.iconEmoji)
             PreloadedUserSettings_ChannelIconEmoji.internalBinaryWrite(message.iconEmoji, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config = 3; */
+        if (message.customNotificationSoundConfig)
+            PreloadedUserSettings_CustomNotificationSoundConfig.internalBinaryWrite(message.customNotificationSoundConfig, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1499,7 +1569,8 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
             { no: 6, name: "join_sound", kind: "message", T: () => PreloadedUserSettings_CustomCallSound },
             { no: 7, name: "mobile_redesign_channel_list_settings", kind: "message", T: () => PreloadedUserSettings_ChannelListSettings },
             { no: 8, name: "disable_raid_alert_push", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 9, name: "disable_raid_alert_nag", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+            { no: 9, name: "disable_raid_alert_nag", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 10, name: "custom_notification_sound_config", kind: "message", T: () => PreloadedUserSettings_CustomNotificationSoundConfig }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_GuildSettings>): PreloadedUserSettings_GuildSettings {
@@ -1545,6 +1616,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
                     break;
                 case /* bool disable_raid_alert_nag */ 9:
                     message.disableRaidAlertNag = reader.bool();
+                    break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config */ 10:
+                    message.customNotificationSoundConfig = PreloadedUserSettings_CustomNotificationSoundConfig.internalBinaryRead(reader, reader.uint32(), options, message.customNotificationSoundConfig);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1605,6 +1679,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
         /* bool disable_raid_alert_nag = 9; */
         if (message.disableRaidAlertNag !== false)
             writer.tag(9, WireType.Varint).bool(message.disableRaidAlertNag);
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config = 10; */
+        if (message.customNotificationSoundConfig)
+            PreloadedUserSettings_CustomNotificationSoundConfig.internalBinaryWrite(message.customNotificationSoundConfig, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
