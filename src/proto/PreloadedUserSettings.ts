@@ -279,6 +279,10 @@ export interface PreloadedUserSettings_UserContentSettings {
      * @generated from protobuf field: optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at = 5;
      */
     safetyUserSentimentNoticeDismissedAt?: Timestamp;
+    /**
+     * @generated from protobuf field: fixed64 last_received_changelog_id = 6;
+     */
+    lastReceivedChangelogId: bigint;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.VideoFilterBackgroundBlur
@@ -364,6 +368,23 @@ export interface PreloadedUserSettings_ExplicitContentSettings {
      * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentRedaction explicit_content_non_friend_dm = 3;
      */
     explicitContentNonFriendDm: PreloadedUserSettings_ExplicitContentRedaction;
+}
+/**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.KeywordFilterSettings
+ */
+export interface PreloadedUserSettings_KeywordFilterSettings {
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue profanity = 1;
+     */
+    profanity?: BoolValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue sexual_content = 2;
+     */
+    sexualContent?: BoolValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue slurs = 3;
+     */
+    slurs?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.TextAndImagesSettings
@@ -481,6 +502,10 @@ export interface PreloadedUserSettings_TextAndImagesSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings explicit_content_settings = 29;
      */
     explicitContentSettings?: PreloadedUserSettings_ExplicitContentSettings;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.KeywordFilterSettings keyword_filter_settings = 30;
+     */
+    keywordFilterSettings?: PreloadedUserSettings_KeywordFilterSettings;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.NotificationSettings
@@ -1767,12 +1792,14 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
             { no: 2, name: "last_dismissed_outbound_promotion_start_date", kind: "message", T: () => StringValue },
             { no: 3, name: "premium_tier_0_modal_dismissed_at", kind: "message", T: () => Timestamp },
             { no: 4, name: "guild_onboarding_upsell_dismissed_at", kind: "message", T: () => Timestamp },
-            { no: 5, name: "safety_user_sentiment_notice_dismissed_at", kind: "message", T: () => Timestamp }
+            { no: 5, name: "safety_user_sentiment_notice_dismissed_at", kind: "message", T: () => Timestamp },
+            { no: 6, name: "last_received_changelog_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_UserContentSettings>): PreloadedUserSettings_UserContentSettings {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.dismissedContents = new Uint8Array(0);
+        message.lastReceivedChangelogId = 0n;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_UserContentSettings>(this, message, value);
         return message;
@@ -1796,6 +1823,9 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
                     break;
                 case /* optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at */ 5:
                     message.safetyUserSentimentNoticeDismissedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.safetyUserSentimentNoticeDismissedAt);
+                    break;
+                case /* fixed64 last_received_changelog_id */ 6:
+                    message.lastReceivedChangelogId = reader.fixed64().toBigInt();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1824,6 +1854,9 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
         /* optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at = 5; */
         if (message.safetyUserSentimentNoticeDismissedAt)
             Timestamp.internalBinaryWrite(message.safetyUserSentimentNoticeDismissedAt, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* fixed64 last_received_changelog_id = 6; */
+        if (message.lastReceivedChangelogId !== 0n)
+            writer.tag(6, WireType.Bit64).fixed64(message.lastReceivedChangelogId);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -2143,6 +2176,66 @@ class PreloadedUserSettings_ExplicitContentSettings$Type extends MessageType<Pre
  */
 export const PreloadedUserSettings_ExplicitContentSettings = new PreloadedUserSettings_ExplicitContentSettings$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_KeywordFilterSettings$Type extends MessageType<PreloadedUserSettings_KeywordFilterSettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.KeywordFilterSettings", [
+            { no: 1, name: "profanity", kind: "message", T: () => BoolValue },
+            { no: 2, name: "sexual_content", kind: "message", T: () => BoolValue },
+            { no: 3, name: "slurs", kind: "message", T: () => BoolValue }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_KeywordFilterSettings>): PreloadedUserSettings_KeywordFilterSettings {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_KeywordFilterSettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_KeywordFilterSettings): PreloadedUserSettings_KeywordFilterSettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional google.protobuf.BoolValue profanity */ 1:
+                    message.profanity = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.profanity);
+                    break;
+                case /* optional google.protobuf.BoolValue sexual_content */ 2:
+                    message.sexualContent = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.sexualContent);
+                    break;
+                case /* optional google.protobuf.BoolValue slurs */ 3:
+                    message.slurs = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.slurs);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_KeywordFilterSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional google.protobuf.BoolValue profanity = 1; */
+        if (message.profanity)
+            BoolValue.internalBinaryWrite(message.profanity, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue sexual_content = 2; */
+        if (message.sexualContent)
+            BoolValue.internalBinaryWrite(message.sexualContent, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue slurs = 3; */
+        if (message.slurs)
+            BoolValue.internalBinaryWrite(message.slurs, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.KeywordFilterSettings
+ */
+export const PreloadedUserSettings_KeywordFilterSettings = new PreloadedUserSettings_KeywordFilterSettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<PreloadedUserSettings_TextAndImagesSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.TextAndImagesSettings", [
@@ -2173,7 +2266,8 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
             { no: 26, name: "dm_spam_filter", kind: "message", T: () => UInt32Value },
             { no: 27, name: "dm_spam_filter_v2", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2", PreloadedUserSettings_DmSpamFilterV2] },
             { no: 28, name: "include_stickers_in_autocomplete", kind: "message", T: () => BoolValue },
-            { no: 29, name: "explicit_content_settings", kind: "message", T: () => PreloadedUserSettings_ExplicitContentSettings }
+            { no: 29, name: "explicit_content_settings", kind: "message", T: () => PreloadedUserSettings_ExplicitContentSettings },
+            { no: 30, name: "keyword_filter_settings", kind: "message", T: () => PreloadedUserSettings_KeywordFilterSettings }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_TextAndImagesSettings>): PreloadedUserSettings_TextAndImagesSettings {
@@ -2275,6 +2369,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings explicit_content_settings */ 29:
                     message.explicitContentSettings = PreloadedUserSettings_ExplicitContentSettings.internalBinaryRead(reader, reader.uint32(), options, message.explicitContentSettings);
                     break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.KeywordFilterSettings keyword_filter_settings */ 30:
+                    message.keywordFilterSettings = PreloadedUserSettings_KeywordFilterSettings.internalBinaryRead(reader, reader.uint32(), options, message.keywordFilterSettings);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2371,6 +2468,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.ExplicitContentSettings explicit_content_settings = 29; */
         if (message.explicitContentSettings)
             PreloadedUserSettings_ExplicitContentSettings.internalBinaryWrite(message.explicitContentSettings, writer.tag(29, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.KeywordFilterSettings keyword_filter_settings = 30; */
+        if (message.keywordFilterSettings)
+            PreloadedUserSettings_KeywordFilterSettings.internalBinaryWrite(message.keywordFilterSettings, writer.tag(30, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

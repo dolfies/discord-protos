@@ -75,6 +75,7 @@ message PreloadedUserSettings {
     optional google.protobuf.Timestamp premium_tier_0_modal_dismissed_at = 3;
     optional google.protobuf.Timestamp guild_onboarding_upsell_dismissed_at = 4;
     optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at = 5;
+    fixed64 last_received_changelog_id = 6;
   }
 
   message VideoFilterBackgroundBlur {
@@ -121,6 +122,12 @@ message PreloadedUserSettings {
     ExplicitContentRedaction explicit_content_non_friend_dm = 3;
   }
 
+  message KeywordFilterSettings {
+    optional google.protobuf.BoolValue profanity = 1;
+    optional google.protobuf.BoolValue sexual_content = 2;
+    optional google.protobuf.BoolValue slurs = 3;
+  }
+
   message TextAndImagesSettings {
     optional google.protobuf.StringValue diversity_surrogate = 1;
     optional google.protobuf.BoolValue use_rich_chat_input = 2;
@@ -150,6 +157,7 @@ message PreloadedUserSettings {
     DmSpamFilterV2 dm_spam_filter_v2 = 27;
     optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28;
     optional ExplicitContentSettings explicit_content_settings = 29;
+    optional KeywordFilterSettings keyword_filter_settings = 30;
   }
 
   message NotificationSettings {
