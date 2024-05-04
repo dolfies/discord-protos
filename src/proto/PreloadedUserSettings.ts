@@ -998,7 +998,15 @@ export enum PreloadedUserSettings_Theme {
     /**
      * @generated from protobuf enum value: LIGHT = 2;
      */
-    LIGHT = 2
+    LIGHT = 2,
+    /**
+     * @generated from protobuf enum value: DARKER = 3;
+     */
+    DARKER = 3,
+    /**
+     * @generated from protobuf enum value: MIDNIGHT = 4;
+     */
+    MIDNIGHT = 4
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.FavoriteChannelType

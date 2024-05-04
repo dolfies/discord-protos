@@ -232,6 +232,8 @@ message PreloadedUserSettings {
     UNSET = 0;
     DARK = 1;
     LIGHT = 2;
+    DARKER = 3;
+    MIDNIGHT = 4;
   }
 
   message ClientThemeSettings {
