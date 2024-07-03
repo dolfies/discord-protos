@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package discord_protos.discord_users.v1.PremiumMarketingComponentProperties;
+
+message PremiumMarketingComponentProperties {
+  message FeatureCard {
+    string header = 1;
+    string pill = 2;
+    string body = 3;
+    string image_link = 4;
+    string image_link_light_theme = 5;
+  }
+
+  enum ButtonAction {
+    UNSPECIFIED = 0;
+    OPEN_MARKETING_PAGE = 1;
+    OPEN_TIER_2_PAYMENT_MODAL = 2;
+  }
+
+  message SubscriptionButton {
+    string copy = 1;
+    ButtonAction button_action = 2;
+  }
+
+  message AnnouncementModalVariant1Properties {
+    string header = 1;
+    string subheader = 2;
+    string video_link = 3;
+    string help_article_id = 4;
+    repeated FeatureCard feature_cards = 5;
+    optional SubscriptionButton button = 6;
+    string dismiss_key = 7;
+    string hero_art_video_link_light_theme = 8;
+    string hero_art_image_link_dark_theme = 9;
+    string hero_art_image_link_light_theme = 10;
+    string modal_top_pill = 11;
+  }
+
+  string placeholder = 1;
+  AnnouncementModalVariant1Properties announcement_modal_variant_1 = 2;
+}
