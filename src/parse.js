@@ -139,13 +139,19 @@ function parseProto(proto) {
 function extractProtos() {
     const results = {};
     for (const proto of getModules("typeName")) {
-        if (!proto.typeName.includes("UserSettings")) {
-            continue;
-        }
+        if (!proto.typeName.startsWith("discord_protos")) continue;
         const name = parseName(proto.typeName);
         console.log(`Parsing ${name}...`);
         results[name] = parseProto(proto);
     }
+
+    // Remove every proto that is mentioned in another proto
+    for (const proto of Object.values(results)) {
+        for (const struct of proto.structs) {
+            delete results[struct.name];
+        }
+    }
+
     return results;
 }
 
