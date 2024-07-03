@@ -18,8 +18,8 @@
     ],
     "license": "MIT",
     "scripts": {
-        "py": "protoc --proto_path=./discord_protos/ --python_out=discord_protos PreloadedUserSettings.proto FrecencyUserSettings.proto",
-        "js": "protoc --proto_path=./discord_protos/ --ts_out src/proto PreloadedUserSettings.proto FrecencyUserSettings.proto",
+        "py": "protoc --proto_path=./discord_protos/ --python_out=discord_protos PremiumMarketingComponentProperties.proto FrecencyUserSettings.proto PreloadedUserSettings.proto",
+        "js": "protoc --proto_path=./discord_protos/ --ts_out src/proto PremiumMarketingComponentProperties.proto FrecencyUserSettings.proto PreloadedUserSettings.proto",
         "build": "tsc",
         "load": "npm run build && node dist/load.js",
         "test": "npm run build && node dist/test.js"
