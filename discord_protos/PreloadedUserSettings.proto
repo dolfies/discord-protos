@@ -19,6 +19,7 @@ message PreloadedUserSettings {
     TODOS = 3;
     FOR_YOU = 4;
     GAME_INVITES = 5;
+    BOOKMARKS = 6;
   }
 
   message InboxSettings {

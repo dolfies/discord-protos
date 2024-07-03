@@ -926,7 +926,11 @@ export enum PreloadedUserSettings_InboxTab {
     /**
      * @generated from protobuf enum value: GAME_INVITES = 5;
      */
-    GAME_INVITES = 5
+    GAME_INVITES = 5,
+    /**
+     * @generated from protobuf enum value: BOOKMARKS = 6;
+     */
+    BOOKMARKS = 6
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.DmSpamFilterV2
