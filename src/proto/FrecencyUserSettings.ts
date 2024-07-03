@@ -62,6 +62,10 @@ export interface FrecencyUserSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.GuildAndChannelFrecency guild_and_channel_frecency = 12;
      */
     guildAndChannelFrecency?: FrecencyUserSettings_GuildAndChannelFrecency;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.EmojiFrecency emoji_reaction_frecency = 13;
+     */
+    emojiReactionFrecency?: FrecencyUserSettings_EmojiFrecency;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.Versions
@@ -277,7 +281,8 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
             { no: 9, name: "application_frecency", kind: "message", T: () => FrecencyUserSettings_ApplicationFrecency },
             { no: 10, name: "heard_sound_frecency", kind: "message", T: () => FrecencyUserSettings_HeardSoundFrecency },
             { no: 11, name: "played_sound_frecency", kind: "message", T: () => FrecencyUserSettings_PlayedSoundFrecency },
-            { no: 12, name: "guild_and_channel_frecency", kind: "message", T: () => FrecencyUserSettings_GuildAndChannelFrecency }
+            { no: 12, name: "guild_and_channel_frecency", kind: "message", T: () => FrecencyUserSettings_GuildAndChannelFrecency },
+            { no: 13, name: "emoji_reaction_frecency", kind: "message", T: () => FrecencyUserSettings_EmojiFrecency }
         ]);
     }
     create(value?: PartialMessage<FrecencyUserSettings>): FrecencyUserSettings {
@@ -327,6 +332,9 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
                 case /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.GuildAndChannelFrecency guild_and_channel_frecency */ 12:
                     message.guildAndChannelFrecency = FrecencyUserSettings_GuildAndChannelFrecency.internalBinaryRead(reader, reader.uint32(), options, message.guildAndChannelFrecency);
                     break;
+                case /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.EmojiFrecency emoji_reaction_frecency */ 13:
+                    message.emojiReactionFrecency = FrecencyUserSettings_EmojiFrecency.internalBinaryRead(reader, reader.uint32(), options, message.emojiReactionFrecency);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -375,6 +383,9 @@ class FrecencyUserSettings$Type extends MessageType<FrecencyUserSettings> {
         /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.GuildAndChannelFrecency guild_and_channel_frecency = 12; */
         if (message.guildAndChannelFrecency)
             FrecencyUserSettings_GuildAndChannelFrecency.internalBinaryWrite(message.guildAndChannelFrecency, writer.tag(12, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.FrecencyUserSettings.FrecencyUserSettings.EmojiFrecency emoji_reaction_frecency = 13; */
+        if (message.emojiReactionFrecency)
+            FrecencyUserSettings_EmojiFrecency.internalBinaryWrite(message.emojiReactionFrecency, writer.tag(13, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

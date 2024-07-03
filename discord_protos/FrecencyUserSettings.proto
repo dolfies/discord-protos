@@ -87,4 +87,5 @@ message FrecencyUserSettings {
   optional HeardSoundFrecency heard_sound_frecency = 10;
   optional PlayedSoundFrecency played_sound_frecency = 11;
   optional GuildAndChannelFrecency guild_and_channel_frecency = 12;
+  optional EmojiFrecency emoji_reaction_frecency = 13;
 }
