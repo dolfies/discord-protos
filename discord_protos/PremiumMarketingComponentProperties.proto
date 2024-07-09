@@ -22,6 +22,18 @@ message PremiumMarketingComponentProperties {
     ButtonAction button_action = 2;
   }
 
+  message Subtitle {
+    string link = 1;
+    string locale = 2;
+    bool is_default = 3;
+  }
+
+  message Variant1Storage {
+    map<string, string> hero_art_localized_video_links_dark_theme = 1;
+    map<string, string> hero_art_localized_video_links_light_theme = 2;
+    map<string, string> hero_art_video_subtitle_links = 3;
+  }
+
   message AnnouncementModalVariant1Properties {
     string header = 1;
     string subheader = 2;
@@ -34,8 +46,12 @@ message PremiumMarketingComponentProperties {
     string hero_art_image_link_dark_theme = 9;
     string hero_art_image_link_light_theme = 10;
     string modal_top_pill = 11;
+    string body = 12;
+    repeated Subtitle hero_art_video_subtitles = 13;
+    optional Variant1Storage storage = 14;
   }
 
   string placeholder = 1;
   AnnouncementModalVariant1Properties announcement_modal_variant_1 = 2;
+  string content_identifier = 3;
 }
