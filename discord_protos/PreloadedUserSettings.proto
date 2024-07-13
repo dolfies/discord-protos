@@ -215,6 +215,7 @@ message PreloadedUserSettings {
     fixed64 emoji_id = 2;
     string emoji_name = 3;
     fixed64 expires_at_ms = 4;
+    fixed64 created_at_ms = 5;
   }
 
   message StatusSettings {

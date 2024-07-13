@@ -3,23 +3,23 @@ from __future__ import annotations
 from enum import Enum as _Enum
 from typing import TYPE_CHECKING
 
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 
 if TYPE_CHECKING:
     from google.protobuf.message import Message as _Message
 
-    FrecencyUserSettings = PreloadedUserSettings = PremiumMarketingComponentProperties = _Message
+    PremiumMarketingComponentProperties = FrecencyUserSettings = PreloadedUserSettings = _Message
 else:
+    from .PremiumMarketingComponentProperties_pb2 import PremiumMarketingComponentProperties
     from .FrecencyUserSettings_pb2 import FrecencyUserSettings
     from .PreloadedUserSettings_pb2 import PreloadedUserSettings
-    from .PremiumMarketingComponentProperties_pb2 import PremiumMarketingComponentProperties
 
 __all__ = (
     '__version__',
     'UserSettingsType',
+    'PremiumMarketingComponentProperties',
     'FrecencyUserSettings',
     'PreloadedUserSettings',
-    'PremiumMarketingComponentProperties',
 )
 
 

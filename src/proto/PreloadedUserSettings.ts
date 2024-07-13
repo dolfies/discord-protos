@@ -675,6 +675,10 @@ export interface PreloadedUserSettings_CustomStatus {
      * @generated from protobuf field: fixed64 expires_at_ms = 4;
      */
     expiresAtMs: bigint;
+    /**
+     * @generated from protobuf field: fixed64 created_at_ms = 5;
+     */
+    createdAtMs: bigint;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.StatusSettings
@@ -2921,7 +2925,8 @@ class PreloadedUserSettings_CustomStatus$Type extends MessageType<PreloadedUserS
             { no: 1, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 2, name: "emoji_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 3, name: "emoji_name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 4, name: "expires_at_ms", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 4, name: "expires_at_ms", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 5, name: "created_at_ms", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_CustomStatus>): PreloadedUserSettings_CustomStatus {
@@ -2930,6 +2935,7 @@ class PreloadedUserSettings_CustomStatus$Type extends MessageType<PreloadedUserS
         message.emojiId = 0n;
         message.emojiName = "";
         message.expiresAtMs = 0n;
+        message.createdAtMs = 0n;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_CustomStatus>(this, message, value);
         return message;
@@ -2950,6 +2956,9 @@ class PreloadedUserSettings_CustomStatus$Type extends MessageType<PreloadedUserS
                     break;
                 case /* fixed64 expires_at_ms */ 4:
                     message.expiresAtMs = reader.fixed64().toBigInt();
+                    break;
+                case /* fixed64 created_at_ms */ 5:
+                    message.createdAtMs = reader.fixed64().toBigInt();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2975,6 +2984,9 @@ class PreloadedUserSettings_CustomStatus$Type extends MessageType<PreloadedUserS
         /* fixed64 expires_at_ms = 4; */
         if (message.expiresAtMs !== 0n)
             writer.tag(4, WireType.Bit64).fixed64(message.expiresAtMs);
+        /* fixed64 created_at_ms = 5; */
+        if (message.createdAtMs !== 0n)
+            writer.tag(5, WireType.Bit64).fixed64(message.createdAtMs);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
