@@ -4,8 +4,7 @@ import { join } from "path";
 import { execSync } from "child_process";
 
 // For the JS template, all we need to do is update the exports at the bottom
-const JS_TEMPLATE = `
-import { MessageType } from "@protobuf-ts/runtime";
+const JS_TEMPLATE = `import { MessageType } from "@protobuf-ts/runtime";
 
 function toBase64(this: MessageType<any>, data) {
     return Buffer.from(this.toBinary(data)).toString("base64");
@@ -29,13 +28,12 @@ MessageType.prototype.toBase64 = toBase64
 `;
 
 // For the Python template, we need to update both imports and the __all__ variable, as well as bump the version number
-const PY_TEMPLATE = `
-from __future__ import annotations
+const PY_TEMPLATE = `from __future__ import annotations
 
 from enum import Enum as _Enum
 from typing import TYPE_CHECKING
 
-__version__ = {{ version }}
+__version__ = '{{ version }}'
 
 if TYPE_CHECKING:
     from google.protobuf.message import Message as _Message
@@ -62,7 +60,7 @@ UserSettingsImpl = {
     UserSettingsType.frecency_user_settings: FrecencyUserSettings,
     UserSettingsType.test_settings: None,
 }
-`
+`;
 
 const PARSE_SCRIPT = readFileSync(join(__dirname, "parse.js"), "utf8");
 
@@ -104,7 +102,7 @@ async function main() {
 
     // Update the JS template
     const jsExports = Object.keys(protos).map((x) => `export * from "./proto/${x}";`).join("\n");
-    writeFileSync(join(__dirname, "index.ts"), JS_TEMPLATE.replace("{{ protos_exports }}", jsExports));
+    writeFileSync(join(__dirname, "..", "src", "index.ts"), JS_TEMPLATE.replace("{{ protos_exports }}", jsExports));
 
     // Update the Python template
     const pyExports = Object.keys(protos).map((x) => `    '${x}',`).join("\n");
