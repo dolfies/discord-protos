@@ -15,16 +15,20 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
 
-    - name: Install requirements
-      uses: actions/setup-node@v3
+    - name: Install Node.js
+      uses: actions/setup-node@v4
       with:
-        node-version: 20
-    - uses: arduino/setup-protoc@v1
-    - run: npm install
+        node-version: 'lts'
+
+    - name: Install protoc
+      uses: arduino/setup-protoc@v3
+
+    - name: Install dependencies
+      run: npm install
 
     - name: Load protobuf definitions
       run: npm run load

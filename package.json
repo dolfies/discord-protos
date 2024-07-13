@@ -24,12 +24,12 @@
         "load": "npm run build && node dist/load.js"
     },
     "devDependencies": {
-        "@protobuf-ts/plugin": "^2.8.2",
-        "@protobuf-ts/protoc": "^2.8.2",
-        "puppeteer": "^19.7.0",
-        "typescript": "^4.9.5"
+        "@protobuf-ts/plugin": "<3.0.0",
+        "@protobuf-ts/protoc": "<3.0.0",
+        "puppeteer": "^22.13.0",
+        "typescript": "<6.0.0"
     },
     "dependencies": {
-        "@protobuf-ts/runtime": "^2.8.2"
+        "@protobuf-ts/runtime": "<3.0.0"
     }
 }

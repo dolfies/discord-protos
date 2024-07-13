@@ -65,9 +65,7 @@ UserSettingsImpl = {
 const PARSE_SCRIPT = readFileSync(join(__dirname, "parse.js"), "utf8");
 
 async function main() {
-    const browser = await puppeteer.launch({
-        headless: true,
-    });
+    const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
     await page.goto("https://discord.com/app", { waitUntil: "networkidle0" });
