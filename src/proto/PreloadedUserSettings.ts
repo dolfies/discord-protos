@@ -256,6 +256,15 @@ export interface PreloadedUserSettings_AllGuildSettings {
     };
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.RecurringDismissibleContentState
+ */
+export interface PreloadedUserSettings_RecurringDismissibleContentState {
+    /**
+     * @generated from protobuf field: uint32 last_dismissed_version = 1;
+     */
+    lastDismissedVersion: number;
+}
+/**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.UserContentSettings
  */
 export interface PreloadedUserSettings_UserContentSettings {
@@ -283,6 +292,12 @@ export interface PreloadedUserSettings_UserContentSettings {
      * @generated from protobuf field: fixed64 last_received_changelog_id = 6;
      */
     lastReceivedChangelogId: bigint;
+    /**
+     * @generated from protobuf field: map<int32, discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.RecurringDismissibleContentState> recurring_dismissible_content_states = 7;
+     */
+    recurringDismissibleContentStates: {
+        [key: number]: PreloadedUserSettings_RecurringDismissibleContentState;
+    };
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.VideoFilterBackgroundBlur
@@ -1801,6 +1816,53 @@ class PreloadedUserSettings_AllGuildSettings$Type extends MessageType<PreloadedU
  */
 export const PreloadedUserSettings_AllGuildSettings = new PreloadedUserSettings_AllGuildSettings$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_RecurringDismissibleContentState$Type extends MessageType<PreloadedUserSettings_RecurringDismissibleContentState> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.RecurringDismissibleContentState", [
+            { no: 1, name: "last_dismissed_version", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_RecurringDismissibleContentState>): PreloadedUserSettings_RecurringDismissibleContentState {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.lastDismissedVersion = 0;
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_RecurringDismissibleContentState>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_RecurringDismissibleContentState): PreloadedUserSettings_RecurringDismissibleContentState {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint32 last_dismissed_version */ 1:
+                    message.lastDismissedVersion = reader.uint32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_RecurringDismissibleContentState, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint32 last_dismissed_version = 1; */
+        if (message.lastDismissedVersion !== 0)
+            writer.tag(1, WireType.Varint).uint32(message.lastDismissedVersion);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.RecurringDismissibleContentState
+ */
+export const PreloadedUserSettings_RecurringDismissibleContentState = new PreloadedUserSettings_RecurringDismissibleContentState$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class PreloadedUserSettings_UserContentSettings$Type extends MessageType<PreloadedUserSettings_UserContentSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.UserContentSettings", [
@@ -1809,13 +1871,15 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
             { no: 3, name: "premium_tier_0_modal_dismissed_at", kind: "message", T: () => Timestamp },
             { no: 4, name: "guild_onboarding_upsell_dismissed_at", kind: "message", T: () => Timestamp },
             { no: 5, name: "safety_user_sentiment_notice_dismissed_at", kind: "message", T: () => Timestamp },
-            { no: 6, name: "last_received_changelog_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 6, name: "last_received_changelog_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 7, name: "recurring_dismissible_content_states", kind: "map", K: 5 /*ScalarType.INT32*/, V: { kind: "message", T: () => PreloadedUserSettings_RecurringDismissibleContentState } }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_UserContentSettings>): PreloadedUserSettings_UserContentSettings {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.dismissedContents = new Uint8Array(0);
         message.lastReceivedChangelogId = 0n;
+        message.recurringDismissibleContentStates = {};
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_UserContentSettings>(this, message, value);
         return message;
@@ -1843,6 +1907,9 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
                 case /* fixed64 last_received_changelog_id */ 6:
                     message.lastReceivedChangelogId = reader.fixed64().toBigInt();
                     break;
+                case /* map<int32, discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.RecurringDismissibleContentState> recurring_dismissible_content_states */ 7:
+                    this.binaryReadMap7(message.recurringDismissibleContentStates, reader, options);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1853,6 +1920,22 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
             }
         }
         return message;
+    }
+    private binaryReadMap7(map: PreloadedUserSettings_UserContentSettings["recurringDismissibleContentStates"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof PreloadedUserSettings_UserContentSettings["recurringDismissibleContentStates"] | undefined, val: PreloadedUserSettings_UserContentSettings["recurringDismissibleContentStates"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.int32();
+                    break;
+                case 2:
+                    val = PreloadedUserSettings_RecurringDismissibleContentState.internalBinaryRead(reader, reader.uint32(), options);
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for field discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.UserContentSettings.recurring_dismissible_content_states");
+            }
+        }
+        map[key ?? 0] = val ?? PreloadedUserSettings_RecurringDismissibleContentState.create();
     }
     internalBinaryWrite(message: PreloadedUserSettings_UserContentSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* bytes dismissed_contents = 1; */
@@ -1873,6 +1956,13 @@ class PreloadedUserSettings_UserContentSettings$Type extends MessageType<Preload
         /* fixed64 last_received_changelog_id = 6; */
         if (message.lastReceivedChangelogId !== 0n)
             writer.tag(6, WireType.Bit64).fixed64(message.lastReceivedChangelogId);
+        /* map<int32, discord_protos.discord_users.v1.PreloadedUserSettings.PreloadedUserSettings.RecurringDismissibleContentState> recurring_dismissible_content_states = 7; */
+        for (let k of globalThis.Object.keys(message.recurringDismissibleContentStates)) {
+            writer.tag(7, WireType.LengthDelimited).fork().tag(1, WireType.Varint).int32(parseInt(k));
+            writer.tag(2, WireType.LengthDelimited).fork();
+            PreloadedUserSettings_RecurringDismissibleContentState.internalBinaryWrite(message.recurringDismissibleContentStates[k as any], writer, options);
+            writer.join().join();
+        }
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

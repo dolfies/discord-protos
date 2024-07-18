@@ -3,7 +3,7 @@ from __future__ import annotations
 from enum import Enum as _Enum
 from typing import TYPE_CHECKING
 
-__version__ = '1.0.6'
+__version__ = '1.0.7'
 
 if TYPE_CHECKING:
     from google.protobuf.message import Message as _Message

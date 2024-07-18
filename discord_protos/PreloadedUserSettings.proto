@@ -70,6 +70,10 @@ message PreloadedUserSettings {
     map<fixed64, GuildSettings> guilds = 1;
   }
 
+  message RecurringDismissibleContentState {
+    uint32 last_dismissed_version = 1;
+  }
+
   message UserContentSettings {
     bytes dismissed_contents = 1;
     optional google.protobuf.StringValue last_dismissed_outbound_promotion_start_date = 2;
@@ -77,6 +81,7 @@ message PreloadedUserSettings {
     optional google.protobuf.Timestamp guild_onboarding_upsell_dismissed_at = 4;
     optional google.protobuf.Timestamp safety_user_sentiment_notice_dismissed_at = 5;
     fixed64 last_received_changelog_id = 6;
+    map<int32, RecurringDismissibleContentState> recurring_dismissible_content_states = 7;
   }
 
   message VideoFilterBackgroundBlur {
