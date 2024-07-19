@@ -68,7 +68,7 @@ async function main() {
     const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
-    await page.goto("https://discord.com/app", { waitUntil: "networkidle0" });
+    await page.goto("https://canary.discord.com/app", { waitUntil: "networkidle0" });
 
     const protos = await page.evaluate(`${PARSE_SCRIPT}; protos`);
 
