@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package discord_protos.discord_users.v1.PremiumMarketingComponentProperties;
+package discord_protos.discord_users.v1;
 
 message PremiumMarketingComponentProperties {
   message FeatureCard {
@@ -12,9 +12,9 @@ message PremiumMarketingComponentProperties {
   }
 
   enum ButtonAction {
-    UNSPECIFIED = 0;
-    OPEN_MARKETING_PAGE = 1;
-    OPEN_TIER_2_PAYMENT_MODAL = 2;
+    BUTTON_ACTION_UNSPECIFIED = 0;
+    BUTTON_ACTION_OPEN_MARKETING_PAGE = 1;
+    BUTTON_ACTION_OPEN_TIER_2_PAYMENT_MODAL = 2;
   }
 
   message SubscriptionButton {

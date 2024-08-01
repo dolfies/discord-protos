@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 
-package discord_protos.discord_users.v1.PreloadedUserSettings;
+package discord_protos.discord_users.v1;
 
 message PreloadedUserSettings {
   message Versions {
@@ -13,13 +13,13 @@ message PreloadedUserSettings {
   }
 
   enum InboxTab {
-    UNSPECIFIED = 0;
-    MENTIONS = 1;
-    UNREADS = 2;
-    TODOS = 3;
-    FOR_YOU = 4;
-    GAME_INVITES = 5;
-    BOOKMARKS = 6;
+    INBOX_TAB_UNSPECIFIED = 0;
+    INBOX_TAB_MENTIONS = 1;
+    INBOX_TAB_UNREADS = 2;
+    INBOX_TAB_TODOS = 3;
+    INBOX_TAB_FOR_YOU = 4;
+    INBOX_TAB_GAME_INVITES = 5;
+    INBOX_TAB_BOOKMARKS = 6;
   }
 
   message InboxSettings {
@@ -109,17 +109,17 @@ message PreloadedUserSettings {
   }
 
   enum DmSpamFilterV2 {
-    DEFAULT_UNSET = 0;
-    DISABLED = 1;
-    NON_FRIENDS = 2;
-    FRIENDS_AND_NON_FRIENDS = 3;
+    DM_SPAM_FILTER_V2_DEFAULT_UNSET = 0;
+    DM_SPAM_FILTER_V2_DISABLED = 1;
+    DM_SPAM_FILTER_V2_NON_FRIENDS = 2;
+    DM_SPAM_FILTER_V2_FRIENDS_AND_NON_FRIENDS = 3;
   }
 
   enum ExplicitContentRedaction {
-    UNSET_EXPLICIT_CONTENT_REDACTION = 0;
-    SHOW = 1;
-    BLUR = 2;
-    BLOCK = 3;
+    EXPLICIT_CONTENT_REDACTION_UNSET_EXPLICIT_CONTENT_REDACTION = 0;
+    EXPLICIT_CONTENT_REDACTION_SHOW = 1;
+    EXPLICIT_CONTENT_REDACTION_BLUR = 2;
+    EXPLICIT_CONTENT_REDACTION_BLOCK = 3;
   }
 
   message ExplicitContentSettings {
@@ -176,8 +176,8 @@ message PreloadedUserSettings {
   }
 
   enum GuildActivityStatusRestrictionDefault {
-    OFF = 0;
-    ON_FOR_LARGE_GUILDS = 1;
+    GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_OFF = 0;
+    GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_ON_FOR_LARGE_GUILDS = 1;
   }
 
   message PrivacySettings {
@@ -236,11 +236,11 @@ message PreloadedUserSettings {
   }
 
   enum Theme {
-    UNSET = 0;
-    DARK = 1;
-    LIGHT = 2;
-    DARKER = 3;
-    MIDNIGHT = 4;
+    THEME_UNSET = 0;
+    THEME_DARK = 1;
+    THEME_LIGHT = 2;
+    THEME_DARKER = 3;
+    THEME_MIDNIGHT = 4;
   }
 
   message ClientThemeSettings {
@@ -270,9 +270,9 @@ message PreloadedUserSettings {
   }
 
   enum FavoriteChannelType {
-    UNSET_FAVORITE_CHANNEL_TYPE = 0;
-    REFERENCE_ORIGINAL = 1;
-    CATEGORY = 2;
+    FAVORITE_CHANNEL_TYPE_UNSET_FAVORITE_CHANNEL_TYPE = 0;
+    FAVORITE_CHANNEL_TYPE_REFERENCE_ORIGINAL = 1;
+    FAVORITE_CHANNEL_TYPE_CATEGORY = 2;
   }
 
   message FavoriteChannel {
@@ -314,6 +314,29 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue allow_voice_recording = 1;
   }
 
+  enum ForLaterTab {
+    FOR_LATER_TAB_UNSPECIFIED = 0;
+    FOR_LATER_TAB_ALL = 1;
+    FOR_LATER_TAB_BOOKMARKS = 2;
+    FOR_LATER_TAB_REMINDERS = 3;
+  }
+
+  message ForLaterSettings {
+    ForLaterTab current_tab = 1;
+  }
+
+  enum SafetySettingsPresetType {
+    SAFETY_SETTINGS_PRESET_TYPE_UNSET_SAFETY_SETTINGS_PRESET = 0;
+    SAFETY_SETTINGS_PRESET_TYPE_BALANCED = 1;
+    SAFETY_SETTINGS_PRESET_TYPE_STRICT = 2;
+    SAFETY_SETTINGS_PRESET_TYPE_RELAXED = 3;
+    SAFETY_SETTINGS_PRESET_TYPE_CUSTOM = 4;
+  }
+
+  message SafetySettings {
+    SafetySettingsPresetType safety_settings_preset = 1;
+  }
+
   optional Versions versions = 1;
   optional InboxSettings inbox = 2;
   optional AllGuildSettings guilds = 3;
@@ -333,4 +356,6 @@ message PreloadedUserSettings {
   optional CommunitiesSettings communities = 17;
   optional BroadcastSettings broadcast = 18;
   optional ClipsSettings clips = 19;
+  optional ForLaterSettings for_later = 20;
+  optional SafetySettings safety_settings = 21;
 }
