@@ -1,9 +1,9 @@
 # Discord Protocol Buffers
-Reverse-engineering Discord's user settings protobufs.
+Reverse-engineering Discord's protobufs.
 
-This repository provides protocol buffer files for Discord's user settings automatically generated and automatically updated. The protobufs are provided as .proto files in the out/ directory, one file per settings type.
+This repository provides protocol buffer files for all protobufs found in Discord's client source, automatically generated and automatically updated. The protobufs are provided as .proto files in the `out/` directory.
 
-These protobufs are used by the Discord clients for user settings.
+These protobufs are used by Discord clients for transmitting data like user settings and premium marketing.
 
 Provided for educational purposes only.
 
@@ -80,7 +80,6 @@ decoded = PreloadedUserSettings.FromString(base64.b64decode(encoded))
 print(encoded, decoded)
 ```
 
-## Mapping
 The following table shows which protobuf user settings correspond to which .proto file (the Python package also provides a `UserSettingsType` enum for convenience).
 
 | Type | Value                             | File                        | Use                                                |
@@ -89,11 +88,11 @@ The following table shows which protobuf user settings correspond to which .prot
 | 2    | `FRECENCY_AND_FAVORITES_SETTINGS` | FrecencyUserSettings.proto  | Frecency and favorites storage for various things. |
 | 3    | `TEST_SETTINGS`                   | -                           | Unknown.                                           |
 
+Base64-encoded data for these protobufs are provided by the `GET /users/@me/settings-proto/{type}` endpoint. For preloaded user settings, base64-encoded data is provided in the `user_settings_proto` key of the `READY` event received in the Discord Gateway, as well as in `USER_SETTINGS_PROTO_UPDATE` events.
 
 ### Protobufs
 The .proto files can be compiled down to Python or JavaScript files by running `npm run py` or `npm run js`. This requires protoc to be installed.
 
-Base64-encoded data for these protobufs are provided by the `GET /users/@me/settings-proto/{type}` endpoint. For preloaded user settings, base64-encoded data is provided in the `user_settings_proto` key of the READY event received in the Discord Gateway, as well as in USER_SETTINGS_PROTO_UPDATE events.
 
 ### Development
-Running `pnpm load` will extract and save the latest protobufs to the discord_protos/ directory.
+Running `pnpm load` will extract and save the latest protobufs to the `discord_protos/` directory.
