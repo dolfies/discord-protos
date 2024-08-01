@@ -160,7 +160,7 @@ function createProtoField(field) {
 }
 
 function createProtoFile(proto) {
-    const lines = [`syntax = "proto3";\n`, `package discord_protos.discord_users.v1.${proto.name};\n`, `message ${proto.name} {`];
+    const lines = [`syntax = "proto3";\n`, `package discord_protos.discord_users.v1;\n`, `message ${proto.name} {`];
 
     proto.structs.forEach((struct) => {
         lines.push(`  ${struct.kind} ${struct.name} {`);
