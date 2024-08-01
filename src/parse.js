@@ -89,6 +89,11 @@ function parseName(name) {
     return name.split(".").slice(-1)[0];
 }
 
+function convertCase(str) {
+    // This converts standard EnumType case to ENUM_TYPE
+    return str.replace(/([a-z])([A-Z])/g, "$1_$2").toUpperCase();
+}
+
 function flattenField(field) {
     const [type, structs] = parseType(field);
     return [
@@ -106,13 +111,18 @@ function flattenField(field) {
 
 function parseEnum(enun) {
     const [name, data] = enun;
+
+    // Protobuf enum values conventionally have a prefix of NAME_ and we must add that back
+    const formattedName = parseName(name);
+    const prefix = convertCase(formattedName) + "_";
+
     return {
-        name: parseName(name),
+        name: formattedName,
         kind: "enum",
         values: Object.entries(data)
             .filter(([k, _]) => isNaN(Number(k)))
             .map(([k, v]) => ({
-                name: k,
+                name: prefix + k,
                 value: v,
             })),
     };
