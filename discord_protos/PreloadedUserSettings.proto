@@ -337,6 +337,10 @@ message PreloadedUserSettings {
     SafetySettingsPresetType safety_settings_preset = 1;
   }
 
+  message ICYMISettings {
+    fixed64 feed_generated_at = 1;
+  }
+
   optional Versions versions = 1;
   optional InboxSettings inbox = 2;
   optional AllGuildSettings guilds = 3;
@@ -358,4 +362,5 @@ message PreloadedUserSettings {
   optional ClipsSettings clips = 19;
   optional ForLaterSettings for_later = 20;
   optional SafetySettings safety_settings = 21;
+  optional ICYMISettings icymi_settings = 22;
 }

@@ -105,6 +105,10 @@ export interface PreloadedUserSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettings safety_settings = 21;
      */
     safetySettings?: PreloadedUserSettings_SafetySettings;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings icymi_settings = 22;
+     */
+    icymiSettings?: PreloadedUserSettings_ICYMISettings;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.Versions
@@ -945,6 +949,15 @@ export interface PreloadedUserSettings_SafetySettings {
     safetySettingsPreset: PreloadedUserSettings_SafetySettingsPresetType;
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings
+ */
+export interface PreloadedUserSettings_ICYMISettings {
+    /**
+     * @generated from protobuf field: fixed64 feed_generated_at = 1;
+     */
+    feedGeneratedAt: bigint;
+}
+/**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.InboxTab
  */
 export enum PreloadedUserSettings_InboxTab {
@@ -1144,7 +1157,8 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
             { no: 18, name: "broadcast", kind: "message", T: () => PreloadedUserSettings_BroadcastSettings },
             { no: 19, name: "clips", kind: "message", T: () => PreloadedUserSettings_ClipsSettings },
             { no: 20, name: "for_later", kind: "message", T: () => PreloadedUserSettings_ForLaterSettings },
-            { no: 21, name: "safety_settings", kind: "message", T: () => PreloadedUserSettings_SafetySettings }
+            { no: 21, name: "safety_settings", kind: "message", T: () => PreloadedUserSettings_SafetySettings },
+            { no: 22, name: "icymi_settings", kind: "message", T: () => PreloadedUserSettings_ICYMISettings }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings>): PreloadedUserSettings {
@@ -1221,6 +1235,9 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettings safety_settings */ 21:
                     message.safetySettings = PreloadedUserSettings_SafetySettings.internalBinaryRead(reader, reader.uint32(), options, message.safetySettings);
                     break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings icymi_settings */ 22:
+                    message.icymiSettings = PreloadedUserSettings_ICYMISettings.internalBinaryRead(reader, reader.uint32(), options, message.icymiSettings);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1296,6 +1313,9 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettings safety_settings = 21; */
         if (message.safetySettings)
             PreloadedUserSettings_SafetySettings.internalBinaryWrite(message.safetySettings, writer.tag(21, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings icymi_settings = 22; */
+        if (message.icymiSettings)
+            PreloadedUserSettings_ICYMISettings.internalBinaryWrite(message.icymiSettings, writer.tag(22, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -4153,3 +4173,50 @@ class PreloadedUserSettings_SafetySettings$Type extends MessageType<PreloadedUse
  * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettings
  */
 export const PreloadedUserSettings_SafetySettings = new PreloadedUserSettings_SafetySettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_ICYMISettings$Type extends MessageType<PreloadedUserSettings_ICYMISettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings", [
+            { no: 1, name: "feed_generated_at", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_ICYMISettings>): PreloadedUserSettings_ICYMISettings {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.feedGeneratedAt = 0n;
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_ICYMISettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_ICYMISettings): PreloadedUserSettings_ICYMISettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* fixed64 feed_generated_at */ 1:
+                    message.feedGeneratedAt = reader.fixed64().toBigInt();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_ICYMISettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* fixed64 feed_generated_at = 1; */
+        if (message.feedGeneratedAt !== 0n)
+            writer.tag(1, WireType.Bit64).fixed64(message.feedGeneratedAt);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings
+ */
+export const PreloadedUserSettings_ICYMISettings = new PreloadedUserSettings_ICYMISettings$Type();
