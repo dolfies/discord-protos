@@ -378,6 +378,10 @@ export interface PreloadedUserSettings_VoiceAndVideoSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.SoundboardSettings soundboard_settings = 9;
      */
     soundboardSettings?: PreloadedUserSettings_SoundboardSettings;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue disable_stream_previews = 10;
+     */
+    disableStreamPreviews?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ExplicitContentSettings
@@ -2239,7 +2243,8 @@ class PreloadedUserSettings_VoiceAndVideoSettings$Type extends MessageType<Prelo
             { no: 6, name: "afk_timeout", kind: "message", T: () => UInt32Value },
             { no: 7, name: "stream_notifications_enabled", kind: "message", T: () => BoolValue },
             { no: 8, name: "native_phone_integration_enabled", kind: "message", T: () => BoolValue },
-            { no: 9, name: "soundboard_settings", kind: "message", T: () => PreloadedUserSettings_SoundboardSettings }
+            { no: 9, name: "soundboard_settings", kind: "message", T: () => PreloadedUserSettings_SoundboardSettings },
+            { no: 10, name: "disable_stream_previews", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_VoiceAndVideoSettings>): PreloadedUserSettings_VoiceAndVideoSettings {
@@ -2278,6 +2283,9 @@ class PreloadedUserSettings_VoiceAndVideoSettings$Type extends MessageType<Prelo
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.SoundboardSettings soundboard_settings */ 9:
                     message.soundboardSettings = PreloadedUserSettings_SoundboardSettings.internalBinaryRead(reader, reader.uint32(), options, message.soundboardSettings);
                     break;
+                case /* optional google.protobuf.BoolValue disable_stream_previews */ 10:
+                    message.disableStreamPreviews = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.disableStreamPreviews);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2314,6 +2322,9 @@ class PreloadedUserSettings_VoiceAndVideoSettings$Type extends MessageType<Prelo
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.SoundboardSettings soundboard_settings = 9; */
         if (message.soundboardSettings)
             PreloadedUserSettings_SoundboardSettings.internalBinaryWrite(message.soundboardSettings, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue disable_stream_previews = 10; */
+        if (message.disableStreamPreviews)
+            BoolValue.internalBinaryWrite(message.disableStreamPreviews, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

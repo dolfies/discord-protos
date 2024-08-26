@@ -106,6 +106,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue stream_notifications_enabled = 7;
     optional google.protobuf.BoolValue native_phone_integration_enabled = 8;
     optional SoundboardSettings soundboard_settings = 9;
+    optional google.protobuf.BoolValue disable_stream_previews = 10;
   }
 
   enum DmSpamFilterV2 {
