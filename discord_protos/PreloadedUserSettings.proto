@@ -167,6 +167,12 @@ message PreloadedUserSettings {
     optional KeywordFilterSettings keyword_filter_settings = 30;
   }
 
+  enum ReactionNotificationType {
+    REACTION_NOTIFICATION_TYPE_NOTIFICATIONS_ENABLED = 0;
+    REACTION_NOTIFICATION_TYPE_ONLY_DMS = 1;
+    REACTION_NOTIFICATION_TYPE_NOTIFICATIONS_DISABLED = 2;
+  }
+
   message NotificationSettings {
     optional google.protobuf.BoolValue show_in_app_notifications = 1;
     optional google.protobuf.BoolValue notify_friends_on_go_live = 2;
@@ -174,6 +180,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue enable_burst_reaction_notifications = 4;
     optional google.protobuf.BoolValue quiet_mode = 5;
     fixed64 focus_mode_expires_at_ms = 6;
+    ReactionNotificationType reaction_notifications = 7;
   }
 
   enum GuildActivityStatusRestrictionDefault {

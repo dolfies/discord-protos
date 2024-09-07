@@ -566,6 +566,10 @@ export interface PreloadedUserSettings_NotificationSettings {
      * @generated from protobuf field: fixed64 focus_mode_expires_at_ms = 6;
      */
     focusModeExpiresAtMs: bigint;
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.ReactionNotificationType reaction_notifications = 7;
+     */
+    reactionNotifications: PreloadedUserSettings_ReactionNotificationType;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.PrivacySettings
@@ -1035,6 +1039,23 @@ export enum PreloadedUserSettings_ExplicitContentRedaction {
      * @generated from protobuf enum value: EXPLICIT_CONTENT_REDACTION_BLOCK = 3;
      */
     BLOCK = 3
+}
+/**
+ * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.ReactionNotificationType
+ */
+export enum PreloadedUserSettings_ReactionNotificationType {
+    /**
+     * @generated from protobuf enum value: REACTION_NOTIFICATION_TYPE_NOTIFICATIONS_ENABLED = 0;
+     */
+    NOTIFICATIONS_ENABLED = 0,
+    /**
+     * @generated from protobuf enum value: REACTION_NOTIFICATION_TYPE_ONLY_DMS = 1;
+     */
+    ONLY_DMS = 1,
+    /**
+     * @generated from protobuf enum value: REACTION_NOTIFICATION_TYPE_NOTIFICATIONS_DISABLED = 2;
+     */
+    NOTIFICATIONS_DISABLED = 2
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.GuildActivityStatusRestrictionDefault
@@ -2713,13 +2734,15 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
             { no: 3, name: "notification_center_acked_before_id", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
             { no: 4, name: "enable_burst_reaction_notifications", kind: "message", T: () => BoolValue },
             { no: 5, name: "quiet_mode", kind: "message", T: () => BoolValue },
-            { no: 6, name: "focus_mode_expires_at_ms", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ }
+            { no: 6, name: "focus_mode_expires_at_ms", kind: "scalar", T: 6 /*ScalarType.FIXED64*/, L: 0 /*LongType.BIGINT*/ },
+            { no: 7, name: "reaction_notifications", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.ReactionNotificationType", PreloadedUserSettings_ReactionNotificationType, "REACTION_NOTIFICATION_TYPE_"] }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_NotificationSettings>): PreloadedUserSettings_NotificationSettings {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.notificationCenterAckedBeforeId = 0n;
         message.focusModeExpiresAtMs = 0n;
+        message.reactionNotifications = 0;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_NotificationSettings>(this, message, value);
         return message;
@@ -2746,6 +2769,9 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
                     break;
                 case /* fixed64 focus_mode_expires_at_ms */ 6:
                     message.focusModeExpiresAtMs = reader.fixed64().toBigInt();
+                    break;
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.ReactionNotificationType reaction_notifications */ 7:
+                    message.reactionNotifications = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2777,6 +2803,9 @@ class PreloadedUserSettings_NotificationSettings$Type extends MessageType<Preloa
         /* fixed64 focus_mode_expires_at_ms = 6; */
         if (message.focusModeExpiresAtMs !== 0n)
             writer.tag(6, WireType.Bit64).fixed64(message.focusModeExpiresAtMs);
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.ReactionNotificationType reaction_notifications = 7; */
+        if (message.reactionNotifications !== 0)
+            writer.tag(7, WireType.Varint).int32(message.reactionNotifications);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
