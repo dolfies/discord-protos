@@ -255,6 +255,10 @@ export interface PreloadedUserSettings_GuildSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config = 10;
      */
     customNotificationSoundConfig?: PreloadedUserSettings_CustomNotificationSoundConfig;
+    /**
+     * @generated from protobuf field: bool leaderboards_disabled = 11;
+     */
+    leaderboardsDisabled: boolean;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.AllGuildSettings
@@ -266,6 +270,10 @@ export interface PreloadedUserSettings_AllGuildSettings {
     guilds: {
         [key: string]: PreloadedUserSettings_GuildSettings;
     };
+    /**
+     * @generated from protobuf field: bool leaderboards_disabled = 2;
+     */
+    leaderboardsDisabled: boolean;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.RecurringDismissibleContentState
@@ -1757,7 +1765,8 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
             { no: 7, name: "mobile_redesign_channel_list_settings", kind: "message", T: () => PreloadedUserSettings_ChannelListSettings },
             { no: 8, name: "disable_raid_alert_push", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 9, name: "disable_raid_alert_nag", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 10, name: "custom_notification_sound_config", kind: "message", T: () => PreloadedUserSettings_CustomNotificationSoundConfig }
+            { no: 10, name: "custom_notification_sound_config", kind: "message", T: () => PreloadedUserSettings_CustomNotificationSoundConfig },
+            { no: 11, name: "leaderboards_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_GuildSettings>): PreloadedUserSettings_GuildSettings {
@@ -1768,6 +1777,7 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
         message.dismissedGuildContent = new Uint8Array(0);
         message.disableRaidAlertPush = false;
         message.disableRaidAlertNag = false;
+        message.leaderboardsDisabled = false;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_GuildSettings>(this, message, value);
         return message;
@@ -1806,6 +1816,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
                     break;
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config */ 10:
                     message.customNotificationSoundConfig = PreloadedUserSettings_CustomNotificationSoundConfig.internalBinaryRead(reader, reader.uint32(), options, message.customNotificationSoundConfig);
+                    break;
+                case /* bool leaderboards_disabled */ 11:
+                    message.leaderboardsDisabled = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1869,6 +1882,9 @@ class PreloadedUserSettings_GuildSettings$Type extends MessageType<PreloadedUser
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.CustomNotificationSoundConfig custom_notification_sound_config = 10; */
         if (message.customNotificationSoundConfig)
             PreloadedUserSettings_CustomNotificationSoundConfig.internalBinaryWrite(message.customNotificationSoundConfig, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
+        /* bool leaderboards_disabled = 11; */
+        if (message.leaderboardsDisabled !== false)
+            writer.tag(11, WireType.Varint).bool(message.leaderboardsDisabled);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1883,12 +1899,14 @@ export const PreloadedUserSettings_GuildSettings = new PreloadedUserSettings_Gui
 class PreloadedUserSettings_AllGuildSettings$Type extends MessageType<PreloadedUserSettings_AllGuildSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.AllGuildSettings", [
-            { no: 1, name: "guilds", kind: "map", K: 6 /*ScalarType.FIXED64*/, V: { kind: "message", T: () => PreloadedUserSettings_GuildSettings } }
+            { no: 1, name: "guilds", kind: "map", K: 6 /*ScalarType.FIXED64*/, V: { kind: "message", T: () => PreloadedUserSettings_GuildSettings } },
+            { no: 2, name: "leaderboards_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AllGuildSettings>): PreloadedUserSettings_AllGuildSettings {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.guilds = {};
+        message.leaderboardsDisabled = false;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_AllGuildSettings>(this, message, value);
         return message;
@@ -1900,6 +1918,9 @@ class PreloadedUserSettings_AllGuildSettings$Type extends MessageType<PreloadedU
             switch (fieldNo) {
                 case /* map<fixed64, discord_protos.discord_users.v1.PreloadedUserSettings.GuildSettings> guilds */ 1:
                     this.binaryReadMap1(message.guilds, reader, options);
+                    break;
+                case /* bool leaderboards_disabled */ 2:
+                    message.leaderboardsDisabled = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1936,6 +1957,9 @@ class PreloadedUserSettings_AllGuildSettings$Type extends MessageType<PreloadedU
             PreloadedUserSettings_GuildSettings.internalBinaryWrite(message.guilds[k], writer, options);
             writer.join().join();
         }
+        /* bool leaderboards_disabled = 2; */
+        if (message.leaderboardsDisabled !== false)
+            writer.tag(2, WireType.Varint).bool(message.leaderboardsDisabled);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
