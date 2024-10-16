@@ -69,7 +69,6 @@ message PreloadedUserSettings {
 
   message AllGuildSettings {
     map<fixed64, GuildSettings> guilds = 1;
-    bool leaderboards_disabled = 2;
   }
 
   message RecurringDismissibleContentState {

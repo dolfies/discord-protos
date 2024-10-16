@@ -270,10 +270,6 @@ export interface PreloadedUserSettings_AllGuildSettings {
     guilds: {
         [key: string]: PreloadedUserSettings_GuildSettings;
     };
-    /**
-     * @generated from protobuf field: bool leaderboards_disabled = 2;
-     */
-    leaderboardsDisabled: boolean;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.RecurringDismissibleContentState
@@ -1899,14 +1895,12 @@ export const PreloadedUserSettings_GuildSettings = new PreloadedUserSettings_Gui
 class PreloadedUserSettings_AllGuildSettings$Type extends MessageType<PreloadedUserSettings_AllGuildSettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.AllGuildSettings", [
-            { no: 1, name: "guilds", kind: "map", K: 6 /*ScalarType.FIXED64*/, V: { kind: "message", T: () => PreloadedUserSettings_GuildSettings } },
-            { no: 2, name: "leaderboards_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+            { no: 1, name: "guilds", kind: "map", K: 6 /*ScalarType.FIXED64*/, V: { kind: "message", T: () => PreloadedUserSettings_GuildSettings } }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AllGuildSettings>): PreloadedUserSettings_AllGuildSettings {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.guilds = {};
-        message.leaderboardsDisabled = false;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_AllGuildSettings>(this, message, value);
         return message;
@@ -1918,9 +1912,6 @@ class PreloadedUserSettings_AllGuildSettings$Type extends MessageType<PreloadedU
             switch (fieldNo) {
                 case /* map<fixed64, discord_protos.discord_users.v1.PreloadedUserSettings.GuildSettings> guilds */ 1:
                     this.binaryReadMap1(message.guilds, reader, options);
-                    break;
-                case /* bool leaderboards_disabled */ 2:
-                    message.leaderboardsDisabled = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -1957,9 +1948,6 @@ class PreloadedUserSettings_AllGuildSettings$Type extends MessageType<PreloadedU
             PreloadedUserSettings_GuildSettings.internalBinaryWrite(message.guilds[k], writer, options);
             writer.join().join();
         }
-        /* bool leaderboards_disabled = 2; */
-        if (message.leaderboardsDisabled !== false)
-            writer.tag(2, WireType.Varint).bool(message.leaderboardsDisabled);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
