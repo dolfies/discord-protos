@@ -189,6 +189,11 @@ message PreloadedUserSettings {
     GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_ON_FOR_LARGE_GUILDS = 1;
   }
 
+  enum GuildsLeaderboardOptOutDefault {
+    GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_OFF_FOR_NEW_GUILDS = 0;
+    GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_ON_FOR_NEW_GUILDS = 1;
+  }
+
   message PrivacySettings {
     optional google.protobuf.BoolValue allow_activity_party_privacy_friends = 1;
     optional google.protobuf.BoolValue allow_activity_party_privacy_voice_channel = 2;
@@ -212,6 +217,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue hide_legacy_username = 22;
     optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23;
     optional google.protobuf.BoolValue recent_games_enabled = 24;
+    GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default = 25;
   }
 
   message DebugSettings {

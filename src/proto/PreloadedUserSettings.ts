@@ -667,6 +667,10 @@ export interface PreloadedUserSettings_PrivacySettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue recent_games_enabled = 24;
      */
     recentGamesEnabled?: BoolValue;
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default = 25;
+     */
+    guildsLeaderboardOptOutDefault: PreloadedUserSettings_GuildsLeaderboardOptOutDefault;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.DebugSettings
@@ -1073,6 +1077,19 @@ export enum PreloadedUserSettings_GuildActivityStatusRestrictionDefault {
      * @generated from protobuf enum value: GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_ON_FOR_LARGE_GUILDS = 1;
      */
     ON_FOR_LARGE_GUILDS = 1
+}
+/**
+ * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault
+ */
+export enum PreloadedUserSettings_GuildsLeaderboardOptOutDefault {
+    /**
+     * @generated from protobuf enum value: GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_OFF_FOR_NEW_GUILDS = 0;
+     */
+    OFF_FOR_NEW_GUILDS = 0,
+    /**
+     * @generated from protobuf enum value: GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_ON_FOR_NEW_GUILDS = 1;
+     */
+    ON_FOR_NEW_GUILDS = 1
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.Theme
@@ -2853,7 +2870,8 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
             { no: 21, name: "family_center_enabled_v2", kind: "message", T: () => BoolValue },
             { no: 22, name: "hide_legacy_username", kind: "message", T: () => BoolValue },
             { no: 23, name: "inappropriate_conversation_warnings", kind: "message", T: () => BoolValue },
-            { no: 24, name: "recent_games_enabled", kind: "message", T: () => BoolValue }
+            { no: 24, name: "recent_games_enabled", kind: "message", T: () => BoolValue },
+            { no: 25, name: "guilds_leaderboard_opt_out_default", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault", PreloadedUserSettings_GuildsLeaderboardOptOutDefault, "GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_"] }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_PrivacySettings>): PreloadedUserSettings_PrivacySettings {
@@ -2865,6 +2883,7 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
         message.defaultGuildsActivityRestricted = 0;
         message.activityJoiningRestrictedGuildIds = [];
         message.messageRequestRestrictedGuildIds = [];
+        message.guildsLeaderboardOptOutDefault = 0;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_PrivacySettings>(this, message, value);
         return message;
@@ -2955,6 +2974,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
                     break;
                 case /* optional google.protobuf.BoolValue recent_games_enabled */ 24:
                     message.recentGamesEnabled = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.recentGamesEnabled);
+                    break;
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default */ 25:
+                    message.guildsLeaderboardOptOutDefault = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -3050,6 +3072,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
         /* optional google.protobuf.BoolValue recent_games_enabled = 24; */
         if (message.recentGamesEnabled)
             BoolValue.internalBinaryWrite(message.recentGamesEnabled, writer.tag(24, WireType.LengthDelimited).fork(), options).join();
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default = 25; */
+        if (message.guildsLeaderboardOptOutDefault !== 0)
+            writer.tag(25, WireType.Varint).int32(message.guildsLeaderboardOptOutDefault);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
