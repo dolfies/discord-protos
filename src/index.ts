@@ -5,7 +5,7 @@ import { MessageType } from "@protobuf-ts/runtime";
  * This is specific to this package's usage, and not a replacement of Buffer.from() altogether
  */
 const compatBuffer = {
-    from: (input: string, encoding?: string) => {
+    from: function (input: string | Uint8Array, encoding?: string) {
         if (typeof input === "string" && encoding === "base64") {
             const encodedBytes = atob(input);
             const bytes = new Uint8Array(encodedBytes.length);
@@ -13,10 +13,12 @@ const compatBuffer = {
                 bytes[i] = encodedBytes.charCodeAt(i);
             }
             return bytes;
+        } else if (!encoding && input instanceof Uint8Array) {
+            return input;
         }
         throw new Error("Invalid input type.");
     },
-    toBase64String: (buffer: Uint8Array) => {
+    toBase64String: function (buffer: Uint8Array) {
         let encodedBytes = "";
         for (let i = 0; i < buffer.length; i++) {
             encodedBytes += String.fromCharCode(buffer[i]);
@@ -26,7 +28,7 @@ const compatBuffer = {
 };
 
 function toBase64(this: MessageType<any>, data) {
-    return compatBuffer.toBase64String(this.toBinary(data));
+    return compatBuffer.toBase64String(compatBuffer.from(this.toBinary(data)));
 }
 
 function fromBase64(this: MessageType<any>, base64: string) {
