@@ -262,6 +262,12 @@ message PreloadedUserSettings {
     optional google.protobuf.UInt32Value background_gradient_preset_id = 2;
   }
 
+  enum TimestampHourCycle {
+    TIMESTAMP_HOUR_CYCLE_AUTO = 0;
+    TIMESTAMP_HOUR_CYCLE_H12 = 1;
+    TIMESTAMP_HOUR_CYCLE_H23 = 2;
+  }
+
   message AppearanceSettings {
     Theme theme = 1;
     bool developer_mode = 2;
@@ -270,6 +276,7 @@ message PreloadedUserSettings {
     optional google.protobuf.StringValue channel_list_layout = 6;
     optional google.protobuf.StringValue message_previews = 7;
     optional google.protobuf.BoolValue search_result_exact_count_enabled = 8;
+    TimestampHourCycle timestamp_hour_cycle = 9;
   }
 
   message GuildFolder {

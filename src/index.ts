@@ -1,38 +1,11 @@
 import { MessageType } from "@protobuf-ts/runtime";
 
-/**
- * Supports both node and web environments, replacement of previous Buffer.from() being node-only.
- * This is specific to this package's usage, and not a replacement of Buffer.from() altogether
- */
-const compatBuffer = {
-    from: function (input: string | Uint8Array, encoding?: string) {
-        if (typeof input === "string" && encoding === "base64") {
-            const encodedBytes = atob(input);
-            const bytes = new Uint8Array(encodedBytes.length);
-            for (let i = 0; i < encodedBytes.length; i++) {
-                bytes[i] = encodedBytes.charCodeAt(i);
-            }
-            return bytes;
-        } else if (!encoding && input instanceof Uint8Array) {
-            return input;
-        }
-        throw new Error("Invalid input type.");
-    },
-    toBase64String: function (buffer: Uint8Array) {
-        let encodedBytes = "";
-        for (let i = 0; i < buffer.length; i++) {
-            encodedBytes += String.fromCharCode(buffer[i]);
-        }
-        return btoa(encodedBytes);
-    },
-};
-
 function toBase64(this: MessageType<any>, data) {
-    return compatBuffer.toBase64String(compatBuffer.from(this.toBinary(data)));
+    return Buffer.from(this.toBinary(data)).toString("base64");
 }
 
 function fromBase64(this: MessageType<any>, base64: string) {
-    return this.fromBinary(compatBuffer.from(base64, "base64"));
+    return this.fromBinary(Buffer.from(base64, "base64"))
 }
 
 declare module "@protobuf-ts/runtime" {
@@ -42,8 +15,8 @@ declare module "@protobuf-ts/runtime" {
     }
 }
 
-MessageType.prototype.fromBase64 = fromBase64;
-MessageType.prototype.toBase64 = toBase64;
+MessageType.prototype.fromBase64 = fromBase64
+MessageType.prototype.toBase64 = toBase64
 
 export * from "./proto/PremiumMarketingComponentProperties";
 export * from "./proto/FrecencyUserSettings";

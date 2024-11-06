@@ -798,6 +798,10 @@ export interface PreloadedUserSettings_AppearanceSettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue search_result_exact_count_enabled = 8;
      */
     searchResultExactCountEnabled?: BoolValue;
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle timestamp_hour_cycle = 9;
+     */
+    timestampHourCycle: PreloadedUserSettings_TimestampHourCycle;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.GuildFolder
@@ -1115,6 +1119,23 @@ export enum PreloadedUserSettings_Theme {
      * @generated from protobuf enum value: THEME_MIDNIGHT = 4;
      */
     MIDNIGHT = 4
+}
+/**
+ * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle
+ */
+export enum PreloadedUserSettings_TimestampHourCycle {
+    /**
+     * @generated from protobuf enum value: TIMESTAMP_HOUR_CYCLE_AUTO = 0;
+     */
+    AUTO = 0,
+    /**
+     * @generated from protobuf enum value: TIMESTAMP_HOUR_CYCLE_H12 = 1;
+     */
+    H12 = 1,
+    /**
+     * @generated from protobuf enum value: TIMESTAMP_HOUR_CYCLE_H23 = 2;
+     */
+    H23 = 2
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.FavoriteChannelType
@@ -3447,7 +3468,8 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
             { no: 4, name: "mobile_redesign_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 6, name: "channel_list_layout", kind: "message", T: () => StringValue },
             { no: 7, name: "message_previews", kind: "message", T: () => StringValue },
-            { no: 8, name: "search_result_exact_count_enabled", kind: "message", T: () => BoolValue }
+            { no: 8, name: "search_result_exact_count_enabled", kind: "message", T: () => BoolValue },
+            { no: 9, name: "timestamp_hour_cycle", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle", PreloadedUserSettings_TimestampHourCycle, "TIMESTAMP_HOUR_CYCLE_"] }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AppearanceSettings>): PreloadedUserSettings_AppearanceSettings {
@@ -3455,6 +3477,7 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         message.theme = 0;
         message.developerMode = false;
         message.mobileRedesignDisabled = false;
+        message.timestampHourCycle = 0;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_AppearanceSettings>(this, message, value);
         return message;
@@ -3484,6 +3507,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
                     break;
                 case /* optional google.protobuf.BoolValue search_result_exact_count_enabled */ 8:
                     message.searchResultExactCountEnabled = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.searchResultExactCountEnabled);
+                    break;
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle timestamp_hour_cycle */ 9:
+                    message.timestampHourCycle = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -3518,6 +3544,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         /* optional google.protobuf.BoolValue search_result_exact_count_enabled = 8; */
         if (message.searchResultExactCountEnabled)
             BoolValue.internalBinaryWrite(message.searchResultExactCountEnabled, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle timestamp_hour_cycle = 9; */
+        if (message.timestampHourCycle !== 0)
+            writer.tag(9, WireType.Varint).int32(message.timestampHourCycle);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
