@@ -279,6 +279,10 @@ export interface PreloadedUserSettings_RecurringDismissibleContentState {
      * @generated from protobuf field: uint32 last_dismissed_version = 1;
      */
     lastDismissedVersion: number;
+    /**
+     * @generated from protobuf field: uint64 last_dismissed_at_ms = 2;
+     */
+    lastDismissedAtMs: bigint;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.UserContentSettings
@@ -2000,12 +2004,14 @@ export const PreloadedUserSettings_AllGuildSettings = new PreloadedUserSettings_
 class PreloadedUserSettings_RecurringDismissibleContentState$Type extends MessageType<PreloadedUserSettings_RecurringDismissibleContentState> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.RecurringDismissibleContentState", [
-            { no: 1, name: "last_dismissed_version", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+            { no: 1, name: "last_dismissed_version", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "last_dismissed_at_ms", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 0 /*LongType.BIGINT*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_RecurringDismissibleContentState>): PreloadedUserSettings_RecurringDismissibleContentState {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.lastDismissedVersion = 0;
+        message.lastDismissedAtMs = 0n;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_RecurringDismissibleContentState>(this, message, value);
         return message;
@@ -2017,6 +2023,9 @@ class PreloadedUserSettings_RecurringDismissibleContentState$Type extends Messag
             switch (fieldNo) {
                 case /* uint32 last_dismissed_version */ 1:
                     message.lastDismissedVersion = reader.uint32();
+                    break;
+                case /* uint64 last_dismissed_at_ms */ 2:
+                    message.lastDismissedAtMs = reader.uint64().toBigInt();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -2033,6 +2042,9 @@ class PreloadedUserSettings_RecurringDismissibleContentState$Type extends Messag
         /* uint32 last_dismissed_version = 1; */
         if (message.lastDismissedVersion !== 0)
             writer.tag(1, WireType.Varint).uint32(message.lastDismissedVersion);
+        /* uint64 last_dismissed_at_ms = 2; */
+        if (message.lastDismissedAtMs !== 0n)
+            writer.tag(2, WireType.Varint).uint64(message.lastDismissedAtMs);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
