@@ -810,6 +810,10 @@ export interface PreloadedUserSettings_AppearanceSettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue happening_now_cards_disabled = 10;
      */
     happeningNowCardsDisabled?: BoolValue;
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode launch_pad_mode = 11;
+     */
+    launchPadMode: PreloadedUserSettings_LaunchPadMode;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.GuildFolder
@@ -1144,6 +1148,27 @@ export enum PreloadedUserSettings_TimestampHourCycle {
      * @generated from protobuf enum value: TIMESTAMP_HOUR_CYCLE_H23 = 2;
      */
     H23 = 2
+}
+/**
+ * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode
+ */
+export enum PreloadedUserSettings_LaunchPadMode {
+    /**
+     * @generated from protobuf enum value: LAUNCH_PAD_MODE_LAUNCH_PAD_DISABLED = 0;
+     */
+    LAUNCH_PAD_DISABLED = 0,
+    /**
+     * @generated from protobuf enum value: LAUNCH_PAD_MODE_LAUNCH_PAD_GESTURE_FULL_SCREEN = 1;
+     */
+    LAUNCH_PAD_GESTURE_FULL_SCREEN = 1,
+    /**
+     * @generated from protobuf enum value: LAUNCH_PAD_MODE_LAUNCH_PAD_GESTURE_RIGHT_EDGE = 2;
+     */
+    LAUNCH_PAD_GESTURE_RIGHT_EDGE = 2,
+    /**
+     * @generated from protobuf enum value: LAUNCH_PAD_MODE_LAUNCH_PAD_PULL_TAB = 3;
+     */
+    LAUNCH_PAD_PULL_TAB = 3
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.FavoriteChannelType
@@ -3486,7 +3511,8 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
             { no: 7, name: "message_previews", kind: "message", T: () => StringValue },
             { no: 8, name: "search_result_exact_count_enabled", kind: "message", T: () => BoolValue },
             { no: 9, name: "timestamp_hour_cycle", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle", PreloadedUserSettings_TimestampHourCycle, "TIMESTAMP_HOUR_CYCLE_"] },
-            { no: 10, name: "happening_now_cards_disabled", kind: "message", T: () => BoolValue }
+            { no: 10, name: "happening_now_cards_disabled", kind: "message", T: () => BoolValue },
+            { no: 11, name: "launch_pad_mode", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode", PreloadedUserSettings_LaunchPadMode, "LAUNCH_PAD_MODE_"] }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AppearanceSettings>): PreloadedUserSettings_AppearanceSettings {
@@ -3495,6 +3521,7 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         message.developerMode = false;
         message.mobileRedesignDisabled = false;
         message.timestampHourCycle = 0;
+        message.launchPadMode = 0;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_AppearanceSettings>(this, message, value);
         return message;
@@ -3530,6 +3557,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
                     break;
                 case /* optional google.protobuf.BoolValue happening_now_cards_disabled */ 10:
                     message.happeningNowCardsDisabled = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.happeningNowCardsDisabled);
+                    break;
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode launch_pad_mode */ 11:
+                    message.launchPadMode = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -3570,6 +3600,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         /* optional google.protobuf.BoolValue happening_now_cards_disabled = 10; */
         if (message.happeningNowCardsDisabled)
             BoolValue.internalBinaryWrite(message.happeningNowCardsDisabled, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode launch_pad_mode = 11; */
+        if (message.launchPadMode !== 0)
+            writer.tag(11, WireType.Varint).int32(message.launchPadMode);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

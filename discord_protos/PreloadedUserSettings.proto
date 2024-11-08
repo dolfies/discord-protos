@@ -269,6 +269,13 @@ message PreloadedUserSettings {
     TIMESTAMP_HOUR_CYCLE_H23 = 2;
   }
 
+  enum LaunchPadMode {
+    LAUNCH_PAD_MODE_LAUNCH_PAD_DISABLED = 0;
+    LAUNCH_PAD_MODE_LAUNCH_PAD_GESTURE_FULL_SCREEN = 1;
+    LAUNCH_PAD_MODE_LAUNCH_PAD_GESTURE_RIGHT_EDGE = 2;
+    LAUNCH_PAD_MODE_LAUNCH_PAD_PULL_TAB = 3;
+  }
+
   message AppearanceSettings {
     Theme theme = 1;
     bool developer_mode = 2;
@@ -279,6 +286,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue search_result_exact_count_enabled = 8;
     TimestampHourCycle timestamp_hour_cycle = 9;
     optional google.protobuf.BoolValue happening_now_cards_disabled = 10;
+    LaunchPadMode launch_pad_mode = 11;
   }
 
   message GuildFolder {
