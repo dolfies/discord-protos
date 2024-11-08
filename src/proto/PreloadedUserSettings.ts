@@ -806,6 +806,10 @@ export interface PreloadedUserSettings_AppearanceSettings {
      * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle timestamp_hour_cycle = 9;
      */
     timestampHourCycle: PreloadedUserSettings_TimestampHourCycle;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue happening_now_cards_disabled = 10;
+     */
+    happeningNowCardsDisabled?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.GuildFolder
@@ -3481,7 +3485,8 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
             { no: 6, name: "channel_list_layout", kind: "message", T: () => StringValue },
             { no: 7, name: "message_previews", kind: "message", T: () => StringValue },
             { no: 8, name: "search_result_exact_count_enabled", kind: "message", T: () => BoolValue },
-            { no: 9, name: "timestamp_hour_cycle", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle", PreloadedUserSettings_TimestampHourCycle, "TIMESTAMP_HOUR_CYCLE_"] }
+            { no: 9, name: "timestamp_hour_cycle", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle", PreloadedUserSettings_TimestampHourCycle, "TIMESTAMP_HOUR_CYCLE_"] },
+            { no: 10, name: "happening_now_cards_disabled", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AppearanceSettings>): PreloadedUserSettings_AppearanceSettings {
@@ -3523,6 +3528,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
                 case /* discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle timestamp_hour_cycle */ 9:
                     message.timestampHourCycle = reader.int32();
                     break;
+                case /* optional google.protobuf.BoolValue happening_now_cards_disabled */ 10:
+                    message.happeningNowCardsDisabled = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.happeningNowCardsDisabled);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -3559,6 +3567,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         /* discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle timestamp_hour_cycle = 9; */
         if (message.timestampHourCycle !== 0)
             writer.tag(9, WireType.Varint).int32(message.timestampHourCycle);
+        /* optional google.protobuf.BoolValue happening_now_cards_disabled = 10; */
+        if (message.happeningNowCardsDisabled)
+            BoolValue.internalBinaryWrite(message.happeningNowCardsDisabled, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

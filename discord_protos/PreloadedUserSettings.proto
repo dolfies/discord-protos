@@ -278,6 +278,7 @@ message PreloadedUserSettings {
     optional google.protobuf.StringValue message_previews = 7;
     optional google.protobuf.BoolValue search_result_exact_count_enabled = 8;
     TimestampHourCycle timestamp_hour_cycle = 9;
+    optional google.protobuf.BoolValue happening_now_cards_disabled = 10;
   }
 
   message GuildFolder {
