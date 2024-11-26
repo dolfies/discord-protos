@@ -979,6 +979,10 @@ export interface PreloadedUserSettings_SafetySettings {
      * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettingsPresetType safety_settings_preset = 1;
      */
     safetySettingsPreset: PreloadedUserSettings_SafetySettingsPresetType;
+    /**
+     * @generated from protobuf field: bool ignore_profile_speedbump_disabled = 2;
+     */
+    ignoreProfileSpeedbumpDisabled: boolean;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings
@@ -4292,12 +4296,14 @@ export const PreloadedUserSettings_ForLaterSettings = new PreloadedUserSettings_
 class PreloadedUserSettings_SafetySettings$Type extends MessageType<PreloadedUserSettings_SafetySettings> {
     constructor() {
         super("discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettings", [
-            { no: 1, name: "safety_settings_preset", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettingsPresetType", PreloadedUserSettings_SafetySettingsPresetType, "SAFETY_SETTINGS_PRESET_TYPE_"] }
+            { no: 1, name: "safety_settings_preset", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettingsPresetType", PreloadedUserSettings_SafetySettingsPresetType, "SAFETY_SETTINGS_PRESET_TYPE_"] },
+            { no: 2, name: "ignore_profile_speedbump_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_SafetySettings>): PreloadedUserSettings_SafetySettings {
         const message = globalThis.Object.create((this.messagePrototype!));
         message.safetySettingsPreset = 0;
+        message.ignoreProfileSpeedbumpDisabled = false;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_SafetySettings>(this, message, value);
         return message;
@@ -4309,6 +4315,9 @@ class PreloadedUserSettings_SafetySettings$Type extends MessageType<PreloadedUse
             switch (fieldNo) {
                 case /* discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettingsPresetType safety_settings_preset */ 1:
                     message.safetySettingsPreset = reader.int32();
+                    break;
+                case /* bool ignore_profile_speedbump_disabled */ 2:
+                    message.ignoreProfileSpeedbumpDisabled = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -4325,6 +4334,9 @@ class PreloadedUserSettings_SafetySettings$Type extends MessageType<PreloadedUse
         /* discord_protos.discord_users.v1.PreloadedUserSettings.SafetySettingsPresetType safety_settings_preset = 1; */
         if (message.safetySettingsPreset !== 0)
             writer.tag(1, WireType.Varint).int32(message.safetySettingsPreset);
+        /* bool ignore_profile_speedbump_disabled = 2; */
+        if (message.ignoreProfileSpeedbumpDisabled !== false)
+            writer.tag(2, WireType.Varint).bool(message.ignoreProfileSpeedbumpDisabled);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

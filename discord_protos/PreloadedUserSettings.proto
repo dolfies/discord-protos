@@ -367,6 +367,7 @@ message PreloadedUserSettings {
 
   message SafetySettings {
     SafetySettingsPresetType safety_settings_preset = 1;
+    bool ignore_profile_speedbump_disabled = 2;
   }
 
   message ICYMISettings {
