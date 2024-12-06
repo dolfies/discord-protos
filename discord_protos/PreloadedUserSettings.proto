@@ -109,6 +109,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue native_phone_integration_enabled = 8;
     optional SoundboardSettings soundboard_settings = 9;
     optional google.protobuf.BoolValue disable_stream_previews = 10;
+    optional google.protobuf.FloatValue soundmoji_volume = 11;
   }
 
   enum DmSpamFilterV2 {

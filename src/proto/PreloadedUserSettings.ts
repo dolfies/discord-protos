@@ -12,6 +12,7 @@ import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 import { Int64Value } from "./google/protobuf/wrappers";
 import { Int32Value } from "./google/protobuf/wrappers";
+import { FloatValue } from "./google/protobuf/wrappers";
 import { UInt32Value } from "./google/protobuf/wrappers";
 import { BoolValue } from "./google/protobuf/wrappers";
 import { Timestamp } from "./google/protobuf/timestamp";
@@ -390,6 +391,10 @@ export interface PreloadedUserSettings_VoiceAndVideoSettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue disable_stream_previews = 10;
      */
     disableStreamPreviews?: BoolValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.FloatValue soundmoji_volume = 11;
+     */
+    soundmojiVolume?: FloatValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ExplicitContentSettings
@@ -2360,7 +2365,8 @@ class PreloadedUserSettings_VoiceAndVideoSettings$Type extends MessageType<Prelo
             { no: 7, name: "stream_notifications_enabled", kind: "message", T: () => BoolValue },
             { no: 8, name: "native_phone_integration_enabled", kind: "message", T: () => BoolValue },
             { no: 9, name: "soundboard_settings", kind: "message", T: () => PreloadedUserSettings_SoundboardSettings },
-            { no: 10, name: "disable_stream_previews", kind: "message", T: () => BoolValue }
+            { no: 10, name: "disable_stream_previews", kind: "message", T: () => BoolValue },
+            { no: 11, name: "soundmoji_volume", kind: "message", T: () => FloatValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_VoiceAndVideoSettings>): PreloadedUserSettings_VoiceAndVideoSettings {
@@ -2402,6 +2408,9 @@ class PreloadedUserSettings_VoiceAndVideoSettings$Type extends MessageType<Prelo
                 case /* optional google.protobuf.BoolValue disable_stream_previews */ 10:
                     message.disableStreamPreviews = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.disableStreamPreviews);
                     break;
+                case /* optional google.protobuf.FloatValue soundmoji_volume */ 11:
+                    message.soundmojiVolume = FloatValue.internalBinaryRead(reader, reader.uint32(), options, message.soundmojiVolume);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2441,6 +2450,9 @@ class PreloadedUserSettings_VoiceAndVideoSettings$Type extends MessageType<Prelo
         /* optional google.protobuf.BoolValue disable_stream_previews = 10; */
         if (message.disableStreamPreviews)
             BoolValue.internalBinaryWrite(message.disableStreamPreviews, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.FloatValue soundmoji_volume = 11; */
+        if (message.soundmojiVolume)
+            FloatValue.internalBinaryWrite(message.soundmojiVolume, writer.tag(11, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
