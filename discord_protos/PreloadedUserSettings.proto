@@ -168,6 +168,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue include_stickers_in_autocomplete = 28;
     optional ExplicitContentSettings explicit_content_settings = 29;
     optional KeywordFilterSettings keyword_filter_settings = 30;
+    optional google.protobuf.BoolValue include_soundmoji_in_autocomplete = 31;
   }
 
   enum ReactionNotificationType {

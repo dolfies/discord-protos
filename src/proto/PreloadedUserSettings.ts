@@ -550,6 +550,10 @@ export interface PreloadedUserSettings_TextAndImagesSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.KeywordFilterSettings keyword_filter_settings = 30;
      */
     keywordFilterSettings?: PreloadedUserSettings_KeywordFilterSettings;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue include_soundmoji_in_autocomplete = 31;
+     */
+    includeSoundmojiInAutocomplete?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.NotificationSettings
@@ -2618,7 +2622,8 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
             { no: 27, name: "dm_spam_filter_v2", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.DmSpamFilterV2", PreloadedUserSettings_DmSpamFilterV2, "DM_SPAM_FILTER_V2_"] },
             { no: 28, name: "include_stickers_in_autocomplete", kind: "message", T: () => BoolValue },
             { no: 29, name: "explicit_content_settings", kind: "message", T: () => PreloadedUserSettings_ExplicitContentSettings },
-            { no: 30, name: "keyword_filter_settings", kind: "message", T: () => PreloadedUserSettings_KeywordFilterSettings }
+            { no: 30, name: "keyword_filter_settings", kind: "message", T: () => PreloadedUserSettings_KeywordFilterSettings },
+            { no: 31, name: "include_soundmoji_in_autocomplete", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_TextAndImagesSettings>): PreloadedUserSettings_TextAndImagesSettings {
@@ -2723,6 +2728,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.KeywordFilterSettings keyword_filter_settings */ 30:
                     message.keywordFilterSettings = PreloadedUserSettings_KeywordFilterSettings.internalBinaryRead(reader, reader.uint32(), options, message.keywordFilterSettings);
                     break;
+                case /* optional google.protobuf.BoolValue include_soundmoji_in_autocomplete */ 31:
+                    message.includeSoundmojiInAutocomplete = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.includeSoundmojiInAutocomplete);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2822,6 +2830,9 @@ class PreloadedUserSettings_TextAndImagesSettings$Type extends MessageType<Prelo
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.KeywordFilterSettings keyword_filter_settings = 30; */
         if (message.keywordFilterSettings)
             PreloadedUserSettings_KeywordFilterSettings.internalBinaryWrite(message.keywordFilterSettings, writer.tag(30, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue include_soundmoji_in_autocomplete = 31; */
+        if (message.includeSoundmojiInAutocomplete)
+            BoolValue.internalBinaryWrite(message.includeSoundmojiInAutocomplete, writer.tag(31, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
