@@ -20,6 +20,7 @@ message PreloadedUserSettings {
     INBOX_TAB_FOR_YOU = 4;
     INBOX_TAB_GAME_INVITES = 5;
     INBOX_TAB_BOOKMARKS = 6;
+    INBOX_TAB_SCHEDULED = 7;
   }
 
   message InboxSettings {
@@ -190,6 +191,7 @@ message PreloadedUserSettings {
   enum GuildActivityStatusRestrictionDefault {
     GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_OFF = 0;
     GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_ON_FOR_LARGE_GUILDS = 1;
+    GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_ON = 2;
   }
 
   enum GuildsLeaderboardOptOutDefault {
@@ -221,6 +223,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue inappropriate_conversation_warnings = 23;
     optional google.protobuf.BoolValue recent_games_enabled = 24;
     GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default = 25;
+    optional google.protobuf.BoolValue allow_game_friend_dms_in_discord = 26;
   }
 
   message DebugSettings {
@@ -278,6 +281,13 @@ message PreloadedUserSettings {
     LAUNCH_PAD_MODE_LAUNCH_PAD_PULL_TAB = 3;
   }
 
+  enum UIDensity {
+    UIDENSITY_UNSET_UI_DENSITY = 0;
+    UIDENSITY_COMPACT = 1;
+    UIDENSITY_COZY = 2;
+    UIDENSITY_RESPONSIVE = 3;
+  }
+
   message AppearanceSettings {
     Theme theme = 1;
     bool developer_mode = 2;
@@ -289,6 +299,7 @@ message PreloadedUserSettings {
     TimestampHourCycle timestamp_hour_cycle = 9;
     optional google.protobuf.BoolValue happening_now_cards_disabled = 10;
     LaunchPadMode launch_pad_mode = 11;
+    UIDensity ui_density = 12;
   }
 
   message GuildFolder {

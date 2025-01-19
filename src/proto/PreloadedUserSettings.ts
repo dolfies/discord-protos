@@ -684,6 +684,10 @@ export interface PreloadedUserSettings_PrivacySettings {
      * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default = 25;
      */
     guildsLeaderboardOptOutDefault: PreloadedUserSettings_GuildsLeaderboardOptOutDefault;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue allow_game_friend_dms_in_discord = 26;
+     */
+    allowGameFriendDmsInDiscord?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.DebugSettings
@@ -823,6 +827,10 @@ export interface PreloadedUserSettings_AppearanceSettings {
      * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode launch_pad_mode = 11;
      */
     launchPadMode: PreloadedUserSettings_LaunchPadMode;
+    /**
+     * @generated from protobuf field: discord_protos.discord_users.v1.PreloadedUserSettings.UIDensity ui_density = 12;
+     */
+    uiDensity: PreloadedUserSettings_UIDensity;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.GuildFolder
@@ -1033,7 +1041,11 @@ export enum PreloadedUserSettings_InboxTab {
     /**
      * @generated from protobuf enum value: INBOX_TAB_BOOKMARKS = 6;
      */
-    BOOKMARKS = 6
+    BOOKMARKS = 6,
+    /**
+     * @generated from protobuf enum value: INBOX_TAB_SCHEDULED = 7;
+     */
+    SCHEDULED = 7
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.DmSpamFilterV2
@@ -1105,7 +1117,11 @@ export enum PreloadedUserSettings_GuildActivityStatusRestrictionDefault {
     /**
      * @generated from protobuf enum value: GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_ON_FOR_LARGE_GUILDS = 1;
      */
-    ON_FOR_LARGE_GUILDS = 1
+    ON_FOR_LARGE_GUILDS = 1,
+    /**
+     * @generated from protobuf enum value: GUILD_ACTIVITY_STATUS_RESTRICTION_DEFAULT_ON = 2;
+     */
+    ON = 2
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault
@@ -1182,6 +1198,27 @@ export enum PreloadedUserSettings_LaunchPadMode {
      * @generated from protobuf enum value: LAUNCH_PAD_MODE_LAUNCH_PAD_PULL_TAB = 3;
      */
     LAUNCH_PAD_PULL_TAB = 3
+}
+/**
+ * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.UIDensity
+ */
+export enum PreloadedUserSettings_UIDensity {
+    /**
+     * @generated from protobuf enum value: UIDENSITY_UNSET_UI_DENSITY = 0;
+     */
+    UIDENSITY_UNSET_UI_DENSITY = 0,
+    /**
+     * @generated from protobuf enum value: UIDENSITY_COMPACT = 1;
+     */
+    UIDENSITY_COMPACT = 1,
+    /**
+     * @generated from protobuf enum value: UIDENSITY_COZY = 2;
+     */
+    UIDENSITY_COZY = 2,
+    /**
+     * @generated from protobuf enum value: UIDENSITY_RESPONSIVE = 3;
+     */
+    UIDENSITY_RESPONSIVE = 3
 }
 /**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.FavoriteChannelType
@@ -2960,7 +2997,8 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
             { no: 22, name: "hide_legacy_username", kind: "message", T: () => BoolValue },
             { no: 23, name: "inappropriate_conversation_warnings", kind: "message", T: () => BoolValue },
             { no: 24, name: "recent_games_enabled", kind: "message", T: () => BoolValue },
-            { no: 25, name: "guilds_leaderboard_opt_out_default", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault", PreloadedUserSettings_GuildsLeaderboardOptOutDefault, "GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_"] }
+            { no: 25, name: "guilds_leaderboard_opt_out_default", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault", PreloadedUserSettings_GuildsLeaderboardOptOutDefault, "GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_"] },
+            { no: 26, name: "allow_game_friend_dms_in_discord", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_PrivacySettings>): PreloadedUserSettings_PrivacySettings {
@@ -3067,6 +3105,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
                 case /* discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default */ 25:
                     message.guildsLeaderboardOptOutDefault = reader.int32();
                     break;
+                case /* optional google.protobuf.BoolValue allow_game_friend_dms_in_discord */ 26:
+                    message.allowGameFriendDmsInDiscord = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.allowGameFriendDmsInDiscord);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -3164,6 +3205,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
         /* discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default = 25; */
         if (message.guildsLeaderboardOptOutDefault !== 0)
             writer.tag(25, WireType.Varint).int32(message.guildsLeaderboardOptOutDefault);
+        /* optional google.protobuf.BoolValue allow_game_friend_dms_in_discord = 26; */
+        if (message.allowGameFriendDmsInDiscord)
+            BoolValue.internalBinaryWrite(message.allowGameFriendDmsInDiscord, writer.tag(26, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -3539,7 +3583,8 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
             { no: 8, name: "search_result_exact_count_enabled", kind: "message", T: () => BoolValue },
             { no: 9, name: "timestamp_hour_cycle", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.TimestampHourCycle", PreloadedUserSettings_TimestampHourCycle, "TIMESTAMP_HOUR_CYCLE_"] },
             { no: 10, name: "happening_now_cards_disabled", kind: "message", T: () => BoolValue },
-            { no: 11, name: "launch_pad_mode", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode", PreloadedUserSettings_LaunchPadMode, "LAUNCH_PAD_MODE_"] }
+            { no: 11, name: "launch_pad_mode", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode", PreloadedUserSettings_LaunchPadMode, "LAUNCH_PAD_MODE_"] },
+            { no: 12, name: "ui_density", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.UIDensity", PreloadedUserSettings_UIDensity] }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_AppearanceSettings>): PreloadedUserSettings_AppearanceSettings {
@@ -3549,6 +3594,7 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         message.mobileRedesignDisabled = false;
         message.timestampHourCycle = 0;
         message.launchPadMode = 0;
+        message.uiDensity = 0;
         if (value !== undefined)
             reflectionMergePartial<PreloadedUserSettings_AppearanceSettings>(this, message, value);
         return message;
@@ -3587,6 +3633,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
                     break;
                 case /* discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode launch_pad_mode */ 11:
                     message.launchPadMode = reader.int32();
+                    break;
+                case /* discord_protos.discord_users.v1.PreloadedUserSettings.UIDensity ui_density */ 12:
+                    message.uiDensity = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -3630,6 +3679,9 @@ class PreloadedUserSettings_AppearanceSettings$Type extends MessageType<Preloade
         /* discord_protos.discord_users.v1.PreloadedUserSettings.LaunchPadMode launch_pad_mode = 11; */
         if (message.launchPadMode !== 0)
             writer.tag(11, WireType.Varint).int32(message.launchPadMode);
+        /* discord_protos.discord_users.v1.PreloadedUserSettings.UIDensity ui_density = 12; */
+        if (message.uiDensity !== 0)
+            writer.tag(12, WireType.Varint).int32(message.uiDensity);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
