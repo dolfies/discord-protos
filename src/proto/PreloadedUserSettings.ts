@@ -110,6 +110,10 @@ export interface PreloadedUserSettings {
      * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings icymi_settings = 22;
      */
     icymiSettings?: PreloadedUserSettings_ICYMISettings;
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.AllApplicationSettings applications = 23;
+     */
+    applications?: PreloadedUserSettings_AllApplicationSettings;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.Versions
@@ -1011,6 +1015,35 @@ export interface PreloadedUserSettings_ICYMISettings {
     feedGeneratedAt: bigint;
 }
 /**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationDMSettings
+ */
+export interface PreloadedUserSettings_ApplicationDMSettings {
+    /**
+     * @generated from protobuf field: bool dm_disabled = 1;
+     */
+    dmDisabled: boolean;
+}
+/**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationSettings
+ */
+export interface PreloadedUserSettings_ApplicationSettings {
+    /**
+     * @generated from protobuf field: optional discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationDMSettings app_dm_settings = 1;
+     */
+    appDmSettings?: PreloadedUserSettings_ApplicationDMSettings;
+}
+/**
+ * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.AllApplicationSettings
+ */
+export interface PreloadedUserSettings_AllApplicationSettings {
+    /**
+     * @generated from protobuf field: map<fixed64, discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationSettings> app_settings = 1;
+     */
+    appSettings: {
+        [key: string]: PreloadedUserSettings_ApplicationSettings;
+    };
+}
+/**
  * @generated from protobuf enum discord_protos.discord_users.v1.PreloadedUserSettings.InboxTab
  */
 export enum PreloadedUserSettings_InboxTab {
@@ -1308,7 +1341,8 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
             { no: 19, name: "clips", kind: "message", T: () => PreloadedUserSettings_ClipsSettings },
             { no: 20, name: "for_later", kind: "message", T: () => PreloadedUserSettings_ForLaterSettings },
             { no: 21, name: "safety_settings", kind: "message", T: () => PreloadedUserSettings_SafetySettings },
-            { no: 22, name: "icymi_settings", kind: "message", T: () => PreloadedUserSettings_ICYMISettings }
+            { no: 22, name: "icymi_settings", kind: "message", T: () => PreloadedUserSettings_ICYMISettings },
+            { no: 23, name: "applications", kind: "message", T: () => PreloadedUserSettings_AllApplicationSettings }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings>): PreloadedUserSettings {
@@ -1388,6 +1422,9 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
                 case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings icymi_settings */ 22:
                     message.icymiSettings = PreloadedUserSettings_ICYMISettings.internalBinaryRead(reader, reader.uint32(), options, message.icymiSettings);
                     break;
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.AllApplicationSettings applications */ 23:
+                    message.applications = PreloadedUserSettings_AllApplicationSettings.internalBinaryRead(reader, reader.uint32(), options, message.applications);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1466,6 +1503,9 @@ class PreloadedUserSettings$Type extends MessageType<PreloadedUserSettings> {
         /* optional discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings icymi_settings = 22; */
         if (message.icymiSettings)
             PreloadedUserSettings_ICYMISettings.internalBinaryWrite(message.icymiSettings, writer.tag(22, WireType.LengthDelimited).fork(), options).join();
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.AllApplicationSettings applications = 23; */
+        if (message.applications)
+            PreloadedUserSettings_AllApplicationSettings.internalBinaryWrite(message.applications, writer.tag(23, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -4469,3 +4509,163 @@ class PreloadedUserSettings_ICYMISettings$Type extends MessageType<PreloadedUser
  * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ICYMISettings
  */
 export const PreloadedUserSettings_ICYMISettings = new PreloadedUserSettings_ICYMISettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_ApplicationDMSettings$Type extends MessageType<PreloadedUserSettings_ApplicationDMSettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationDMSettings", [
+            { no: 1, name: "dm_disabled", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_ApplicationDMSettings>): PreloadedUserSettings_ApplicationDMSettings {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.dmDisabled = false;
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_ApplicationDMSettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_ApplicationDMSettings): PreloadedUserSettings_ApplicationDMSettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* bool dm_disabled */ 1:
+                    message.dmDisabled = reader.bool();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_ApplicationDMSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* bool dm_disabled = 1; */
+        if (message.dmDisabled !== false)
+            writer.tag(1, WireType.Varint).bool(message.dmDisabled);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationDMSettings
+ */
+export const PreloadedUserSettings_ApplicationDMSettings = new PreloadedUserSettings_ApplicationDMSettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_ApplicationSettings$Type extends MessageType<PreloadedUserSettings_ApplicationSettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationSettings", [
+            { no: 1, name: "app_dm_settings", kind: "message", T: () => PreloadedUserSettings_ApplicationDMSettings }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_ApplicationSettings>): PreloadedUserSettings_ApplicationSettings {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_ApplicationSettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_ApplicationSettings): PreloadedUserSettings_ApplicationSettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationDMSettings app_dm_settings */ 1:
+                    message.appDmSettings = PreloadedUserSettings_ApplicationDMSettings.internalBinaryRead(reader, reader.uint32(), options, message.appDmSettings);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_ApplicationSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationDMSettings app_dm_settings = 1; */
+        if (message.appDmSettings)
+            PreloadedUserSettings_ApplicationDMSettings.internalBinaryWrite(message.appDmSettings, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationSettings
+ */
+export const PreloadedUserSettings_ApplicationSettings = new PreloadedUserSettings_ApplicationSettings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class PreloadedUserSettings_AllApplicationSettings$Type extends MessageType<PreloadedUserSettings_AllApplicationSettings> {
+    constructor() {
+        super("discord_protos.discord_users.v1.PreloadedUserSettings.AllApplicationSettings", [
+            { no: 1, name: "app_settings", kind: "map", K: 6 /*ScalarType.FIXED64*/, V: { kind: "message", T: () => PreloadedUserSettings_ApplicationSettings } }
+        ]);
+    }
+    create(value?: PartialMessage<PreloadedUserSettings_AllApplicationSettings>): PreloadedUserSettings_AllApplicationSettings {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.appSettings = {};
+        if (value !== undefined)
+            reflectionMergePartial<PreloadedUserSettings_AllApplicationSettings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: PreloadedUserSettings_AllApplicationSettings): PreloadedUserSettings_AllApplicationSettings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* map<fixed64, discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationSettings> app_settings */ 1:
+                    this.binaryReadMap1(message.appSettings, reader, options);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    private binaryReadMap1(map: PreloadedUserSettings_AllApplicationSettings["appSettings"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof PreloadedUserSettings_AllApplicationSettings["appSettings"] | undefined, val: PreloadedUserSettings_AllApplicationSettings["appSettings"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.fixed64().toString();
+                    break;
+                case 2:
+                    val = PreloadedUserSettings_ApplicationSettings.internalBinaryRead(reader, reader.uint32(), options);
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for field discord_protos.discord_users.v1.PreloadedUserSettings.AllApplicationSettings.app_settings");
+            }
+        }
+        map[key ?? "0"] = val ?? PreloadedUserSettings_ApplicationSettings.create();
+    }
+    internalBinaryWrite(message: PreloadedUserSettings_AllApplicationSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* map<fixed64, discord_protos.discord_users.v1.PreloadedUserSettings.ApplicationSettings> app_settings = 1; */
+        for (let k of globalThis.Object.keys(message.appSettings)) {
+            writer.tag(1, WireType.LengthDelimited).fork().tag(1, WireType.Bit64).fixed64(k);
+            writer.tag(2, WireType.LengthDelimited).fork();
+            PreloadedUserSettings_ApplicationSettings.internalBinaryWrite(message.appSettings[k], writer, options);
+            writer.join().join();
+        }
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.AllApplicationSettings
+ */
+export const PreloadedUserSettings_AllApplicationSettings = new PreloadedUserSettings_AllApplicationSettings$Type();
