@@ -224,6 +224,7 @@ message PreloadedUserSettings {
     optional google.protobuf.BoolValue recent_games_enabled = 24;
     GuildsLeaderboardOptOutDefault guilds_leaderboard_opt_out_default = 25;
     optional google.protobuf.BoolValue allow_game_friend_dms_in_discord = 26;
+    optional google.protobuf.BoolValue default_guilds_restricted_v2 = 27;
   }
 
   message DebugSettings {

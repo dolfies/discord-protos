@@ -692,6 +692,10 @@ export interface PreloadedUserSettings_PrivacySettings {
      * @generated from protobuf field: optional google.protobuf.BoolValue allow_game_friend_dms_in_discord = 26;
      */
     allowGameFriendDmsInDiscord?: BoolValue;
+    /**
+     * @generated from protobuf field: optional google.protobuf.BoolValue default_guilds_restricted_v2 = 27;
+     */
+    defaultGuildsRestrictedV2?: BoolValue;
 }
 /**
  * @generated from protobuf message discord_protos.discord_users.v1.PreloadedUserSettings.DebugSettings
@@ -3038,7 +3042,8 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
             { no: 23, name: "inappropriate_conversation_warnings", kind: "message", T: () => BoolValue },
             { no: 24, name: "recent_games_enabled", kind: "message", T: () => BoolValue },
             { no: 25, name: "guilds_leaderboard_opt_out_default", kind: "enum", T: () => ["discord_protos.discord_users.v1.PreloadedUserSettings.GuildsLeaderboardOptOutDefault", PreloadedUserSettings_GuildsLeaderboardOptOutDefault, "GUILDS_LEADERBOARD_OPT_OUT_DEFAULT_"] },
-            { no: 26, name: "allow_game_friend_dms_in_discord", kind: "message", T: () => BoolValue }
+            { no: 26, name: "allow_game_friend_dms_in_discord", kind: "message", T: () => BoolValue },
+            { no: 27, name: "default_guilds_restricted_v2", kind: "message", T: () => BoolValue }
         ]);
     }
     create(value?: PartialMessage<PreloadedUserSettings_PrivacySettings>): PreloadedUserSettings_PrivacySettings {
@@ -3148,6 +3153,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
                 case /* optional google.protobuf.BoolValue allow_game_friend_dms_in_discord */ 26:
                     message.allowGameFriendDmsInDiscord = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.allowGameFriendDmsInDiscord);
                     break;
+                case /* optional google.protobuf.BoolValue default_guilds_restricted_v2 */ 27:
+                    message.defaultGuildsRestrictedV2 = BoolValue.internalBinaryRead(reader, reader.uint32(), options, message.defaultGuildsRestrictedV2);
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -3248,6 +3256,9 @@ class PreloadedUserSettings_PrivacySettings$Type extends MessageType<PreloadedUs
         /* optional google.protobuf.BoolValue allow_game_friend_dms_in_discord = 26; */
         if (message.allowGameFriendDmsInDiscord)
             BoolValue.internalBinaryWrite(message.allowGameFriendDmsInDiscord, writer.tag(26, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.BoolValue default_guilds_restricted_v2 = 27; */
+        if (message.defaultGuildsRestrictedV2)
+            BoolValue.internalBinaryWrite(message.defaultGuildsRestrictedV2, writer.tag(27, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
