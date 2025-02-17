@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import { writeFileSync, readFileSync } from "fs";
+import { writeFileSync, readFileSync, mkdirSync, existsSync, readdirSync, rmSync } from "fs";
 import { join } from "path";
 import { execSync } from "child_process";
 
@@ -104,11 +104,31 @@ async function main() {
     await page.goto("https://canary.discord.com/app", { waitUntil: "networkidle0" });
 
     const protos = await page.evaluate(`${PARSE_SCRIPT}; protos`);
-
-    for (const [name, proto] of Object.entries(protos)) {
-        writeFileSync(join(__dirname, "..", "discord_protos", name + ".proto"), proto.data);
-    }
     await browser.close();
+
+    // Delete all existing files and folders in the discord_protos directory
+    const outputs = [join(__dirname, "..", "discord_protos"), join(__dirname, "..", "src", "proto")];
+    for (const output of outputs) {
+        if (existsSync(output)) {
+            for (const file of readdirSync(output)) {
+                rmSync(join(output, file), { recursive: true, force: true });
+            }
+        }
+    }
+
+    // Write the protos to disk
+    const filenames = []
+    for (const [name, proto] of Object.entries(protos)) {
+        const dir = join(__dirname, "..", ...proto.package.split("."));
+        const filename = join(dir, `${name}.proto`);
+        filenames.push(filename.replace(join(__dirname, ".."), "."));
+
+        // Ensure the directory exists
+        if (!existsSync(dir)) {
+            mkdirSync(dir, { recursive: true });
+        }
+        writeFileSync(filename, proto.data);
+    }
 
     // Check if we have any changes using git
     const changes = execSync("git status --porcelain").toString().trim();
@@ -127,17 +147,17 @@ async function main() {
     // For protoc to parse any new protos, we have to edit the script in the package.json to include the filenames
     const js = packageJson.scripts.js.split(" ").filter((x) => !x.endsWith(".proto")).join(" ");
     const py = packageJson.scripts.py.split(" ").filter((x) => !x.endsWith(".proto")).join(" ");
-    packageJson.scripts.js = `${js} ${Object.keys(protos).map((x) => x + ".proto").join(" ")}`;
-    packageJson.scripts.py = `${py} ${Object.keys(protos).map((x) => x + ".proto").join(" ")}`;
+    packageJson.scripts.js = `${js} ${filenames.join(" ")}`;
+    packageJson.scripts.py = `${py} ${filenames.join(" ")}`;
     writeFileSync(join(__dirname, "..", "package.json"), JSON.stringify(packageJson, null, 4));
 
     // Update the JS template
-    const jsExports = Object.keys(protos).map((x) => `export * from "./proto/${x}";`).join("\n");
+    const jsExports = filenames.map((x) => `export * from "${x.replaceAll("\\", "/").replace("./discord_protos", "./proto").replace(".proto", "")}";`).join("\n");
     writeFileSync(join(__dirname, "..", "src", "index.ts"), JS_TEMPLATE.replace("{{ protos_exports }}", jsExports));
 
     // Update the Python template
     const pyExports = Object.keys(protos).map((x) => `    '${x}',`).join("\n");
-    const pyImports = Object.keys(protos).map((x) => `    from .${x}_pb2 import ${x}`).join("\n");
+    const pyImports = filenames.map((x) => `    from ${x.replaceAll("\\", "/").replace("./discord_protos", "").replaceAll("/", ".").replace(".proto", "_pb2")} import *`).join("\n");
     const pyEquals = Object.keys(protos).join(" = ");
     writeFileSync(
         join(__dirname, "..", "discord_protos", "__init__.py"),
