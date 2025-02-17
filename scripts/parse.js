@@ -1,23 +1,3 @@
-if (!getModules) {
-    let wpCache;
-    window.webpackChunkdiscord_app.push([["discord-protos"], {}, (r) => (wpCache = r.c)]);
-
-    function getModules(prop) {
-        const results = [];
-        for (let m of Object.values(wpCache)) {
-            try {
-                if (!m.exports || m.exports === window) continue;
-                if (m.exports[prop]) results.push(m.exports);
-
-                for (let ex in m.exports) {
-                    if (m.exports[ex][prop]) results.push(m.exports[ex]);
-                }
-            } catch {}
-        }
-        return results;
-    }
-}
-
 // Map the type ints to their names
 const REAL_TYPES = {
     1: "double",
@@ -26,10 +6,15 @@ const REAL_TYPES = {
     4: "uint64",
     5: "int32",
     6: "fixed64",
+    7: "fixed32",
     8: "bool",
     9: "string",
     12: "bytes",
     13: "uint32",
+    15: "sfixed32",
+    16: "sfixed64",
+    17: "sint32",
+    18: "sint64",
 };
 
 function parseType(field) {
@@ -49,7 +34,7 @@ function parseType(field) {
         case "message":
             type = field.T().typeName;
             if (type.startsWith("discord")) {
-                type = parseName(type);
+                [, type] = parseName(type);
             }
             break;
         case "scalar":
@@ -59,7 +44,7 @@ function parseType(field) {
             type = `map<${parseType(field.K)[0]}, ${parseType(field.V)[0]}>`;
             break;
         case "enum":
-            type = parseName(field.T()[0]);
+            [, type] = parseName(field.T()[0]);
             break;
         default:
             throw new Error(`Unknown field type: ${field?.kind || field}`);
@@ -86,7 +71,8 @@ function parseType(field) {
 }
 
 function parseName(name) {
-    return name.split(".").slice(-1)[0];
+    const split = name.split(".");
+    return [split.slice(0, -1).join("."), split.slice(-1)[0]];
 }
 
 function convertCase(str) {
@@ -113,7 +99,7 @@ function parseEnum(enun) {
     const [name, data] = enun;
 
     // Protobuf enum values conventionally have a prefix of NAME_ and we must add that back
-    const formattedName = parseName(name);
+    const [, formattedName] = parseName(name);
     const prefix = convertCase(formattedName) + "_";
 
     return {
@@ -138,8 +124,10 @@ function parseProto(proto) {
     });
 
     const seen = new Set();
+    const [package, name] = parseName(proto.typeName);
     return {
-        name: parseName(proto.typeName),
+        package,
+        name,
         kind: "message",
         fields: fields,
         structs: structs.filter((v) => (seen.has(v.name) ? false : seen.add(v.name))),
@@ -148,9 +136,11 @@ function parseProto(proto) {
 
 function extractProtos() {
     const results = {};
-    for (const proto of getModules("typeName")) {
-        if (!proto.typeName.startsWith("discord_protos")) continue;
-        const name = parseName(proto.typeName);
+
+    // Populated by preload.js
+    for (const proto of window.protoObjects) {
+        if (!proto?.typeName?.startsWith?.("discord_protos")) continue;
+        const [, name] = parseName(proto.typeName);
         console.log(`Parsing ${name}...`);
         results[name] = parseProto(proto);
     }
@@ -170,7 +160,7 @@ function createProtoField(field) {
 }
 
 function createProtoFile(proto) {
-    const lines = [`syntax = "proto3";\n`, `package discord_protos.discord_users.v1;\n`, `message ${proto.name} {`];
+    const lines = [`syntax = "proto3";\n`, `package ${proto.package};\n`, `message ${proto.name} {`];
 
     proto.structs.forEach((struct) => {
         lines.push(`  ${struct.kind} ${struct.name} {`);
