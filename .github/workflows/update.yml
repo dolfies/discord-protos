@@ -40,7 +40,6 @@ jobs:
 
     - name: Build protobuf definitions
       run: |
-        npm run build
         npm run js
         npm run py
 
