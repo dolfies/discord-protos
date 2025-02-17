@@ -1,6 +1,6 @@
 {
     "name": "discord-protos",
-    "version": "1.1.24",
+    "version": "1.1.25",
     "description": "A parser for Discord's protobufs",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -18,8 +18,8 @@
     ],
     "license": "MIT",
     "scripts": {
-        "py": "protoc --proto_path=./discord_protos/ --python_out=discord_protos PremiumMarketingComponentProperties.proto FrecencyUserSettings.proto PreloadedUserSettings.proto",
-        "js": "protoc --proto_path=./discord_protos/ --ts_out src/proto PremiumMarketingComponentProperties.proto FrecencyUserSettings.proto PreloadedUserSettings.proto",
+        "py": "protoc --proto_path=./discord_protos/ --python_out=discord_protos PreloadedUserSettings.proto FrecencyUserSettings.proto ApplicationUserRoleConnection.proto AcknowledgedApplicationDisclosures.proto PremiumMarketingComponentProperties.proto",
+        "js": "protoc --proto_path=./discord_protos/ --ts_out src/proto PreloadedUserSettings.proto FrecencyUserSettings.proto ApplicationUserRoleConnection.proto AcknowledgedApplicationDisclosures.proto PremiumMarketingComponentProperties.proto",
         "build": "tsc",
         "load": "npm run build && node dist/load.js"
     },

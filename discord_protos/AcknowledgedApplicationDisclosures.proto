@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+package discord_protos.discord_kkv_store_value_models.v1;
+
+message AcknowledgedApplicationDisclosures {
+  enum ApplicationDisclosureType {
+    APPLICATION_DISCLOSURE_TYPE_UNSPECIFIED_DISCLOSURE = 0;
+    APPLICATION_DISCLOSURE_TYPE_IP_LOCATION = 1;
+    APPLICATION_DISCLOSURE_TYPE_DISPLAYS_ADVERTISEMENTS = 2;
+    APPLICATION_DISCLOSURE_TYPE_PARTNER_SDK_DATA_SHARING_MESSAGE = 3;
+  }
+
+  message AcknowledgedApplicationDisclosure {
+    ApplicationDisclosureType disclosure_type = 1;
+    optional google.protobuf.Timestamp acked_at = 2;
+  }
+
+  repeated AcknowledgedApplicationDisclosure acked_disclosures = 1;
+}

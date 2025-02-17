@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package discord_protos.discord_kkv_store_value_models.v1;
+
+message ApplicationUserRoleConnection {
+  map<string, string> metadata = 1;
+  string platform_name = 2;
+  string platform_username = 3;
+  fixed64 version = 4;
+}

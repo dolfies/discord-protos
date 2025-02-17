@@ -45,6 +45,8 @@ declare module "@protobuf-ts/runtime" {
 MessageType.prototype.fromBase64 = fromBase64;
 MessageType.prototype.toBase64 = toBase64;
 
-export * from "./proto/PremiumMarketingComponentProperties";
-export * from "./proto/FrecencyUserSettings";
 export * from "./proto/PreloadedUserSettings";
+export * from "./proto/FrecencyUserSettings";
+export * from "./proto/ApplicationUserRoleConnection";
+export * from "./proto/AcknowledgedApplicationDisclosures";
+export * from "./proto/PremiumMarketingComponentProperties";
